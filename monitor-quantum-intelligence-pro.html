@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 QBTC QUANTUM INTELLIGENCE ENGINE PRO - ANÁLISIS TÉCNICO AVANZADO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 2000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 2.8em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff88, #00ccff, #ff0088, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .pro-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b35, #ff0088, #00ccff);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 10px;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
+            animation: proGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes proGlow {
+            from { box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5); }
+            to { box-shadow: 0 15px 40px rgba(255, 0, 136, 0.7); }
+        }
+
+        .refresh-btn {
+            background: linear-gradient(45deg, #ff6b35, #00ccff);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 35px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            margin: 15px;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.6);
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-active {
+            background-color: #00ff88;
+        }
+
+        .status-error {
+            background-color: #ff0088;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .card-subtitle {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .metric-label {
+            font-weight: 500;
+            color: #ccc;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .metric-positive {
+            color: #00ff88;
+        }
+
+        .metric-negative {
+            color: #ff0088;
+        }
+
+        .metric-neutral {
+            color: #00ccff;
+        }
+
+        .recommendation {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00ff88;
+        }
+
+        .recommendation.buy {
+            border-left-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .recommendation.sell {
+            border-left-color: #ff0088;
+            background: rgba(255, 0, 136, 0.1);
+        }
+
+        .recommendation.hold {
+            border-left-color: #00ccff;
+            background: rgba(0, 204, 255, 0.1);
+        }
+
+        .recommendation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-symbol {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .recommendation-action {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .action-buy {
+            background: #00ff88;
+            color: #000;
+        }
+
+        .action-sell {
+            background: #ff0088;
+            color: #fff;
+        }
+
+        .action-hold {
+            background: #00ccff;
+            color: #000;
+        }
+
+        .recommendation-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .detail-item {
+            text-align: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .detail-label {
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .technical-indicators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .indicator {
+            text-align: center;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .indicator-label {
+            color: #888;
+            font-size: 0.8em;
+            margin-bottom: 3px;
+        }
+
+        .indicator-value {
+            font-weight: bold;
+        }
+
+        .portfolio-strategy {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .strategy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .strategy-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .strategy-risk {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .risk-high {
+            background: #ff0088;
+            color: #fff;
+        }
+
+        .risk-medium {
+            background: #ff6b35;
+            color: #fff;
+        }
+
+        .risk-low {
+            background: #00ff88;
+            color: #000;
+        }
+
+        .allocation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .allocation-item:last-child {
+            border-bottom: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+
+        .error {
+            background: rgba(255, 0, 136, 0.1);
+            border: 1px solid rgba(255, 0, 136, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            color: #ff0088;
+        }
+
+        .source-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: #888;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            margin-left: 10px;
+        }
+
+        .intelligence-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .intelligence-metric {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .intelligence-label {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .intelligence-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .intelligence-unit {
+            font-size: 0.8em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🚀 QBTC QUANTUM INTELLIGENCE ENGINE PRO</h1>
+            <p class="subtitle">Análisis Técnico Avanzado con Ingeniería Cuántica</p>
+            <div class="pro-badge">PROFESIONAL - ANÁLISIS TÉCNICO AVANZADO</div>
+            <button class="refresh-btn" onclick="loadData()">🔄 Actualizar Datos PRO</button>
+        </div>
+
+        <div id="status" class="loading">
+            <div class="status-indicator status-active"></div>
+            Cargando análisis cuántico profesional...
+        </div>
+
+        <div id="content" style="display: none;">
+            <!-- Métricas de Inteligencia -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">🧠 Métricas de Inteligencia PRO</div>
+                        <div class="card-subtitle">Análisis Técnico Avanzado</div>
+                    </div>
+                </div>
+                <div class="intelligence-metrics" id="intelligenceMetrics">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Recomendaciones de Alto Valor -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">🎯 Recomendaciones de Alto Valor PRO</div>
+                        <div class="card-subtitle">Análisis Técnico con RSI, MACD, Bollinger Bands</div>
+                    </div>
+                </div>
+                <div id="recommendations">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Estrategias de Portafolio -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">📊 Estrategias de Portafolio PRO</div>
+                        <div class="card-subtitle">Gestión Avanzada de Riesgo</div>
+                    </div>
+                </div>
+                <div id="portfolioStrategies">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Información del Sistema -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">⚙️ Información del Sistema PRO</div>
+                        <div class="card-subtitle">Engine Cuántico Profesional</div>
+                    </div>
+                </div>
+                <div id="systemInfo">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentData = null;
+
+        // Función para formatear números de forma segura
+        function safeFormatNumber(value, decimals = 2) {
+            if (value === null || value === undefined || isNaN(value)) {
+                return 'N/A';
+            }
+            return parseFloat(value).toFixed(decimals);
+        }
+
+        // Función para generar valor cuántico
+        function generateQuantumValue(seed = Date.now()) {
+            const lambda = 8.977020214210413;
+            const phi = 1.618033988749895;
+            const gamma = 0.5772156649015329;
+            
+            const quantumValue = Math.sin(seed / lambda) * Math.cos(seed / phi) * gamma;
+            return Math.abs(quantumValue) % 1;
+        }
+
+        // Función para cargar datos
+        async function loadData() {
+            const statusDiv = document.getElementById('status');
+            const contentDiv = document.getElementById('content');
+            
+            statusDiv.innerHTML = '<div class="status-indicator status-active"></div>Cargando análisis cuántico profesional...';
+            contentDiv.style.display = 'none';
+
+            try {
+                const response = await fetch('http://localhost:64620/api/recommendations/quantum');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                currentData = await response.json();
+                displayData(currentData);
+                
+                statusDiv.innerHTML = '<div class="status-indicator status-active"></div>Sistema PRO Activo - Análisis Técnico Avanzado';
+                contentDiv.style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                statusDiv.innerHTML = '<div class="status-indicator status-error"></div>Error cargando datos PRO';
+                contentDiv.style.display = 'none';
+            }
+        }
+
+        // Función para mostrar datos
+        function displayData(data) {
+            displayIntelligenceMetrics(data.intelligenceMetrics);
+            displayRecommendations(data.results);
+            displayPortfolioStrategies(data.portfolioStrategies);
+            displaySystemInfo(data);
+        }
+
+        // Mostrar métricas de inteligencia
+        function displayIntelligenceMetrics(metrics) {
+            const container = document.getElementById('intelligenceMetrics');
+            
+            const metricsData = [
+                { label: 'Prediction Accuracy', value: metrics.predictionAccuracy, unit: '%' },
+                { label: 'Sentiment Score', value: metrics.sentimentScore, unit: '%' },
+                { label: 'News Impact', value: metrics.newsImpact, unit: '%' },
+                { label: 'Correlation Strength', value: metrics.correlationStrength, unit: '%' },
+                { label: 'Signal Strength', value: metrics.signalStrength, unit: '%' },
+                { label: 'Model Confidence', value: metrics.modelConfidence, unit: '%' }
+            ];
+
+            container.innerHTML = metricsData.map(metric => `
+                <div class="intelligence-metric">
+                    <div class="intelligence-label">${metric.label}</div>
+                    <div class="intelligence-value">${safeFormatNumber(metric.value, 1)}</div>
+                    <div class="intelligence-unit">${metric.unit}</div>
+                </div>
+            `).join('');
+        }
+
+        // Mostrar recomendaciones
+        function displayRecommendations(results) {
+            const container = document.getElementById('recommendations');
+            
+            container.innerHTML = Object.entries(results).map(([symbol, data]) => {
+                const { marketData, technicalIndicators, recommendation } = data;
+                const actionClass = recommendation.action.toLowerCase();
+                
+                return `
+                    <div class="recommendation ${actionClass}">
+                        <div class="recommendation-header">
+                            <div class="recommendation-symbol">${symbol}</div>
+                            <div class="recommendation-action action-${actionClass}">${recommendation.action}</div>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Precio Actual:</span>
+                            <span class="metric-value">$${safeFormatNumber(marketData.price)}</span>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Cambio 24h:</span>
+                            <span class="metric-value ${marketData.change24h >= 0 ? 'metric-positive' : 'metric-negative'}">
+                                ${marketData.change24h >= 0 ? '+' : ''}${safeFormatNumber(marketData.change24h, 2)}%
+                            </span>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Confianza:</span>
+                            <span class="metric-value metric-neutral">${safeFormatNumber(recommendation.confidence, 1)}%</span>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Razón:</span>
+                            <span class="metric-value">${recommendation.reason}</span>
+                        </div>
+                        
+                        <div class="recommendation-details">
+                            <div class="detail-item">
+                                <div class="detail-label">Precio Objetivo</div>
+                                <div class="detail-value">$${safeFormatNumber(recommendation.targetPrice)}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Stop Loss</div>
+                                <div class="detail-value">$${safeFormatNumber(recommendation.stopLoss)}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Take Profit</div>
+                                <div class="detail-value">$${safeFormatNumber(recommendation.takeProfit)}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Riesgo</div>
+                                <div class="detail-value">${recommendation.riskLevel}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="technical-indicators">
+                            <div class="indicator">
+                                <div class="indicator-label">RSI</div>
+                                <div class="indicator-value">${safeFormatNumber(technicalIndicators.rsi, 1)}</div>
+                            </div>
+                            <div class="indicator">
+                                <div class="indicator-label">Volatilidad</div>
+                                <div class="indicator-value">${safeFormatNumber(technicalIndicators.volatility * 100, 2)}%</div>
+                            </div>
+                            <div class="indicator">
+                                <div class="indicator-label">Momentum</div>
+                                <div class="indicator-value">${safeFormatNumber(technicalIndicators.momentum * 100, 2)}%</div>
+                            </div>
+                            <div class="indicator">
+                                <div class="indicator-label">Volumen</div>
+                                <div class="indicator-value">${safeFormatNumber(technicalIndicators.volumeRatio, 2)}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="source-badge">${marketData.source}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Mostrar estrategias de portafolio
+        function displayPortfolioStrategies(strategies) {
+            const container = document.getElementById('portfolioStrategies');
+            
+            container.innerHTML = Object.entries(strategies).map(([key, strategy]) => {
+                const riskClass = strategy.riskLevel.toLowerCase();
+                
+                return `
+                    <div class="portfolio-strategy">
+                        <div class="strategy-header">
+                            <div class="strategy-name">${strategy.name}</div>
+                            <div class="strategy-risk risk-${riskClass}">${strategy.riskLevel}</div>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Descripción:</span>
+                            <span class="metric-value">${strategy.description}</span>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Retorno Esperado:</span>
+                            <span class="metric-value ${strategy.expectedReturn >= 0 ? 'metric-positive' : 'metric-negative'}">
+                                ${strategy.expectedReturn >= 0 ? '+' : ''}${safeFormatNumber(strategy.expectedReturn, 2)}%
+                            </span>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Asignaciones:</span>
+                        </div>
+                        
+                        ${Object.entries(strategy.allocations).map(([asset, allocation]) => `
+                            <div class="allocation-item">
+                                <span>${asset}</span>
+                                <span>${safeFormatNumber(allocation, 1)}%</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Mostrar información del sistema
+        function displaySystemInfo(data) {
+            const container = document.getElementById('systemInfo');
+            
+            container.innerHTML = `
+                <div class="metric">
+                    <span class="metric-label">Engine Version:</span>
+                    <span class="metric-value">${data.engineVersion}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Analysis Method:</span>
+                    <span class="metric-value">${data.analysisMethod}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Timestamp:</span>
+                    <span class="metric-value">${new Date(data.timestamp).toLocaleString()}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Assets Analyzed:</span>
+                    <span class="metric-value">${Object.keys(data.results).length}</span>
+                </div>
+            `;
+        }
+
+        // Cargar datos al iniciar
+        document.addEventListener('DOMContentLoaded', loadData);
+
+        // Actualizar datos cada 30 segundos
+        setInterval(loadData, 30000);
+    </script>
+</body>
+</html>

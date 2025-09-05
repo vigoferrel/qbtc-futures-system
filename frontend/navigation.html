@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBTC Ultimate Edition - Centro de Control Principal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --quantum-primary: #00ff88;
+            --quantum-secondary: #0088ff;
+            --quantum-accent: #ff0088;
+            --consciousness-glow: #88ffff;
+            --zurita-gold: #ffd700;
+            --quantum-bg: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #2a1a3e 100%);
+            --font-quantum: 'Orbitron', monospace;
+            --font-interface: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-interface);
+            background: var(--quantum-bg);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .quantum-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: 
+                radial-gradient(2px 2px at 20px 30px, #0088ff, transparent),
+                radial-gradient(2px 2px at 40px 70px, #00ff88, transparent),
+                radial-gradient(1px 1px at 90px 40px, #ff0088, transparent),
+                radial-gradient(1px 1px at 130px 80px, #ffaa00, transparent);
+            background-size: 200px 100px;
+            animation: quantumFloat 20s infinite linear;
+        }
+
+        @keyframes quantumFloat {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(50px, -200px) rotate(360deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .main-title {
+            font-family: var(--font-quantum);
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            margin-bottom: 1rem;
+            animation: titleGlow 3s infinite alternate;
+        }
+
+        .qbtc {
+            color: var(--quantum-primary);
+        }
+
+        .ultimate {
+            color: var(--consciousness-glow);
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 30px rgba(0, 255, 136, 0.5); }
+            100% { text-shadow: 0 0 50px rgba(136, 255, 255, 0.8); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #aaaaaa;
+            margin-bottom: 2rem;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--quantum-primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .dashboards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .dashboard-card {
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--quantum-primary), var(--consciousness-glow), var(--quantum-secondary));
+            border-radius: 20px;
+            padding: 2px;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: subtract;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dashboard-card:hover::before {
+            opacity: 1;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .dashboard-title {
+            font-family: var(--font-quantum);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--quantum-primary);
+        }
+
+        .dashboard-description {
+            color: #cccccc;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .dashboard-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-features li {
+            padding: 0.3rem 0;
+            color: #aaaaaa;
+            font-size: 0.9rem;
+        }
+
+        .dashboard-features li::before {
+            content: '⚡';
+            margin-right: 0.5rem;
+            color: var(--quantum-primary);
+        }
+
+        .dashboard-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-interface);
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--quantum-primary), var(--consciousness-glow));
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 136, 255, 0.2);
+            color: var(--quantum-secondary);
+            border: 1px solid var(--quantum-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--quantum-secondary);
+            color: white;
+        }
+
+        .system-info {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            background: rgba(0, 255, 136, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .info-label {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            color: var(--quantum-primary);
+            font-family: var(--font-quantum);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: #666;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="quantum-particles"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">
+                <span class="qbtc">QBTC</span>
+                <span class="ultimate">ULTIMATE EDITION</span>
+            </h1>
+            <p class="subtitle">Centro de Control Principal - Sistema Quantum de Trading</p>
+            
+            <div class="status-bar">
+                <div class="status-item">
+                    <div class="status-indicator"></div>
+                    <span>Sistema Operativo</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-indicator"></div>
+                    <span>Frontend Server Activo</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-indicator"></div>
+                    <span>Coherencia Quantum: 84%</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-indicator"></div>
+                    <span>Versión 4.0.0-Ultimate</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboards-grid">
+            <div class="dashboard-card">
+                <h3 class="dashboard-title">🎯 Dashboard Principal</h3>
+                <p class="dashboard-description">
+                    Dashboard unificado con métricas de Leonardo Consciousness, Poetas Cuánticos y constantes universales.
+                </p>
+                <ul class="dashboard-features">
+                    <li>Leonardo Consciousness Tracking</li>
+                    <li>Poetas Cuánticos Activos</li>
+                    <li>Multiplicador Zurita</li>
+                    <li>Constantes Universales</li>
+                </ul>
+                <div class="dashboard-buttons">
+                    <a href="http://localhost:14800/" target="_blank" class="dashboard-btn btn-primary">🚀 Abrir Dashboard</a>
+                    <a href="http://localhost:14800/api/quantum/data" target="_blank" class="dashboard-btn btn-secondary">📊 Ver API</a>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 class="dashboard-title">🌌 Quantum Unified Complete</h3>
+                <p class="dashboard-description">
+                    Dashboard completo con análisis cuántico avanzado, matriz NxN infinita y eventos Big Bang.
+                </p>
+                <ul class="dashboard-features">
+                    <li>Análisis Cuántico Avanzado</li>
+                    <li>Matriz NxN → ∞</li>
+                    <li>Resonancia λ₇₉₁₉</li>
+                    <li>Eventos Big Bang</li>
+                </ul>
+                <div class="dashboard-buttons">
+                    <a href="http://localhost:14800/quantum" target="_blank" class="dashboard-btn btn-primary">🌀 Quantum Dashboard</a>
+                    <a href="http://localhost:14800/api/quantum/portfolio" target="_blank" class="dashboard-btn btn-secondary">📈 Portfolio API</a>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 class="dashboard-title">🎭 Quantum Complete</h3>
+                <p class="dashboard-description">
+                    Versión completa con visualizaciones 3D, análisis dimensional y control cuántico total.
+                </p>
+                <ul class="dashboard-features">
+                    <li>Visualización 3D</li>
+                    <li>Control Cuántico Total</li>
+                    <li>Análisis Dimensional</li>
+                    <li>Partículas Quantum</li>
+                </ul>
+                <div class="dashboard-buttons">
+                    <a href="http://localhost:14800/quantum-complete" target="_blank" class="dashboard-btn btn-primary">🔮 Complete Dashboard</a>
+                    <a href="http://localhost:14800/api/quantum/bigbang" target="_blank" class="dashboard-btn btn-secondary">💥 Big Bang API</a>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 class="dashboard-title">🔮 Multidimensional</h3>
+                <p class="dashboard-description">
+                    Dashboard multidimensional con capacidades extendidas y visualización avanzada.
+                </p>
+                <ul class="dashboard-features">
+                    <li>Visualización Multidimensional</li>
+                    <li>Capacidades Extendidas</li>
+                    <li>Análisis Avanzado</li>
+                    <li>Interface Evolutiva</li>
+                </ul>
+                <div class="dashboard-buttons">
+                    <a href="http://localhost:14800/multidimensional" target="_blank" class="dashboard-btn btn-primary">🌈 Multi Dashboard</a>
+                    <a href="http://localhost:14800/api/quantum/poets" target="_blank" class="dashboard-btn btn-secondary">🎭 Poets API</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="system-info">
+            <h2>📊 Estado del Sistema</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Servidor Frontend</div>
+                    <div class="info-value" id="frontendStatus">ACTIVO</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Puerto Principal</div>
+                    <div class="info-value">14800</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Dashboards</div>
+                    <div class="info-value">4 Disponibles</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">APIs Activas</div>
+                    <div class="info-value">5 Endpoints</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Coherencia Quantum</div>
+                    <div class="info-value" id="quantumCoherence">84%</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Consciousness Level</div>
+                    <div class="info-value" id="consciousnessLevel">94.4%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>QBTC Ultimate Edition - Sistema Quantum de Trading v4.0.0</p>
+        <p>Servidor Principal: http://localhost:14800 | Todos los dashboards operativos</p>
+    </div>
+
+    <script>
+        // Actualizar estado en tiempo real
+        async function updateSystemStatus() {
+            try {
+                const response = await fetch('/health');
+                const data = await response.json();
+                
+                if (data.quantum) {
+                    document.getElementById('quantumCoherence').textContent = 
+                        Math.round(data.quantum.coherence * 100) + '%';
+                    document.getElementById('consciousnessLevel').textContent = 
+                        data.quantum.consciousness + '%';
+                }
+                
+                document.getElementById('frontendStatus').textContent = 
+                    data.status === 'healthy' ? 'ACTIVO' : 'ERROR';
+                    
+            } catch (error) {
+                console.error('Error actualizando estado:', error);
+                document.getElementById('frontendStatus').textContent = 'ERROR';
+            }
+        }
+
+        // Actualizar cada 10 segundos
+        updateSystemStatus();
+        setInterval(updateSystemStatus, 10000);
+
+        // Efectos visuales
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.dashboard-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.animation = 'fadeInUp 0.6s ease forwards';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

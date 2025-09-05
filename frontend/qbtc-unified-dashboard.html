@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 QBTC Unified Control Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #3d3d5c;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            text-align: center;
+            background: linear-gradient(45deg, #ffd700, #ffb347, #ff6347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: auto;
+            animation: pulse 2s infinite;
+        }
+
+        .status-active { background-color: #4ade80; }
+        .status-inactive { background-color: #ef4444; }
+        .status-unknown { background-color: #f59e0b; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .metric-label {
+            color: #b0b0b0;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+
+        .metric-value.positive {
+            color: #4ade80;
+        }
+
+        .metric-value.negative {
+            color: #ef4444;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.25rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #10b981, #059669);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .tier-badge {
+            padding: 0.2rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .tier-1 { background: #ffd700; color: black; }
+        .tier-2 { background: #c0c0c0; color: black; }
+        .tier-3 { background: #cd7f32; color: white; }
+        .tier-4 { background: #17a2b8; color: white; }
+        .tier-5 { background: #ffc107; color: black; }
+        .tier-6 { background: #dc3545; color: white; }
+
+        .merkaba-visual {
+            width: 80px;
+            height: 80px;
+            margin: 1rem auto;
+            position: relative;
+        }
+
+        .tetrahedron {
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: merkabaRotation 8s linear infinite;
+        }
+
+        .tetrahedron.up {
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 52px solid #8b5cf6;
+        }
+
+        .tetrahedron.down {
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-top: 52px solid rgba(139, 92, 246, 0.6);
+            animation-direction: reverse;
+        }
+
+        @keyframes merkabaRotation {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .connection-status {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 200;
+        }
+
+        .connection-connected {
+            background: rgba(16, 185, 129, 0.9);
+            color: white;
+        }
+
+        .connection-disconnected {
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+        }
+
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tier-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid;
+        }
+
+        .symbols-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .symbol-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+
+        .symbol-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="connection-status" id="connectionStatus">🔌 Connecting...</div>
+    
+    <div class="header">
+        <h1>🌌 QBTC Unified Control Center 🌌</h1>
+    </div>
+
+    <div class="container">
+        <!-- Métricas Globales Unificadas -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">🎯</span>
+                <span class="card-title">Métricas Globales QBTC</span>
+                <div class="status-indicator status-unknown" id="systemStatus"></div>
+            </div>
+            
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
+                <div style="text-align: center;">
+                    <div style="font-size: 0.8rem; color: #b0b0b0;">Coherencia Cuántica</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; color: #8b5cf6;" id="coherenciaCuantica">--</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 0.8rem; color: #b0b0b0;">λ₇₉₁₉ Resonance</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; color: #3b82f6;" id="lambda7919">--</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 0.8rem; color: #b0b0b0;">Poetic Resonance</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; color: #10b981;" id="poeticResonance">--</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 0.8rem; color: #b0b0b0;">Antimateria</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; color: #f59e0b;" id="antimateria">--</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 0.8rem; color: #b0b0b0;">Entropía Global</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; color: #ef4444;" id="entropiaGlobal">--</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 0.8rem; color: #b0b0b0;">Leverage Óptimo</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; color: #ffd700;" id="leverageOptimo">--</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sistema de Control -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">⚙️</span>
+                    <span class="card-title">Control del Sistema</span>
+                </div>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                    <button class="btn btn-success" onclick="activateMerkaba()" id="activateBtn">Activar Merkaba</button>
+                    <button class="btn btn-warning" onclick="refreshMetrics()">Actualizar Métricas</button>
+                    <button class="btn btn-danger" onclick="deactivateMerkaba()" id="deactivateBtn">Desactivar Merkaba</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🌀</span>
+                    <span class="card-title">Merkaba Protocol</span>
+                    <div class="status-indicator status-inactive" id="merkabaStatus"></div>
+                </div>
+                
+                <div class="merkaba-visual" id="merkabaVisual" style="display: none;">
+                    <div class="tetrahedron up"></div>
+                    <div class="tetrahedron down"></div>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Estado:</span>
+                    <span class="metric-value" id="merkabaStatusText">Inactivo</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Fase:</span>
+                    <span class="metric-value" id="merkabaPhase">dormant</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Acceso Dimensional:</span>
+                    <span class="metric-value" id="dimensionalAccess">3D</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumen por Tiers -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">🏆</span>
+                <span class="card-title">Resumen por Tiers (77 Símbolos)</span>
+            </div>
+            
+            <div class="tier-grid" id="tierGrid">
+                <div style="text-align: center; color: #888; padding: 2rem; grid-column: 1 / -1;">
+                    Cargando datos de tiers...
+                </div>
+            </div>
+        </div>
+
+        <!-- Métricas del Sistema -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📊</span>
+                    <span class="card-title">Performance del Sistema</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Total Símbolos:</span>
+                    <span class="metric-value" id="totalSymbols">77</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Tiers Activos:</span>
+                    <span class="metric-value" id="activeTiers">6</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Coherencia Promedio:</span>
+                    <span class="metric-value" id="avgCoherence">--</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Posiciones Totales:</span>
+                    <span class="metric-value" id="totalPositions">--</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">PnL Promedio:</span>
+                    <span class="metric-value" id="avgPnL">--</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔗</span>
+                    <span class="card-title">Estado de Conectividad</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Frontend:</span>
+                    <span class="metric-value positive" id="frontendStatus">ONLINE</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Backend Merkaba:</span>
+                    <span class="metric-value" id="backendStatus">--</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Sincronización:</span>
+                    <span class="metric-value" id="dataSync">--</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Latencia:</span>
+                    <span class="metric-value" id="latency">--</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Uptime:</span>
+                    <span class="metric-value" id="uptime">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Big Bang Events y Estados Cuánticos -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">💥</span>
+                    <span class="card-title">Big Bang Events</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Eventos Detectados:</span>
+                    <span class="metric-value" id="bigBangCount">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Último Evento:</span>
+                    <span class="metric-value" id="lastBigBang">--</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Predicción:</span>
+                    <span class="metric-value" id="nextPrediction">Calculando...</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">⚛️</span>
+                    <span class="card-title">Estados Cuánticos</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">λ₇₉₁₉:</span>
+                    <span class="metric-value" id="quantum7919">7919</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">λ₈₈₈:</span>
+                    <span class="metric-value" id="quantum888">888</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Golden Ratio:</span>
+                    <span class="metric-value" id="goldenRatio">1.618</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Zurita Multiplier:</span>
+                    <span class="metric-value" id="zuritaMultiplier">--</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let systemData = null;
+        let updateInterval = null;
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            updateConnectionStatus(true);
+            loadGlobalMetrics();
+            loadTierData();
+            loadMerkabaStatus();
+            
+            // Auto-refresh every 10 seconds
+            updateInterval = setInterval(() => {
+                loadGlobalMetrics();
+                loadTierData();
+                loadMerkabaStatus();
+            }, 10000);
+        });
+
+        function updateConnectionStatus(connected) {
+            const statusEl = document.getElementById('connectionStatus');
+            if (connected) {
+                statusEl.textContent = '🔌 Conectado al Sistema QBTC';
+                statusEl.className = 'connection-status connection-connected';
+            } else {
+                statusEl.textContent = '🔌 Desconectado';
+                statusEl.className = 'connection-status connection-disconnected';
+            }
+        }
+
+        async function loadGlobalMetrics() {
+            try {
+                const response = await fetch('/api/qbtc/global-metrics');
+                const data = await response.json();
+                
+                // Actualizar métricas globales
+                document.getElementById('coherenciaCuantica').textContent = data.coherencia_cuantica.value + '%';
+                document.getElementById('lambda7919').textContent = data.lambda7919_resonance.value + '%';
+                document.getElementById('poeticResonance').textContent = data.poetic_resonance.value + '%';
+                document.getElementById('antimateria').textContent = data.antimateria.value + '%';
+                document.getElementById('entropiaGlobal').textContent = data.entropia_global.value + '%';
+                document.getElementById('leverageOptimo').textContent = data.leverage_optimo.value + 'x';
+
+                // Actualizar resumen del sistema
+                document.getElementById('totalSymbols').textContent = data.tiers_summary.total_symbols;
+                document.getElementById('activeTiers').textContent = data.tiers_summary.active_tiers;
+                document.getElementById('avgCoherence').textContent = (data.tiers_summary.avg_coherence * 100).toFixed(1) + '%';
+                document.getElementById('totalPositions').textContent = data.tiers_summary.total_positions;
+                document.getElementById('avgPnL').textContent = (data.tiers_summary.avg_pnl * 100).toFixed(2) + '%';
+
+                // Actualizar conectividad
+                document.getElementById('frontendStatus').textContent = data.connectivity.frontend_status;
+                document.getElementById('backendStatus').textContent = data.connectivity.merkaba_status;
+                document.getElementById('backendStatus').className = `metric-value ${data.connectivity.merkaba_status === 'CONNECTED' ? 'positive' : 'negative'}`;
+                document.getElementById('dataSync').textContent = data.connectivity.data_sync;
+                document.getElementById('latency').textContent = data.connectivity.latency_ms + 'ms';
+                document.getElementById('uptime').textContent = Math.floor(data.system_health.uptime / 60) + 'm';
+
+                // Actualizar Big Bang Events
+                document.getElementById('bigBangCount').textContent = data.big_bang_events.count;
+                document.getElementById('lastBigBang').textContent = new Date(data.big_bang_events.last_event).toLocaleTimeString();
+                document.getElementById('nextPrediction').textContent = data.big_bang_events.next_predicted;
+
+                // Actualizar estados cuánticos
+                document.getElementById('quantum7919').textContent = data.quantum_state.lambda7919;
+                document.getElementById('quantum888').textContent = data.quantum_state.lambda888;
+                document.getElementById('goldenRatio').textContent = data.quantum_state.golden_ratio;
+                document.getElementById('zuritaMultiplier').textContent = data.quantum_state.zurita_multiplier.toFixed(2);
+
+                // Actualizar estado del sistema
+                document.getElementById('systemStatus').className = 'status-indicator status-active';
+
+            } catch (error) {
+                console.error('Error loading global metrics:', error);
+                document.getElementById('systemStatus').className = 'status-indicator status-inactive';
+                updateConnectionStatus(false);
+            }
+        }
+
+        async function loadTierData() {
+            try {
+                const response = await fetch('/api/qbtc/tiers');
+                const data = await response.json();
+                
+                const tierGrid = document.getElementById('tierGrid');
+                tierGrid.innerHTML = '';
+                
+                data.tiers.forEach(tier => {
+                    const tierCard = document.createElement('div');
+                    tierCard.className = 'tier-card';
+                    tierCard.style.borderLeftColor = getTierColor(tier.tier);
+                    
+                    const pnlClass = tier.current_metrics.daily_pnl >= 0 ? 'positive' : 'negative';
+                    const winrateClass = tier.current_metrics.current_winrate >= tier.performance.win_rate_target ? 'positive' : 'negative';
+                    
+                    tierCard.innerHTML = `
+                        <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="tier-badge tier-${tier.tier.toLowerCase().replace('tier', '')}">${tier.tier}</span>
+                            <span style="font-weight: bold;">${tier.symbol_count} símbolos</span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #b0b0b0; margin-bottom: 0.25rem;">
+                            PnL: <span class="metric-value ${pnlClass}">${(tier.current_metrics.daily_pnl * 100).toFixed(2)}%</span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #b0b0b0; margin-bottom: 0.25rem;">
+                            Win Rate: <span class="metric-value ${winrateClass}">${(tier.current_metrics.current_winrate * 100).toFixed(1)}%</span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #b0b0b0; margin-bottom: 0.25rem;">
+                            Posiciones: <span class="metric-value">${tier.current_metrics.active_positions}</span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #b0b0b0;">
+                            Coherencia: <span class="metric-value">${tier.current_metrics.coherence_level.toFixed(3)}</span>
+                        </div>
+                        <div class="progress-bar" style="height: 6px; margin-top: 0.5rem;">
+                            <div class="progress-fill" style="width: ${tier.current_metrics.coherence_level * 100}%"></div>
+                        </div>
+                    `;
+                    
+                    tierGrid.appendChild(tierCard);
+                });
+                
+            } catch (error) {
+                console.error('Error loading tier data:', error);
+            }
+        }
+
+        async function loadMerkabaStatus() {
+            try {
+                const response = await fetch('/api/qbtc/merkaba-status');
+                const data = await response.json();
+                
+                if (data.backend_connected && data.merkaba_data) {
+                    const merkaba = data.merkaba_data;
+                    const isActive = merkaba.activated;
+                    
+                    document.getElementById('merkabaStatus').className = `status-indicator ${isActive ? 'status-active' : 'status-inactive'}`;
+                    document.getElementById('merkabaStatusText').textContent = isActive ? 'Activo' : 'Inactivo';
+                    document.getElementById('merkabaPhase').textContent = merkaba.phase || 'dormant';
+                    document.getElementById('dimensionalAccess').textContent = merkaba.dimensional_access + 'D' || '3D';
+                    document.getElementById('merkabaVisual').style.display = isActive ? 'block' : 'none';
+                    
+                    // Habilitar/deshabilitar botones
+                    document.getElementById('activateBtn').disabled = isActive;
+                    document.getElementById('deactivateBtn').disabled = !isActive;
+                } else {
+                    document.getElementById('merkabaStatus').className = 'status-indicator status-inactive';
+                    document.getElementById('merkabaStatusText').textContent = 'Backend Desconectado';
+                    document.getElementById('merkabaVisual').style.display = 'none';
+                }
+                
+            } catch (error) {
+                console.error('Error loading Merkaba status:', error);
+                document.getElementById('merkabaStatus').className = 'status-indicator status-inactive';
+                document.getElementById('merkabaStatusText').textContent = 'Error de Conexión';
+            }
+        }
+
+        function getTierColor(tier) {
+            const colors = {
+                'TIER1': '#ffd700',
+                'TIER2': '#c0c0c0', 
+                'TIER3': '#cd7f32',
+                'TIER4': '#17a2b8',
+                'TIER5': '#ffc107',
+                'TIER6': '#dc3545'
+            };
+            return colors[tier] || '#888';
+        }
+
+        async function activateMerkaba() {
+            try {
+                const response = await fetch('http://localhost:14401/activate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ consciousness: 0.933 })
+                });
+                
+                const result = await response.json();
+                if (result.activated) {
+                    setTimeout(loadMerkabaStatus, 1000);
+                }
+            } catch (error) {
+                console.error('Error activating Merkaba:', error);
+                alert('Error al activar Merkaba. Verifique que el backend esté corriendo.');
+            }
+        }
+
+        async function deactivateMerkaba() {
+            try {
+                const response = await fetch('http://localhost:14401/deactivate', {
+                    method: 'POST'
+                });
+                
+                const result = await response.json();
+                if (result.deactivated) {
+                    setTimeout(loadMerkabaStatus, 1000);
+                }
+            } catch (error) {
+                console.error('Error deactivating Merkaba:', error);
+            }
+        }
+
+        function refreshMetrics() {
+            loadGlobalMetrics();
+            loadTierData();
+            loadMerkabaStatus();
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (updateInterval) {
+                clearInterval(updateInterval);
+            }
+        });
+    </script>
+</body>
+</html>

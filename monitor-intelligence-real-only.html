@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 QBTC DASHBOARD - SOLO DATOS REALES</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff88, #00ccff, #ff0088);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .control-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff0088, #ff6b35);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(255, 0, 136, 0.3);
+        }
+
+        .refresh-btn {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #00ff88, #00ccff, #ff0088);
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #00ff88;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric-label {
+            font-weight: 500;
+            color: #ccc;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-active {
+            background: #00ff88;
+        }
+
+        .status-error {
+            background: #ff0088;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .alert {
+            background: rgba(255, 0, 136, 0.1);
+            border: 1px solid rgba(255, 0, 136, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(255, 0, 136, 0.3); }
+            to { box-shadow: 0 0 20px rgba(255, 0, 136, 0.6); }
+        }
+
+        .auto-refresh {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 255, 136, 0.2);
+            border: 1px solid rgba(0, 255, 136, 0.5);
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            color: #00ff88;
+        }
+
+        .predictions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .prediction-card {
+            background: rgba(255, 0, 136, 0.1);
+            border: 1px solid rgba(255, 0, 136, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .prediction-symbol {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ff0088;
+            margin-bottom: 5px;
+        }
+
+        .prediction-price {
+            font-size: 1.1em;
+            color: #00ff88;
+            margin-bottom: 5px;
+        }
+
+        .prediction-source {
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        .error-message {
+            color: #ff0088;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .success-message {
+            color: #00ff88;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .data-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .api-status {
+            display: flex;
+            gap: 10px;
+        }
+
+        .api-indicator {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .api-binance {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .api-coingecko {
+            background: rgba(0, 123, 255, 0.2);
+            color: #007bff;
+        }
+
+        .api-error {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🚀 QBTC DASHBOARD - SOLO DATOS REALES</h1>
+            <p class="subtitle">Sin simulaciones - Sin métricas inventadas - Sin datos de testnet</p>
+            <div class="control-badge">🔗 SOLO DATOS REALES</div>
+            <div class="control-badge">🚫 SIN SIMULACIONES</div>
+            <div class="control-badge">✅ BINANCE + COINGECKO</div>
+            <div class="control-badge">🎯 PRECIOS REALES</div>
+            <button class="refresh-btn" onclick="refreshAllData()">🔄 Actualizar Datos Reales</button>
+        </div>
+
+        <div class="alert">
+            <strong>🎯 SISTEMA DE DATOS REALES EXCLUSIVOS</strong><br>
+            Solo precios reales de Binance y CoinGecko - Sin fallbacks, sin simulaciones, sin métricas inventadas
+        </div>
+
+        <div class="grid">
+            <!-- Estado del Sistema -->
+            <div class="card">
+                <h3 class="card-title">📊 Estado del Sistema</h3>
+                <div class="metric">
+                    <span class="metric-label">Estado:</span>
+                    <span class="metric-value">
+                        <span class="status-indicator status-active"></span>
+                        ACTIVO
+                    </span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Última Actualización:</span>
+                    <span class="metric-value" id="lastUpdate">-</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Datos Obtenidos:</span>
+                    <span class="metric-value" id="dataCount">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Errores:</span>
+                    <span class="metric-value" id="errorCount">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Política de Datos:</span>
+                    <span class="metric-value">REAL_ONLY</span>
+                </div>
+            </div>
+
+            <!-- APIs Status -->
+            <div class="card">
+                <h3 class="card-title">🔗 Estado de APIs</h3>
+                <div class="data-status">
+                    <div class="api-status">
+                        <div class="api-indicator api-binance" id="binanceStatus">Binance</div>
+                        <div class="api-indicator api-coingecko" id="coingeckoStatus">CoinGecko</div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Binance API:</span>
+                    <span class="metric-value" id="binanceResponse">-</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">CoinGecko API:</span>
+                    <span class="metric-value" id="coingeckoResponse">-</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Tiempo de Respuesta:</span>
+                    <span class="metric-value" id="responseTime">-</span>
+                </div>
+            </div>
+
+            <!-- Market Data -->
+            <div class="card">
+                <h3 class="card-title">📈 Datos de Mercado Reales</h3>
+                <div class="metric">
+                    <span class="metric-label">Total de Símbolos:</span>
+                    <span class="metric-value" id="totalSymbols">10</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Precio Más Alto:</span>
+                    <span class="metric-value" id="highestPrice">-</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Precio Más Bajo:</span>
+                    <span class="metric-value" id="lowestPrice">-</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Promedio de Precios:</span>
+                    <span class="metric-value" id="averagePrice">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Precios Reales -->
+        <div class="card">
+            <h3 class="card-title">💰 Precios Reales de Criptomonedas</h3>
+            <div class="predictions-grid" id="predictionsGrid">
+                <!-- Los precios reales se cargarán aquí -->
+            </div>
+        </div>
+
+        <div class="auto-refresh">
+            🔄 Auto-refresh: <span id="refreshCountdown">30</span>s
+        </div>
+    </div>
+
+    <script>
+        let refreshCountdown = 30;
+        let dataCount = 0;
+        let errorCount = 0;
+        let lastUpdate = null;
+
+        const symbols = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'ADAUSDT', 'SOLUSDT', 'DOTUSDT', 'LINKUSDT', 'MATICUSDT', 'AVAXUSDT', 'ATOMUSDT'];
+
+        // Función para actualizar precios reales
+        async function updateRealPrices() {
+            const predictionsGrid = document.getElementById('predictionsGrid');
+            predictionsGrid.innerHTML = '';
+            
+            let successfulData = 0;
+            let failedData = 0;
+            const prices = [];
+
+            for (const symbol of symbols) {
+                try {
+                    const startTime = Date.now();
+                    const response = await fetch(`http://localhost:64614/api/binance/price/${symbol}`);
+                    const responseTime = Date.now() - startTime;
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        
+                        if (data.error) {
+                            // Error de API
+                            failedData++;
+                            const predictionCard = document.createElement('div');
+                            predictionCard.className = 'prediction-card';
+                            predictionCard.innerHTML = `
+                                <div class="prediction-symbol">${symbol}</div>
+                                <div class="error-message">❌ ${data.error}</div>
+                                <div class="prediction-source">API Error</div>
+                            `;
+                            predictionsGrid.appendChild(predictionCard);
+                        } else if (data.price) {
+                            // Datos reales exitosos
+                            successfulData++;
+                            const price = parseFloat(data.price);
+                            prices.push(price);
+                            
+                            const predictionCard = document.createElement('div');
+                            predictionCard.className = 'prediction-card';
+                            predictionCard.innerHTML = `
+                                <div class="prediction-symbol">${symbol}</div>
+                                <div class="prediction-price">$${price.toLocaleString()}</div>
+                                <div class="prediction-source">${data.source}</div>
+                                <div class="success-message">✅ ${responseTime}ms</div>
+                            `;
+                            predictionsGrid.appendChild(predictionCard);
+                        }
+                    } else {
+                        // Error de HTTP
+                        failedData++;
+                        const predictionCard = document.createElement('div');
+                        predictionCard.className = 'prediction-card';
+                        predictionCard.innerHTML = `
+                            <div class="prediction-symbol">${symbol}</div>
+                            <div class="error-message">❌ HTTP ${response.status}</div>
+                            <div class="prediction-source">Connection Error</div>
+                        `;
+                        predictionsGrid.appendChild(predictionCard);
+                    }
+                    
+                } catch (error) {
+                    // Error de red
+                    failedData++;
+                    const predictionCard = document.createElement('div');
+                    predictionCard.className = 'prediction-card';
+                    predictionCard.innerHTML = `
+                        <div class="prediction-symbol">${symbol}</div>
+                        <div class="error-message">❌ ${error.message}</div>
+                        <div class="prediction-source">Network Error</div>
+                    `;
+                    predictionsGrid.appendChild(predictionCard);
+                }
+            }
+
+            // Actualizar métricas del sistema
+            dataCount = successfulData;
+            errorCount = failedData;
+            lastUpdate = new Date().toLocaleTimeString();
+
+            document.getElementById('dataCount').textContent = successfulData;
+            document.getElementById('errorCount').textContent = failedData;
+            document.getElementById('lastUpdate').textContent = lastUpdate;
+
+            // Calcular estadísticas de precios
+            if (prices.length > 0) {
+                const highest = Math.max(...prices);
+                const lowest = Math.min(...prices);
+                const average = prices.reduce((a, b) => a + b, 0) / prices.length;
+
+                document.getElementById('highestPrice').textContent = `$${highest.toLocaleString()}`;
+                document.getElementById('lowestPrice').textContent = `$${lowest.toLocaleString()}`;
+                document.getElementById('averagePrice').textContent = `$${average.toLocaleString()}`;
+            }
+
+            // Actualizar estado de APIs
+            updateAPIStatus(successfulData, failedData);
+        }
+
+        // Función para actualizar estado de APIs
+        function updateAPIStatus(successful, failed) {
+            const binanceStatus = document.getElementById('binanceStatus');
+            const coingeckoStatus = document.getElementById('coingeckoStatus');
+            
+            if (successful > 0) {
+                binanceStatus.className = 'api-indicator api-binance';
+                binanceStatus.textContent = 'Binance ✅';
+                document.getElementById('binanceResponse').textContent = 'ACTIVO';
+            } else {
+                binanceStatus.className = 'api-indicator api-error';
+                binanceStatus.textContent = 'Binance ❌';
+                document.getElementById('binanceResponse').textContent = 'ERROR';
+            }
+
+            if (failed > 0 && successful === 0) {
+                coingeckoStatus.className = 'api-indicator api-error';
+                coingeckoStatus.textContent = 'CoinGecko ❌';
+                document.getElementById('coingeckoResponse').textContent = 'ERROR';
+            } else {
+                coingeckoStatus.className = 'api-indicator api-coingecko';
+                coingeckoStatus.textContent = 'CoinGecko ✅';
+                document.getElementById('coingeckoResponse').textContent = 'BACKUP';
+            }
+        }
+
+        // Función para refrescar todos los datos
+        async function refreshAllData() {
+            await updateRealPrices();
+            refreshCountdown = 30;
+        }
+
+        // Función para manejar el countdown
+        function updateCountdown() {
+            refreshCountdown--;
+            document.getElementById('refreshCountdown').textContent = refreshCountdown;
+            
+            if (refreshCountdown <= 0) {
+                refreshAllData();
+            }
+        }
+
+        // Inicializar dashboard
+        async function initDashboard() {
+            await refreshAllData();
+            
+            // Configurar auto-refresh
+            setInterval(updateCountdown, 1000);
+            
+            // Actualizar datos cada 30 segundos
+            setInterval(async () => await updateRealPrices(), 30000);
+            
+            console.log('🚀 QBTC Real-Only Dashboard inicializado');
+            console.log('🔗 Solo datos reales de Binance/CoinGecko');
+            console.log('🚫 Sin simulaciones ni métricas inventadas');
+        }
+
+        // Inicializar cuando se carga la página
+        window.onload = initDashboard;
+    </script>
+</body>
+</html>

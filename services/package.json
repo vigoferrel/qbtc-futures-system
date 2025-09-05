@@ -1,0 +1,58 @@
+{
+  "name": "qbtc-futures-services",
+  "version": "1.0.0",
+  "description": "Servicios HTTP para el sistema QBTC Futures",
+  "type": "module",
+  "main": "start-all-services.js",
+  "scripts": {
+    "start": "node start-all-services.js",
+    "start:all": "node start-all-services.js",
+    "start:engines": "node start-all-services.js --exclude=14101",
+    "start:monitor": "node unified-monitor-service.js",
+    "start:temporal": "node temporal-cycles-service.js",
+    "start:weighting": "node multidimensional-weighting-service.js",
+    "start:strategy": "node tier-strategy-service.js",
+    "start:opportunities": "node consolidated-opportunities-service.js",
+    "start:core": "node start-all-services.js --only=14102,14103,14104",
+    "start:api": "node start-all-services.js --only=14105",
+    "start:dev": "node start-all-services.js --verbose --delay=1000",
+    "start:prod": "NODE_ENV=production node start-all-services.js --no-monitor",
+    "health": "node health-check.js",
+    "status": "node system-status.js",
+    "stop": "pkill -f 'node.*service.js'",
+    "restart": "npm run stop && sleep 2 && npm start",
+    "logs": "tail -f logs/*.log",
+    "test:services": "node test-services.js",
+    "validate": "node validate-system.js"
+  },
+  "keywords": [
+    "qbtc",
+    "futures",
+    "trading",
+    "microservices",
+    "temporal-cycles",
+    "multidimensional-weighting",
+    "tier-strategy",
+    "opportunities-api"
+  ],
+  "author": "QBTC Futures System",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/qbtc-futures-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-repo/qbtc-futures-system/issues"
+  }
+}

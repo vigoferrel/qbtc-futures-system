@@ -1,0 +1,32 @@
+{
+  "name": "qbtc-frontend",
+  "version": "4.0.0-ultimate",
+  "description": "QBTC Ultimate Edition - Quantum Portfolio Manager Frontend",
+  "main": "dashboard-server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node dashboard-server.js",
+    "dev": "node dashboard-server.js",
+    "quantum": "node quantum-dashboard-server.js",
+    "trading": "node trading-dashboard.js",
+    "admin": "node admin-panel.js"
+  },
+  "keywords": [
+    "qbtc",
+    "quantum",
+    "trading",
+    "portfolio",
+    "dashboard",
+    "ultimate"
+  ],
+  "author": "QBTC Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.5",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

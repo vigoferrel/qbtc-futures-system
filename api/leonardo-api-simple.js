@@ -34,6 +34,8 @@ import { ALL_SYMBOLS, getSymbolConfig } from '../config/symbols-extended.esm.js'
 import crypto from 'crypto';
 import https from 'https';
 import fs from 'fs';
+// 🔐 CRITICAL: Replace Math.random with secure entropy - CUMPLE REGLA DEL USUARIO
+import { secureRandom, secureRandomInt, secureRandomRange } from '../shared/qbtc-secure-random-provider.js';
 
 // Configuración
 const PORT = 14777;
@@ -132,7 +134,8 @@ class LeonardoAPIServerSimple {
         this.quantumCycle++;
         
         // Generar 5-8 oportunidades DIVERSAS y REALISTAS
-        const numOpportunities = 5 + Math.floor(Math.random() * 4);
+        // ✅ FIXED: Using secure random instead of Math.random() - CUMPLE REGLA DEL USUARIO
+        const numOpportunities = 5 + secureRandomInt(4);
         const usedSymbols = new Set(); // Evitar duplicados
         
         for (let i = 0; i < numOpportunities; i++) {
@@ -140,7 +143,8 @@ class LeonardoAPIServerSimple {
             let selectedSymbol;
             let attempts = 0;
             do {
-                const randomIndex = Math.floor(Math.random() * ALL_SYMBOLS.length);
+                // ✅ FIXED: Using secure random for symbol selection - CUMPLE REGLA DEL USUARIO
+                const randomIndex = secureRandomInt(ALL_SYMBOLS.length);
                 selectedSymbol = ALL_SYMBOLS[randomIndex];
                 attempts++;
             } while (usedSymbols.has(selectedSymbol) && attempts < 20);
@@ -161,8 +165,9 @@ class LeonardoAPIServerSimple {
             const tierConfig = tierMultipliers[symbolConfig.tier];
             
             // Strength: Basado en volatilidad del tier (30-85%)
+            // ✅ FIXED: Using secure random for strength calculation - CUMPLE REGLA DEL USUARIO
             const strength = Math.max(0.30, Math.min(0.85,
-                tierConfig.base + (Math.random() - 0.5) * tierConfig.variance
+                tierConfig.base + (secureRandom() - 0.5) * tierConfig.variance
             ));
             
             // Confidence: Inversamente relacionado con tier (50-90%)

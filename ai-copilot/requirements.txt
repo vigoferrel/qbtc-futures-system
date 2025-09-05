@@ -1,0 +1,24 @@
+# QBTC Master Copilot - OpenRouter Integration
+# =============================================
+
+# Core dependencies
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+
+# OpenRouter AI (compatible with OpenAI client)
+openai>=1.0.0
+
+# Async and utilities
+aiohttp>=3.8.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Development and testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+
+# Optional: Web interface
+fastapi>=0.100.0
+uvicorn>=0.23.0

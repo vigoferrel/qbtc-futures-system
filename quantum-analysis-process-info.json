@@ -1,0 +1,15 @@
+﻿{
+    "ProcessId":  5084,
+    "CacheEnabled":  "true",
+    "SafeMode":  true,
+    "RateLimit":  "150",
+    "Command":  "node analysis-engine/quantum-analysis-server.js",
+    "ErrorFile":  "logs/quantum-analysis-server_2025-08-25_22-13-01.error.log",
+    "StartTime":  {
+                      "value":  "\/Date(1756174381074)\/",
+                      "DisplayHint":  2,
+                      "DateTime":  "lunes, 25 de agosto de 2025 22:13:01"
+                  },
+    "MetricsFile":  "logs/quantum-analysis-metrics_2025-08-25_22-13-01.json",
+    "LogFile":  "logs/quantum-analysis-server_2025-08-25_22-13-01.log"
+}

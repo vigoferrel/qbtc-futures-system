@@ -1,0 +1,134 @@
+{
+  "dashboard": {
+    "port": 14002,
+    "host": "localhost",
+    "environment": "development"
+  },
+
+  "aiEngine": {
+    "enabled": true,
+    "modelType": "quantum-enhanced",
+    "learningRate": 0.001,
+    "predictionConfidence": 0.8,
+    "anomalyThreshold": 0.95,
+    "patternRecognition": {
+      "enabled": true,
+      "sensitivity": 0.7,
+      "minPatternLength": 3
+    },
+    "quantumIntegration": {
+      "lambdaResonanceWeight": 0.4,
+      "consciousnessWeight": 0.3,
+      "coherenceWeight": 0.3
+    }
+  },
+
+  "analytics": {
+    "realTimeUpdates": true,
+    "predictionHorizons": [5, 15, 60, 240],
+    "maxHistoricalData": 10000,
+    "processingInterval": 1000,
+    "batchSize": 100,
+    "quantumConstants": {
+      "LAMBDA_7919": 7919.23584,
+      "PHI_GOLDEN": 1.618033988749,
+      "COHERENCE_THRESHOLD": 0.85
+    }
+  },
+
+  "visualization": {
+    "dimensions": ["2d", "3d", "temporal"],
+    "updateFrequency": 500,
+    "chartTypes": ["line", "candlestick", "heatmap", "quantum-field"],
+    "colorScheme": "quantum-dark",
+    "responsive": true,
+    "maxDataPoints": 1000
+  },
+
+  "dataSources": {
+    "messageBus": {
+      "host": "localhost",
+      "port": 14000,
+      "reconnectInterval": 5000,
+      "maxRetries": 10
+    },
+    "marketData": {
+      "providers": ["binance", "internal"],
+      "updateInterval": 1000,
+      "bufferSize": 1000
+    }
+  },
+
+  "performance": {
+    "maxConnections": 1000,
+    "maxMessageQueue": 10000,
+    "memoryLimit": "1GB",
+    "cpuLimit": "80%",
+    "metricsCollection": {
+      "enabled": true,
+      "interval": 30000,
+      "retentionDays": 30
+    }
+  },
+
+  "security": {
+    "cors": {
+      "origin": ["http://localhost:3000", "http://localhost:8080"],
+      "credentials": true
+    },
+    "rateLimit": {
+      "windowMs": 60000,
+      "max": 1000
+    },
+    "authentication": {
+      "enabled": false,
+      "type": "jwt",
+      "secret": "your-secret-key"
+    }
+  },
+
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "files": {
+      "main": "logs/dashboard.log",
+      "ai": "logs/ai-engine.log",
+      "websocket": "logs/websocket.log",
+      "performance": "logs/performance.log"
+    },
+    "maxSize": "10m",
+    "maxFiles": 5
+  },
+
+  "alerts": {
+    "enabled": true,
+    "channels": ["websocket", "console"],
+    "thresholds": {
+      "coherence": {
+        "low": 0.3,
+        "high": 0.9
+      },
+      "volatility": {
+        "high": 0.05
+      },
+      "predictionAccuracy": {
+        "low": 0.7
+      }
+    }
+  },
+
+  "monitoring": {
+    "healthCheck": {
+      "enabled": true,
+      "interval": 30000,
+      "timeout": 5000
+    },
+    "metrics": {
+      "system": true,
+      "performance": true,
+      "ai": true,
+      "websocket": true
+    }
+  }
+}
+

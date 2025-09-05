@@ -1,0 +1,28 @@
+# QBTC Master Copilot - Configuration
+# ===================================
+
+# Google Gemini API Configuration
+# Obtén tu API key desde: https://makersuite.google.com/app/apikey
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# QBTC System Configuration (opcional)
+QBTC_SYSTEM_URL=http://localhost:14001
+QBTC_API_KEY=your_qbtc_api_key
+
+# Agent Configuration
+AGENT_TEMPERATURE=0.7
+AGENT_MAX_TOKENS=2048
+AGENT_MODEL=gemini-1.5-flash
+
+# Conversation Settings
+CONVERSATION_HISTORY_LIMIT=50
+CONVERSATION_SAVE_PATH=./conversations
+
+# System Integration (opcional)
+TRADING_METRICS_URL=http://localhost:8080
+ANALYSIS_ENGINE_URL=http://localhost:14100
+
+# Logging
+LOG_LEVEL=INFO
+LOG_FILE=copilot.log
+

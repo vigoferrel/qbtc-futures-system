@@ -1,0 +1,82 @@
+{
+  "name": "qbtc-advanced-analytics-dashboard",
+  "version": "1.0.0",
+  "description": "Dashboard avanzado de analytics en tiempo real con IA integrada para el sistema QBTC Quantum",
+  "main": "qbtc-advanced-analytics-dashboard.js",
+  "scripts": {
+    "start": "node qbtc-advanced-analytics-dashboard.js",
+    "dev": "node --watch qbtc-advanced-analytics-dashboard.js",
+    "example": "node example-usage.js",
+    "test": "node --test test-dashboard.js",
+    "health": "curl http://localhost:14002/health",
+    "dashboard": "open http://localhost:14002/dashboard"
+  },
+  "keywords": [
+    "quantum",
+    "analytics",
+    "dashboard",
+    "ai",
+    "trading",
+    "real-time",
+    "websocket",
+    "machine-learning",
+    "financial-analysis"
+  ],
+  "author": "QBTC Quantum System",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.14.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "compression": "^1.7.4",
+    "morgan": "^1.10.0",
+    "winston": "^3.11.0",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "ws": "^8.14.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qbtc-system/analytics-dashboard"
+  },
+  "config": {
+    "port": 14002,
+    "messageBusPort": 14000,
+    "environment": "development"
+  },
+  "qbtc": {
+    "component": "analytics-dashboard",
+    "version": "1.0.0",
+    "dependencies": [
+      "qbtc-message-bus",
+      "qbtc-state-manager",
+      "qbtc-api-gateway",
+      "qbtc-quantum-core"
+    ],
+    "capabilities": [
+      "real-time-analytics",
+      "ai-predictions",
+      "market-insights",
+      "risk-analysis",
+      "quantum-visualization",
+      "websocket-streaming",
+      "rest-api"
+    ]
+  }
+}
+
+
+
+

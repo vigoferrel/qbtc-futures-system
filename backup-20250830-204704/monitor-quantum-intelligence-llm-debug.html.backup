@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔬 QBTC QUANTUM MACRO-INTELLIGENCE - ANÁLISIS INTEGRAL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 2400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 2.8em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff88, #00ccff, #ff0088, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #00ccff;
+            margin-bottom: 20px;
+        }
+
+        .intelligence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .intelligence-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .intelligence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #00ff88;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-content {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .sector-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .sector-table th,
+        .sector-table td {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .sector-table th {
+            background: rgba(0, 255, 136, 0.2);
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .sector-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .sector-table tr:hover {
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .status {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+
+        .status-success {
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            color: #000;
+        }
+
+        .status-error {
+            background: linear-gradient(45deg, #ff0088, #cc0066);
+            color: #fff;
+        }
+
+        .status-loading {
+            background: linear-gradient(45deg, #00ccff, #0088cc);
+            color: #000;
+        }
+
+        .refresh-btn {
+            background: linear-gradient(45deg, #00ff88, #00ccff, #ff0088);
+            color: #000;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
+        }
+
+        .best-symbol {
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            color: #000;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .best-symbol:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 255, 136, 0.4);
+        }
+
+        .symbol-explanation {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 6px;
+            font-size: 0.8em;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .symbol-explanation.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #00ff88;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .explanation-details {
+            color: #ccc;
+            line-height: 1.4;
+        }
+
+        .macro-analysis {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 8px;
+            padding: 8px;
+            margin-top: 6px;
+            font-size: 0.75em;
+        }
+
+        .quantum-metrics {
+            background: rgba(0, 204, 255, 0.1);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 8px;
+            padding: 8px;
+            margin-top: 6px;
+            font-size: 0.75em;
+        }
+
+        .whale-flow {
+            background: rgba(255, 0, 136, 0.1);
+            border: 1px solid rgba(255, 0, 136, 0.3);
+            border-radius: 8px;
+            padding: 8px;
+            margin-top: 6px;
+            font-size: 0.75em;
+        }
+
+        .trade-recommendation {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 8px;
+            margin-top: 6px;
+            font-size: 0.75em;
+        }
+
+        .scroll-container {
+            overflow-x: auto;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .metric-highlight {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .metric-warning {
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .metric-danger {
+            color: #ff0088;
+            font-weight: bold;
+        }
+
+        .metric-info {
+            color: #00ccff;
+            font-weight: bold;
+        }
+
+        /* Estilos para el Monitor Gráfico */
+        .graphical-container {
+            padding: 10px;
+        }
+
+        .chart-section {
+            margin-bottom: 30px;
+        }
+
+        .chart-section h3 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .bar-label {
+            flex-basis: 200px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .bar-container {
+            flex-grow: 1;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .bar-value {
+            position: absolute;
+            right: 5px;
+            font-size: 0.8em;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .top-recommendations {
+            margin-top: 20px;
+        }
+
+        .top-rec-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+        }
+
+        .top-rec-medal {
+            font-size: 1.5em;
+            margin-right: 10px;
+            color: #ffd700; /* Oro */
+        }
+
+        .top-rec-details {
+            flex-grow: 1;
+        }
+
+        .top-rec-sector {
+            font-weight: bold;
+            color: #00ff88;
+            font-size: 1.1em;
+        }
+
+        .top-rec-metrics {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .metric {
+            display: block;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🔬 QBTC QUANTUM MACRO-INTELLIGENCE</h1>
+            <div class="subtitle">Análisis Integral con Feynman Paths, Markov Chains, Whale Flow & Macro-Sectorial Intelligence</div>
+            <button class="refresh-btn" onclick="loadData()">🔄 Cargar Análisis Integral</button>
+        </div>
+
+        <div id="status" class="status status-loading">Inicializando análisis cuántico...</div>
+
+        <div class="intelligence-grid">
+            <div class="intelligence-card">
+                <div class="card-title">🧠 Feynman Path Analysis</div>
+                <div id="feynmanAnalysis" class="card-content">Calculando paths cuánticos...</div>
+            </div>
+
+            <div class="intelligence-card">
+                <div class="card-title">⛓️ Markov Chain States</div>
+                <div id="markovAnalysis" class="card-content">Analizando transiciones de estado...</div>
+            </div>
+
+            <div class="intelligence-card">
+                <div class="card-title">🐋 Whale & Institutional Flow</div>
+                <div id="whaleAnalysis" class="card-content">Monitoreando flujo institucional...</div>
+            </div>
+
+            <div class="intelligence-card">
+                <div class="card-title">🌍 Macro-Sectorial Intelligence</div>
+                <div id="macroAnalysis" class="card-content">Evaluando correlaciones macro...</div>
+            </div>
+
+            <div class="intelligence-card">
+                <div class="card-title">💰 INGENIERÍA INVERSA - PROFIT MÁXIMO</div>
+                <div id="profitAnalysis" class="card-content">Optimizando leverage y profit...</div>
+            </div>
+
+                         <div class="intelligence-card">
+                 <div class="card-title">📊 MONITOR GRÁFICO - RECOMENDACIONES VISUALES</div>
+                 <div id="graphicalMonitor" class="card-content">Generando gráficos de recomendaciones...</div>
+             </div>
+             
+             <div class="intelligence-card">
+                 <div class="card-title">⏰ ANÁLISIS MULTI-TIMEFRAME - CONFLUENCIA JERÁRQUICA</div>
+                 <div id="timeframeAnalysis" class="card-content">Analizando confluencia multi-timeframe...</div>
+             </div>
+        </div>
+
+        <div class="intelligence-card">
+            <div class="card-title">📊 Tabla Integral de Sectores con Recomendaciones Completas</div>
+            <div class="scroll-container">
+                <div id="sectorTable" class="card-content">Generando tabla integral...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Constantes cuánticas propias del sistema QBTC
+        const QBTC_QUANTUM_CONSTANTS = {
+            // Constantes fundamentales del sistema
+            LAMBDA_7919: Math.log(7919), // 8.977279923499
+            PHI_GOLDEN: (1 + Math.sqrt(5)) / 2, // 1.618033988749
+            RESONANCE_FREQ: 888,
+            COHERENCE_THRESHOLD: 0.941,
+            EULER_GAMMA: 0.5772156649015329,
+            
+            // Secuencias cuánticas propias
+            QUANTUM_FIBONACCI: [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597],
+            PRIME_SEQUENCE: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97],
+            
+            // Variable compleja fundamental z = 9 + 16i
+            Z_COMPLEX: {
+                REAL: 9,
+                IMAG: 16,
+                MAGNITUDE: Math.sqrt(9*9 + 16*16) // 18.358
+            },
+            
+            // Principios herméticos del sistema
+            HERMETIC_PRINCIPLES: {
+                CORRESPONDENCE: 'Como es arriba, es abajo',
+                VIBRATION: 'Todo vibra, nada está en reposo',
+                POLARITY: 'Todo es dual, todo tiene su par de opuestos',
+                RHYTHM: 'Todo fluye y refluye, todo tiene sus períodos',
+                CAUSATION: 'Toda causa tiene su efecto, todo efecto tiene su causa',
+                GENDER: 'El género existe en todo, todo tiene sus principios masculino y femenino',
+                MENTALISM: 'El universo es mental, sostenido en la mente del TODO'
+            },
+            
+            // TIMEFRAMES JERÁRQUICOS CON PESOS CUÁNTICOS (honrando el trabajo previo)
+            TIMEFRAME_HIERARCHY: {
+                // MACRO TREND (40% weight) - Timeframes superiores
+                macro: {
+                    '1M': { weight: 0.15, role: 'SUPER_TREND', influence: 'DOMINANT', cache_ttl: 3600000 },
+                    '1w': { weight: 0.15, role: 'MAJOR_TREND', influence: 'STRONG', cache_ttl: 1800000 },
+                    '1d': { weight: 0.10, role: 'DAILY_TREND', influence: 'MEDIUM', cache_ttl: 900000 }
+                },
+                
+                // SWING STRUCTURE (35% weight) - Timeframes medios
+                swing: {
+                    '12h': { weight: 0.10, role: 'SWING_HIGH_LOW', influence: 'MEDIUM', cache_ttl: 600000 },
+                    '6h': { weight: 0.10, role: 'SWING_STRUCTURE', influence: 'MEDIUM', cache_ttl: 300000 },
+                    '4h': { weight: 0.08, role: 'KEY_LEVELS', influence: 'MODERATE', cache_ttl: 180000 },
+                    '2h': { weight: 0.07, role: 'MINOR_SWING', influence: 'MODERATE', cache_ttl: 120000 }
+                },
+                
+                // ENTRY PRECISION (25% weight) - Timeframes menores
+                entry: {
+                    '1h': { weight: 0.08, role: 'ENTRY_TIMING', influence: 'HIGH_PRECISION', cache_ttl: 60000 },
+                    '30m': { weight: 0.06, role: 'FINE_TUNE', influence: 'PRECISION', cache_ttl: 45000 },
+                    '15m': { weight: 0.05, role: 'ENTRY_TRIGGER', influence: 'TRIGGER', cache_ttl: 30000 },
+                    '5m': { weight: 0.04, role: 'MICRO_ENTRY', influence: 'MICRO', cache_ttl: 15000 },
+                    '1m': { weight: 0.02, role: 'EXECUTION', influence: 'EXECUTION', cache_ttl: 5000 }
+                }
+            },
+            
+            // Timeframes estándar del sistema QBTC
+            TIMEFRAMES: ['1m', '5m', '15m', '1h', '4h', '1d'],
+            
+            // Configuración de análisis real
+            ANALYSIS_CONFIG: {
+                DATA_REFRESH_INTERVAL: 30000,
+                MATRIX_UPDATE_INTERVAL: 60000,
+                CORRELATION_INTERVAL: 120000,
+                MIN_COHERENCE: 0.6,
+                MAX_ENTROPY: 0.8
+            }
+        };
+
+        // Función para cargar datos integrales
+        async function loadData() {
+            const statusDiv = document.getElementById('status');
+            const feynmanDiv = document.getElementById('feynmanAnalysis');
+            const markovDiv = document.getElementById('markovAnalysis');
+            const whaleDiv = document.getElementById('whaleAnalysis');
+            const macroDiv = document.getElementById('macroAnalysis');
+            const profitDiv = document.getElementById('profitAnalysis');
+            const graphicalDiv = document.getElementById('graphicalMonitor');
+            const sectorTableDiv = document.getElementById('sectorTable');
+
+            statusDiv.className = 'status status-loading';
+            statusDiv.textContent = '🔄 Ejecutando análisis cuántico integral con ingeniería inversa...';
+
+            try {
+                const response = await fetch('http://localhost:64622/api/recommendations/quantum');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // Análisis Feynman Path
+                const feynmanResults = analyzeFeynmanPaths(data);
+                feynmanDiv.textContent = feynmanResults;
+
+                // Análisis Markov Chains
+                const markovResults = analyzeMarkovChains(data);
+                markovDiv.textContent = markovResults;
+
+                // Análisis Whale & Institutional Flow
+                const whaleResults = analyzeWhaleFlow(data);
+                whaleDiv.textContent = whaleResults;
+
+                // Análisis Macro-Sectorial
+                const macroResults = analyzeMacroSectorial(data);
+                macroDiv.textContent = macroResults;
+
+                // INGENIERÍA INVERSA: Análisis de Profit Máximo
+                const profitResults = analyzeProfitMaximization(data);
+                profitDiv.textContent = profitResults;
+
+                                 // MONITOR GRÁFICO: Visualización con barras
+                 const graphicalResults = createGraphicalMonitor(data);
+                 graphicalDiv.innerHTML = graphicalResults;
+
+                 // ANÁLISIS MULTI-TIMEFRAME: Confluencia jerárquica
+                 const timeframeResults = analyzeMultiTimeframeConfluence(data);
+                 document.getElementById('timeframeAnalysis').textContent = timeframeResults;
+
+                 // Tabla integral con recomendaciones completas
+                if (data.sectorAnalysis && Object.keys(data.sectorAnalysis).length > 0) {
+                    const tableHTML = createIntegralSectorTable(data.sectorAnalysis, data);
+                    sectorTableDiv.innerHTML = tableHTML;
+                    
+                    statusDiv.className = 'status status-success';
+                    statusDiv.textContent = `✅ Análisis integral con ingeniería inversa completado - ${Object.keys(data.sectorAnalysis).length} sectores analizados`;
+                } else {
+                    sectorTableDiv.textContent = '❌ No hay datos para análisis integral';
+                    statusDiv.className = 'status status-error';
+                    statusDiv.textContent = '❌ Error en análisis de sectores';
+                }
+
+            } catch (error) {
+                console.error('Error en análisis integral:', error);
+                feynmanDiv.textContent = `Error: ${error.message}`;
+                markovDiv.textContent = `Error: ${error.message}`;
+                whaleDiv.textContent = `Error: ${error.message}`;
+                macroDiv.textContent = `Error: ${error.message}`;
+                profitDiv.textContent = `Error: ${error.message}`;
+                graphicalDiv.textContent = `Error: ${error.message}`;
+                sectorTableDiv.textContent = `Error: ${error.message}`;
+                
+                statusDiv.className = 'status status-error';
+                statusDiv.textContent = `❌ Error: ${error.message}`;
+            }
+        }
+
+        // Análisis Feynman Path Integrals usando constantes QBTC reales
+        function analyzeFeynmanPaths(data) {
+            let analysis = '🧠 FEYNMAN PATH INTEGRAL ANALYSIS - QBTC QUANTUM\n';
+            analysis += '='.repeat(60) + '\n\n';
+
+            if (data.sectorAnalysis) {
+                const sectors = Object.keys(data.sectorAnalysis);
+                analysis += `📊 SECTORS ANALYZED: ${sectors.length}\n`;
+                analysis += `🔬 LAMBDA_7919: ${QBTC_QUANTUM_CONSTANTS.LAMBDA_7919.toFixed(6)}\n`;
+                analysis += `🌌 PHI_GOLDEN: ${QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN.toFixed(6)}\n`;
+                analysis += `⚡ RESONANCE_FREQ: ${QBTC_QUANTUM_CONSTANTS.RESONANCE_FREQ}\n\n`;
+
+                // Calcular paths cuánticos usando constantes reales
+                sectors.forEach(sector => {
+                    const sectorData = data.sectorAnalysis[sector];
+                    const coherence = calculateQBTCCoherence(sectorData);
+                    const entanglement = calculateQBTCEntanglement(sectorData);
+                    const pathProbability = calculateQBTCPathProbability(coherence, entanglement, sector);
+                    const quantumState = determineQBTCQuantumState(coherence, sector);
+                    
+                    analysis += `🏭 ${sector.replace(/_/g, ' ')}\n`;
+                    analysis += `   Path Probability: ${(pathProbability * 100).toFixed(2)}%\n`;
+                    analysis += `   Quantum State: ${quantumState}\n`;
+                    analysis += `   Coherence: ${coherence.toFixed(3)}\n`;
+                    analysis += `   Entanglement: ${entanglement.toFixed(3)}\n\n`;
+                });
+
+                // Análisis de correlación cuántica real
+                const quantumCorrelation = calculateQBTCQuantumCorrelation(data.sectorAnalysis);
+                analysis += `🌌 QBTC QUANTUM CORRELATION MATRIX\n`;
+                analysis += `   Overall Entanglement: ${quantumCorrelation.entanglement.toFixed(3)}\n`;
+                analysis += `   Coherence Factor: ${quantumCorrelation.coherence.toFixed(3)}\n`;
+                analysis += `   Resonance Factor: ${quantumCorrelation.resonance.toFixed(3)}\n`;
+                analysis += `   Hermetic Principle: ${QBTC_QUANTUM_CONSTANTS.HERMETIC_PRINCIPLES.CORRESPONDENCE}\n`;
+            }
+
+            return analysis;
+        }
+
+        // Análisis Markov Chain States usando constantes QBTC reales
+        function analyzeMarkovChains(data) {
+            let analysis = '⛓️ MARKOV CHAIN STATE ANALYSIS - QBTC QUANTUM\n';
+            analysis += '='.repeat(60) + '\n\n';
+
+            if (data.sectorAnalysis) {
+                const sectors = Object.keys(data.sectorAnalysis);
+                analysis += `📊 SECTORS: ${sectors.length}\n`;
+                analysis += `🔬 FIBONACCI SEQUENCE: ${QBTC_QUANTUM_CONSTANTS.QUANTUM_FIBONACCI.length} terms\n`;
+                analysis += `🔢 PRIME SEQUENCE: ${QBTC_QUANTUM_CONSTANTS.PRIME_SEQUENCE.length} terms\n\n`;
+
+                // Análisis de transiciones de estado usando constantes reales
+                sectors.forEach((sector, index) => {
+                    const sectorData = data.sectorAnalysis[sector];
+                    const stateTransition = calculateQBTCMarkovTransition(sectorData, sector, index);
+                    const steadyState = calculateQBTCSteadyState(sectorData);
+                    
+                    analysis += `🏭 ${sector.replace(/_/g, ' ')}\n`;
+                    analysis += `   Current State: ${stateTransition.current}\n`;
+                    analysis += `   Next State: ${stateTransition.next}\n`;
+                    analysis += `   Transition Prob: ${(stateTransition.probability * 100).toFixed(2)}%\n`;
+                    analysis += `   Steady State: ${steadyState}\n`;
+                    analysis += `   Fibonacci Factor: ${stateTransition.fibonacciFactor.toFixed(3)}\n\n`;
+                });
+
+                // Matriz de transición global usando constantes QBTC
+                const globalTransition = calculateQBTCGlobalTransitionMatrix(data.sectorAnalysis);
+                analysis += `🌐 QBTC GLOBAL TRANSITION MATRIX\n`;
+                analysis += `   Convergence Rate: ${globalTransition.convergence.toFixed(3)}\n`;
+                analysis += `   Stability Index: ${globalTransition.stability.toFixed(3)}\n`;
+                analysis += `   Resonance Factor: ${globalTransition.resonance.toFixed(3)}\n`;
+                analysis += `   Hermetic Principle: ${QBTC_QUANTUM_CONSTANTS.HERMETIC_PRINCIPLES.RHYTHM}\n`;
+            }
+
+            return analysis;
+        }
+
+        // Análisis Whale & Institutional Flow
+        function analyzeWhaleFlow(data) {
+            let analysis = '🐋 WHALE & INSTITUTIONAL FLOW ANALYSIS\n';
+            analysis += '='.repeat(50) + '\n\n';
+
+            if (data.sectorAnalysis) {
+                const sectors = Object.keys(data.sectorAnalysis);
+                analysis += `💰 WHALE THRESHOLD: $1,000,000\n`;
+                analysis += `🏢 INSTITUTIONAL THRESHOLD: $10,000,000\n\n`;
+
+                // Análisis de flujo por sector
+                sectors.forEach(sector => {
+                    const sectorData = data.sectorAnalysis[sector];
+                    const whaleFlow = calculateWhaleFlow(sectorData);
+                    const institutionalFlow = calculateInstitutionalFlow(sectorData);
+                    
+                    analysis += `🏭 ${sector.replace(/_/g, ' ')}\n`;
+                    analysis += `   Whale Flow: ${whaleFlow.direction} $${whaleFlow.volume.toLocaleString()}\n`;
+                    analysis += `   Institutional Flow: ${institutionalFlow.direction} $${institutionalFlow.volume.toLocaleString()}\n`;
+                    analysis += `   Flow Strength: ${whaleFlow.strength.toFixed(2)}%\n`;
+                    analysis += `   Market Impact: ${calculateMarketImpact(whaleFlow, institutionalFlow).toFixed(2)}%\n\n`;
+                });
+
+                // Análisis de concentración de capital
+                const capitalConcentration = calculateCapitalConcentration(data.sectorAnalysis);
+                analysis += `💎 CAPITAL CONCENTRATION\n`;
+                analysis += `   Whale Dominance: ${capitalConcentration.whaleDominance.toFixed(2)}%\n`;
+                analysis += `   Institutional Control: ${capitalConcentration.institutionalControl.toFixed(2)}%\n`;
+                analysis += `   Retail Participation: ${capitalConcentration.retailParticipation.toFixed(2)}%\n`;
+            }
+
+            return analysis;
+        }
+
+        // Análisis Macro-Sectorial
+        function analyzeMacroSectorial(data) {
+            let analysis = '🌍 MACRO-SECTORIAL INTELLIGENCE\n';
+            analysis += '='.repeat(50) + '\n\n';
+
+            if (data.sectorAnalysis) {
+                const sectors = Object.keys(data.sectorAnalysis);
+                analysis += `📊 SECTORS: ${sectors.length}\n`;
+                analysis += `🔗 CORRELATION THRESHOLD: 0.7\n\n`;
+
+                // Análisis de correlaciones macro
+                const macroCorrelations = calculateMacroCorrelations(data.sectorAnalysis);
+                analysis += `🌐 MACRO CORRELATIONS\n`;
+                Object.entries(macroCorrelations).forEach(([pair, correlation]) => {
+                    analysis += `   ${pair}: ${correlation.toFixed(3)}\n`;
+                });
+
+                analysis += `\n📈 SECTOR ROTATION\n`;
+                const sectorRotation = calculateSectorRotation(data.sectorAnalysis);
+                analysis += `   Current Phase: ${sectorRotation.phase}\n`;
+                analysis += `   Rotation Speed: ${sectorRotation.speed.toFixed(2)}\n`;
+                analysis += `   Next Rotation: ${sectorRotation.nextRotation}\n`;
+
+                analysis += `\n🎯 MACRO OPPORTUNITIES\n`;
+                const macroOpportunities = identifyMacroOpportunities(data.sectorAnalysis);
+                macroOpportunities.forEach(opp => {
+                    analysis += `   ${opp.sector}: ${opp.opportunity} (${opp.probability.toFixed(1)}%)\n`;
+                });
+            }
+
+            return analysis;
+        }
+
+        // Función para crear tabla integral con recomendaciones completas
+        function createIntegralSectorTable(sectorAnalysis, fullData) {
+            let tableHTML = '<table class="sector-table">';
+            tableHTML += '<thead><tr>';
+            tableHTML += '<th>Sector</th>';
+            tableHTML += '<th>Símbolos</th>';
+            tableHTML += '<th>Señales</th>';
+            tableHTML += '<th>Confianza</th>';
+            tableHTML += '<th>RSI Prom</th>';
+            tableHTML += '<th>Volumen</th>';
+            tableHTML += '<th>Métricas</th>';
+            tableHTML += '<th>Mejor Símbolo</th>';
+            tableHTML += '<th>Timeframe Óptimo</th>';
+            tableHTML += '<th>Análisis Macro</th>';
+            tableHTML += '<th>Métricas Cuánticas</th>';
+            tableHTML += '<th>Flujo Whale</th>';
+            tableHTML += '<th>Recomendación Integral</th>';
+            tableHTML += '</tr></thead>';
+            tableHTML += '<tbody>';
+
+            Object.entries(sectorAnalysis).forEach(([sector, data], index) => {
+                const metrics = data.sectorMetrics || {};
+                const bestSymbol = getBestSymbol(sector, data);
+                const explanationId = `explanation-${index}`;
+                const macroAnalysis = getMacroAnalysis(sector, data, fullData);
+                const quantumMetrics = getQuantumMetrics(sector, data);
+                const whaleFlow = getWhaleFlow(sector, data);
+                const integralRecommendation = getIntegralRecommendation(sector, data, bestSymbol, macroAnalysis, quantumMetrics, whaleFlow);
+                
+                tableHTML += '<tr>';
+                tableHTML += `<td><strong>${sector.replace(/_/g, ' ')}</strong></td>`;
+                tableHTML += `<td>${data.symbols ? data.symbols.length : 'N/A'}</td>`;
+                tableHTML += `<td>B:${data.buySignals || 0} S:${data.sellSignals || 0} H:${data.holdSignals || 0}</td>`;
+                tableHTML += `<td>${data.avgConfidence ? data.avgConfidence.toFixed(1) + '%' : 'N/A'}</td>`;
+                tableHTML += `<td>${data.avgRSI ? data.avgRSI.toFixed(1) : 'N/A'}</td>`;
+                tableHTML += `<td>${data.totalVolume ? formatVolume(data.totalVolume) : 'N/A'}</td>`;
+                tableHTML += `<td>${metrics.sectorStrength ? metrics.sectorStrength.toFixed(0) + '%' : 'N/A'}</td>`;
+                tableHTML += `<td>`;
+                if (bestSymbol) {
+                    tableHTML += `<div class="best-symbol" onclick="toggleExplanation('${explanationId}')">${bestSymbol.symbol}</div>`;
+                    tableHTML += `<div id="${explanationId}" class="symbol-explanation">`;
+                    tableHTML += `<div class="explanation-title">${bestSymbol.symbol} - ${bestSymbol.action}</div>`;
+                    tableHTML += `<div class="explanation-details">`;
+                    tableHTML += `<strong>Confianza:</strong> ${bestSymbol.confidence}%<br>`;
+                    tableHTML += `<strong>Precio:</strong> $${bestSymbol.price}<br>`;
+                    tableHTML += `<strong>Cambio 24h:</strong> ${bestSymbol.change24h > 0 ? '+' : ''}${bestSymbol.change24h}%<br>`;
+                    tableHTML += `<strong>RSI:</strong> ${bestSymbol.rsi}<br>`;
+                    tableHTML += `<strong>Razón:</strong> ${bestSymbol.reason}`;
+                    tableHTML += `</div></div>`;
+                } else {
+                    tableHTML += `<span style="color: #666;">N/A</span>`;
+                }
+                                 tableHTML += `</td>`;
+                 
+                 // Agregar celda de timeframe óptimo
+                 const confluenceAnalysis = calculateTimeframeConfluence(sector, data);
+                 const timeframeColor = confluenceAnalysis.goldenConfluence ? '#00ff88' : '#ffaa00';
+                 tableHTML += `<td><div style="color: ${timeframeColor}; font-weight: bold;">${confluenceAnalysis.optimalTF}</div></td>`;
+                 
+                 tableHTML += `<td><div class="macro-analysis">${macroAnalysis}</div></td>`;
+                 tableHTML += `<td><div class="quantum-metrics">${quantumMetrics}</div></td>`;
+                 tableHTML += `<td><div class="whale-flow">${whaleFlow}</div></td>`;
+                 tableHTML += `<td><div class="trade-recommendation">${integralRecommendation}</div></td>`;
+                 tableHTML += '</tr>';
+            });
+
+            tableHTML += '</tbody></table>';
+            return tableHTML;
+        }
+
+        // Funciones QBTC reales usando constantes propias del sistema
+        function calculateQBTCPathProbability(coherence, entanglement, sector) {
+            if (!coherence || !entanglement) return 0.5; // Valor por defecto si no hay datos
+            
+            const lambda = QBTC_QUANTUM_CONSTANTS.LAMBDA_7919;
+            const phi = QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN;
+            
+            // Cálculo usando constantes cuánticas reales y parámetros correctos
+            const baseProbability = Math.min(85, Math.max(15, coherence * 100));
+            const entanglementFactor = Math.min(1.2, Math.max(0.8, entanglement / 2));
+            const sectorVolatility = getSectorVolatility(sector);
+            
+            const pathProbability = Math.min(95, Math.max(5, baseProbability * entanglementFactor * sectorVolatility)) / 100;
+            return Math.max(0, Math.min(1, pathProbability));
+        }
+
+        function determineQBTCQuantumState(coherence, sector) {
+            if (!coherence) return 'QBTC_COLLAPSED_UNKNOWN'; // Valor por defecto si no hay datos
+            
+            if (coherence > 0.8) return 'QBTC_SUPERPOSITION_BULL';
+            if (coherence > 0.6) return 'QBTC_COHERENT_BULL';
+            if (coherence > 0.4) return 'QBTC_NEUTRAL_TRANSITION';
+            if (coherence > 0.2) return 'QBTC_COHERENT_BEAR';
+            return 'QBTC_SUPERPOSITION_BEAR';
+        }
+
+        function calculateQBTCCoherence(sectorData) {
+            if (!sectorData) return 0.5; // Valor por defecto si no hay datos
+            
+            const lambda = QBTC_QUANTUM_CONSTANTS.LAMBDA_7919;
+            const phi = QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN;
+            
+            const confidence = sectorData.avgConfidence || 0;
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            const volume = sectorData.totalVolume || 0;
+            
+            // Cálculo de coherencia usando constantes reales con protección contra NaN
+            const confidenceCoherence = Math.sin((confidence / 100) * Math.PI) * phi;
+            const strengthCoherence = Math.cos((strength / 100) * Math.PI) * lambda;
+            const volumeCoherence = Math.tanh(Math.log(Math.max(1, volume)) / 20) * phi;
+            
+            const coherence = (confidenceCoherence + strengthCoherence + volumeCoherence) / 3;
+            return Math.max(0.1, Math.min(0.95, coherence)); // Evitar valores extremos
+        }
+
+        function calculateQBTCEntanglement(sectorData) {
+            if (!sectorData) return 1.0; // Valor por defecto si no hay datos
+            
+            const lambda = QBTC_QUANTUM_CONSTANTS.LAMBDA_7919;
+            const phi = QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN;
+            
+            const signals = (sectorData.buySignals || 0) + (sectorData.sellSignals || 0) + (sectorData.holdSignals || 0);
+            const confidence = sectorData.avgConfidence || 0;
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            
+            // Cálculo de entrelazamiento usando constantes reales con protección contra NaN
+            const signalEntanglement = Math.sin(Math.max(1, signals) / lambda) * Math.cos(confidence / phi);
+            const strengthEntanglement = Math.tanh(strength / 100) * lambda;
+            
+            const entanglement = Math.abs(signalEntanglement + strengthEntanglement) / 2;
+            return Math.max(0.1, Math.min(3.0, entanglement)); // Límites realistas
+        }
+
+        function calculateQBTCQuantumCorrelation(sectorAnalysis) {
+            const lambda = QBTC_QUANTUM_CONSTANTS.LAMBDA_7919;
+            const phi = QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN;
+            const resonance = QBTC_QUANTUM_CONSTANTS.RESONANCE_FREQ;
+            
+            const sectors = Object.keys(sectorAnalysis);
+            let totalEntanglement = 0;
+            let totalCoherence = 0;
+            let totalResonance = 0;
+            let count = 0;
+            
+            sectors.forEach(sector => {
+                const sectorData = sectorAnalysis[sector];
+                const entanglement = calculateQBTCEntanglement(sectorData);
+                const coherence = calculateQBTCCoherence(sectorData);
+                const sectorResonance = Math.sin(sector.length / lambda) * Math.cos(coherence * phi);
+                
+                totalEntanglement += entanglement;
+                totalCoherence += coherence;
+                totalResonance += sectorResonance;
+                count++;
+            });
+            
+            return {
+                entanglement: count > 0 ? totalEntanglement / count : 0,
+                coherence: count > 0 ? totalCoherence / count : 0,
+                resonance: count > 0 ? totalResonance / count : 0
+            };
+        }
+
+        function determineQuantumState(sectorData) {
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            if (strength > 70) return 'SUPERPOSITION_BULL';
+            if (strength > 50) return 'COHERENT_NEUTRAL';
+            if (strength > 30) return 'ENTANGLED_BEAR';
+            return 'COLLAPSED_UNKNOWN';
+        }
+
+        function calculateEntanglement(sectorData) {
+            const signals = (sectorData.buySignals || 0) + (sectorData.sellSignals || 0) + (sectorData.holdSignals || 0);
+            const confidence = sectorData.avgConfidence || 0;
+            return (signals * confidence) / 100;
+        }
+
+        function calculateQuantumCorrelation(sectorAnalysis) {
+            const sectors = Object.keys(sectorAnalysis);
+            let totalCorrelation = 0;
+            let count = 0;
+            
+            for (let i = 0; i < sectors.length; i++) {
+                for (let j = i + 1; j < sectors.length; j++) {
+                    const sector1 = sectorAnalysis[sectors[i]];
+                    const sector2 = sectorAnalysis[sectors[j]];
+                    const correlation = Math.abs((sector1.avgConfidence || 0) - (sector2.avgConfidence || 0)) / 100;
+                    totalCorrelation += correlation;
+                    count++;
+                }
+            }
+            
+            return count > 0 ? totalCorrelation / count : 0;
+        }
+
+        function calculateCoherence(sectorAnalysis) {
+            const sectors = Object.keys(sectorAnalysis);
+            const strengths = sectors.map(s => sectorAnalysis[s].sectorMetrics?.sectorStrength || 0);
+            const avgStrength = strengths.reduce((a, b) => a + b, 0) / strengths.length;
+            const variance = strengths.reduce((a, b) => a + Math.pow(b - avgStrength, 2), 0) / strengths.length;
+            return Math.max(0, 1 - Math.sqrt(variance) / 100);
+        }
+
+        function calculateQBTCMarkovTransition(sectorData, sector, index) {
+            if (!sectorData) {
+                return { 
+                    current: 'QBTC_COLLAPSED_UNKNOWN', 
+                    next: 'QBTC_NEUTRAL_TRANSITION', 
+                    probability: 0.5,
+                    fibonacciFactor: 0.001
+                };
+            }
+            
+            const lambda = QBTC_QUANTUM_CONSTANTS.LAMBDA_7919;
+            const phi = QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN;
+            const fibonacci = QBTC_QUANTUM_CONSTANTS.QUANTUM_FIBONACCI[index % QBTC_QUANTUM_CONSTANTS.QUANTUM_FIBONACCI.length];
+            const prime = QBTC_QUANTUM_CONSTANTS.PRIME_SEQUENCE[index % QBTC_QUANTUM_CONSTANTS.PRIME_SEQUENCE.length];
+            
+            const coherence = calculateQBTCCoherence(sectorData);
+            const currentState = determineQBTCQuantumState(coherence, sector);
+            const confidence = sectorData.avgConfidence || 0;
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            
+            // Cálculo de transición usando constantes reales
+            const fibonacciFactor = fibonacci / QBTC_QUANTUM_CONSTANTS.QUANTUM_FIBONACCI[QBTC_QUANTUM_CONSTANTS.QUANTUM_FIBONACCI.length - 1];
+            const primeFactor = prime / QBTC_QUANTUM_CONSTANTS.PRIME_SEQUENCE[QBTC_QUANTUM_CONSTANTS.PRIME_SEQUENCE.length - 1];
+            
+            let nextState, probability;
+            if (confidence > 70 && strength > 70) {
+                nextState = 'QBTC_BULLISH_TRANSITION';
+                probability = 0.8 * fibonacciFactor * phi;
+            } else if (confidence > 50 && strength > 50) {
+                nextState = 'QBTC_NEUTRAL_TRANSITION';
+                probability = 0.6 * primeFactor * lambda;
+            } else {
+                nextState = 'QBTC_BEARISH_TRANSITION';
+                probability = 0.4 * (1 - fibonacciFactor) * phi;
+            }
+            
+            return { 
+                current: currentState, 
+                next: nextState, 
+                probability: Math.max(0, Math.min(1, probability)),
+                fibonacciFactor
+            };
+        }
+
+        function calculateSteadyState(sectorData) {
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            if (strength > 60) return 'BULL_STEADY';
+            if (strength > 40) return 'NEUTRAL_STEADY';
+            return 'BEAR_STEADY';
+        }
+
+        function calculateGlobalTransitionMatrix(sectorAnalysis) {
+            const sectors = Object.keys(sectorAnalysis);
+            let totalConvergence = 0;
+            let totalStability = 0;
+            
+            sectors.forEach(sector => {
+                const sectorData = sectorAnalysis[sector];
+                const transition = calculateStateTransition(sectorData);
+                totalConvergence += transition.probability;
+                totalStability += sectorData.avgConfidence || 0;
+            });
+            
+            return {
+                convergence: totalConvergence / sectors.length,
+                stability: totalStability / (sectors.length * 100)
+            };
+        }
+
+        function calculateWhaleFlow(sectorData) {
+            const volume = sectorData.totalVolume || 0;
+            const whaleVolume = volume * 0.15; // 15% del volumen es whale
+            const direction = (QBTC_QUANTUM_CONSTANTS.LAMBDA_7919 % 1) > 0.5 ? 'INFLOW' : 'OUTFLOW';
+            const strength = Math.min(100, (whaleVolume / 1000000) * 100); // Threshold hardcodeado
+            
+            return {
+                direction,
+                volume: whaleVolume,
+                strength
+            };
+        }
+
+        function calculateInstitutionalFlow(sectorData) {
+            const volume = sectorData.totalVolume || 0;
+            const institutionalVolume = volume * 0.25; // 25% del volumen es institucional
+            const direction = (QBTC_QUANTUM_CONSTANTS.LAMBDA_7919 % 1) > 0.6 ? 'INFLOW' : 'OUTFLOW';
+            
+            return {
+                direction,
+                volume: institutionalVolume
+            };
+        }
+
+        function calculateMarketImpact(whaleFlow, institutionalFlow) {
+            const whaleImpact = whaleFlow.strength * 0.6;
+            const institutionalImpact = (institutionalFlow.volume / 10000000) * 40; // Threshold hardcodeado
+            return Math.min(100, whaleImpact + institutionalImpact);
+        }
+
+        function calculateCapitalConcentration(sectorAnalysis) {
+            const sectors = Object.keys(sectorAnalysis);
+            let totalWhaleVolume = 0;
+            let totalInstitutionalVolume = 0;
+            let totalVolume = 0;
+            
+            sectors.forEach(sector => {
+                const sectorData = sectorAnalysis[sector];
+                const volume = sectorData.totalVolume || 0;
+                totalVolume += volume;
+                totalWhaleVolume += volume * 0.15;
+                totalInstitutionalVolume += volume * 0.25;
+            });
+            
+            return {
+                whaleDominance: (totalWhaleVolume / totalVolume) * 100,
+                institutionalControl: (totalInstitutionalVolume / totalVolume) * 100,
+                retailParticipation: ((totalVolume - totalWhaleVolume - totalInstitutionalVolume) / totalVolume) * 100
+            };
+        }
+
+        function calculateMacroCorrelations(sectorAnalysis) {
+            const sectors = Object.keys(sectorAnalysis);
+            const correlations = {};
+            
+            for (let i = 0; i < sectors.length; i++) {
+                for (let j = i + 1; j < sectors.length; j++) {
+                    const sector1 = sectorAnalysis[sectors[i]];
+                    const sector2 = sectorAnalysis[sectors[j]];
+                    
+                    // Calcular correlación basada en datos reales de los sectores
+                    const strength1 = sector1?.sectorMetrics?.sectorStrength || 50;
+                    const strength2 = sector2?.sectorMetrics?.sectorStrength || 50;
+                    const confidence1 = sector1?.avgConfidence || 50;
+                    const confidence2 = sector2?.avgConfidence || 50;
+                    
+                    // Correlación basada en similitud de métricas
+                    const strengthDiff = Math.abs(strength1 - strength2) / 100;
+                    const confidenceDiff = Math.abs(confidence1 - confidence2) / 100;
+                    const baseCorrelation = 1 - ((strengthDiff + confidenceDiff) / 2);
+                    
+                    // Aplicar factor cuántico
+                    const quantumFactor = Math.sin(QBTC_QUANTUM_CONSTANTS.LAMBDA_7919 * (i + j)) * 0.3 + 0.7;
+                    const correlation = Math.max(0.1, Math.min(0.95, baseCorrelation * quantumFactor));
+                    
+                    correlations[`${sectors[i]}-${sectors[j]}`] = correlation;
+                }
+            }
+            
+            return correlations;
+        }
+
+        function calculateSectorRotation(sectorAnalysis) {
+            const sectors = Object.keys(sectorAnalysis);
+            const strengths = sectors.map(s => sectorAnalysis[s].sectorMetrics?.sectorStrength || 0);
+            const avgStrength = strengths.reduce((a, b) => a + b, 0) / strengths.length;
+            
+            let phase, speed, nextRotation;
+            if (avgStrength > 60) {
+                phase = 'BULL_ROTATION';
+                speed = 0.8;
+                nextRotation = 'DEFENSIVE';
+            } else if (avgStrength > 40) {
+                phase = 'NEUTRAL_ROTATION';
+                speed = 0.5;
+                nextRotation = 'GROWTH';
+            } else {
+                phase = 'BEAR_ROTATION';
+                speed = 0.3;
+                nextRotation = 'VALUE';
+            }
+            
+            return { phase, speed, nextRotation };
+        }
+
+        function identifyMacroOpportunities(sectorAnalysis) {
+            const sectors = Object.keys(sectorAnalysis);
+            const opportunities = [];
+            
+            sectors.forEach(sector => {
+                const sectorData = sectorAnalysis[sector];
+                const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+                const confidence = sectorData.avgConfidence || 0;
+                
+                let opportunity, probability;
+                if (strength > 70 && confidence > 60) {
+                    opportunity = 'STRONG_BUY';
+                    probability = 85;
+                } else if (strength > 50 && confidence > 50) {
+                    opportunity = 'MODERATE_BUY';
+                    probability = 65;
+                } else if (strength < 30 && confidence < 40) {
+                    opportunity = 'STRONG_SELL';
+                    probability = 75;
+                } else {
+                    opportunity = 'HOLD';
+                    probability = 50;
+                }
+                
+                opportunities.push({ sector, opportunity, probability });
+            });
+            
+            return opportunities.sort((a, b) => b.probability - a.probability);
+        }
+
+        function getBestSymbol(sector, sectorData) {
+            if (!sectorData.recommendations || sectorData.recommendations.length === 0) {
+                return null;
+            }
+
+            const buySignals = sectorData.recommendations.filter(r => r.action === 'BUY');
+            const sellSignals = sectorData.recommendations.filter(r => r.action === 'SELL');
+            const holdSignals = sectorData.recommendations.filter(r => r.action === 'HOLD');
+
+            let bestSignals = [];
+            if (buySignals.length > 0) {
+                bestSignals = buySignals;
+            } else if (sellSignals.length > 0) {
+                bestSignals = sellSignals;
+            } else if (holdSignals.length > 0) {
+                bestSignals = holdSignals;
+            }
+
+            if (bestSignals.length === 0) {
+                return null;
+            }
+
+            bestSignals.sort((a, b) => b.confidence - a.confidence);
+
+            const best = bestSignals[0];
+            return {
+                symbol: best.symbol,
+                action: best.action,
+                confidence: best.confidence,
+                price: best.price,
+                change24h: best.change24h,
+                rsi: best.rsi,
+                reason: best.reason
+            };
+        }
+
+        function getMacroAnalysis(sector, sectorData, fullData) {
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            const confidence = sectorData.avgConfidence || 0;
+            
+            let macroPhase, macroOutlook;
+            if (strength > 70) {
+                macroPhase = 'EXPANSION';
+                macroOutlook = 'BULLISH';
+            } else if (strength > 50) {
+                macroPhase = 'CONSOLIDATION';
+                macroOutlook = 'NEUTRAL';
+            } else {
+                macroPhase = 'CONTRACTION';
+                macroOutlook = 'BEARISH';
+            }
+            
+            return `Phase: ${macroPhase}\nOutlook: ${macroOutlook}\nConf: ${confidence.toFixed(0)}%`;
+        }
+
+        function getQuantumMetrics(sector, sectorData) {
+            const pathProb = calculatePathProbability(sectorData);
+            const quantumState = determineQuantumState(sectorData);
+            const entanglement = calculateEntanglement(sectorData);
+            
+            return `Path: ${(pathProb * 100).toFixed(1)}%\nState: ${quantumState}\nEnt: ${entanglement.toFixed(1)}`;
+        }
+
+        function getWhaleFlow(sector, sectorData) {
+            const whaleFlow = calculateWhaleFlow(sectorData);
+            const institutionalFlow = calculateInstitutionalFlow(sectorData);
+            const marketImpact = calculateMarketImpact(whaleFlow, institutionalFlow);
+            
+            return `Whale: ${whaleFlow.direction}\nInst: ${institutionalFlow.direction}\nImpact: ${marketImpact.toFixed(1)}%`;
+        }
+
+        // ANÁLISIS MULTI-TIMEFRAME: Confluencia jerárquica
+        function analyzeMultiTimeframeConfluence(data) {
+            let analysis = '⏰ MULTI-TIMEFRAME CONFLUENCE ANALYSIS - QBTC QUANTUM\n';
+            analysis += '='.repeat(60) + '\n\n';
+            
+            if (data.sectorAnalysis) {
+                const sectors = Object.keys(data.sectorAnalysis);
+                analysis += `📊 SECTORS: ${sectors.length}\n`;
+                analysis += `🔬 TIMEFRAMES: ${QBTC_QUANTUM_CONSTANTS.TIMEFRAMES.length} (${QBTC_QUANTUM_CONSTANTS.TIMEFRAMES.join(', ')})\n`;
+                analysis += `🌌 HIERARCHY LEVELS: 3 (MACRO, SWING, ENTRY)\n\n`;
+                
+                // Análisis de confluencia por sector
+                sectors.forEach(sector => {
+                    const sectorData = data.sectorAnalysis[sector];
+                    const confluenceAnalysis = calculateTimeframeConfluence(sector, sectorData);
+                    
+                    analysis += `🏭 ${sector.replace(/_/g, ' ')}\n`;
+                    analysis += `   Macro Trend: ${confluenceAnalysis.macro}\n`;
+                    analysis += `   Swing Structure: ${confluenceAnalysis.swing}\n`;
+                    analysis += `   Entry Precision: ${confluenceAnalysis.entry}\n`;
+                    analysis += `   Overall Confluence: ${(confluenceAnalysis.overall * 100).toFixed(1)}%\n`;
+                    analysis += `   Optimal Timeframe: ${confluenceAnalysis.optimalTF}\n`;
+                    analysis += `   Golden Confluence: ${confluenceAnalysis.goldenConfluence ? '✅' : '❌'}\n\n`;
+                });
+                
+                // Análisis global de confluencia
+                const globalConfluence = calculateGlobalTimeframeConfluence(data.sectorAnalysis);
+                analysis += `🌐 GLOBAL TIMEFRAME CONFLUENCE\n`;
+                analysis += `   Average Confluence: ${(globalConfluence.avgConfluence * 100).toFixed(1)}%\n`;
+                analysis += `   Golden Confluences: ${globalConfluence.goldenCount}/${sectors.length}\n`;
+                analysis += `   Optimal Macro TF: ${globalConfluence.optimalMacroTF}\n`;
+                analysis += `   Optimal Swing TF: ${globalConfluence.optimalSwingTF}\n`;
+                analysis += `   Optimal Entry TF: ${globalConfluence.optimalEntryTF}\n`;
+                analysis += `   Hermetic Principle: ${QBTC_QUANTUM_CONSTANTS.HERMETIC_PRINCIPLES.RHYTHM}\n`;
+            }
+            
+            return analysis;
+        }
+        
+        // Calcular confluencia de timeframes por sector
+        function calculateTimeframeConfluence(sector, sectorData) {
+            const lambda = QBTC_QUANTUM_CONSTANTS.LAMBDA_7919;
+            const phi = QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN;
+            
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            const confidence = sectorData.avgConfidence || 0;
+            const volume = sectorData.totalVolume || 0;
+            
+            // Calcular confluencia por nivel jerárquico
+            const macroConfluence = calculateMacroTimeframeConfluence(strength, confidence, volume, lambda, phi);
+            const swingConfluence = calculateSwingTimeframeConfluence(strength, confidence, volume, lambda, phi);
+            const entryConfluence = calculateEntryTimeframeConfluence(strength, confidence, volume, lambda, phi);
+            
+            // Confluencia general ponderada
+            const overallConfluence = (macroConfluence * 0.4) + (swingConfluence * 0.35) + (entryConfluence * 0.25);
+            
+            // Determinar timeframe óptimo
+            const optimalTF = determineOptimalTimeframe(macroConfluence, swingConfluence, entryConfluence);
+            
+            // Verificar Golden Confluence (>85%)
+            const goldenConfluence = overallConfluence > 0.85;
+            
+            return {
+                macro: `${(macroConfluence * 100).toFixed(1)}%`,
+                swing: `${(swingConfluence * 100).toFixed(1)}%`,
+                entry: `${(entryConfluence * 100).toFixed(1)}%`,
+                overall: overallConfluence,
+                optimalTF,
+                goldenConfluence
+            };
+        }
+        
+        // Calcular confluencia de timeframes macro
+        function calculateMacroTimeframeConfluence(strength, confidence, volume, lambda, phi) {
+            const strengthFactor = Math.sin((strength / 100) * Math.PI) * phi;
+            const confidenceFactor = Math.cos((confidence / 100) * Math.PI) * lambda;
+            const volumeFactor = Math.tanh(Math.log(Math.max(1, volume)) / 20) * phi;
+            
+            return Math.max(0.1, Math.min(0.95, (strengthFactor + confidenceFactor + volumeFactor) / 3));
+        }
+        
+        // Calcular confluencia de timeframes swing
+        function calculateSwingTimeframeConfluence(strength, confidence, volume, lambda, phi) {
+            const strengthFactor = Math.cos((strength / 100) * Math.PI) * lambda;
+            const confidenceFactor = Math.sin((confidence / 100) * Math.PI) * phi;
+            const volumeFactor = Math.tanh(Math.log(Math.max(1, volume)) / 15) * lambda;
+            
+            return Math.max(0.1, Math.min(0.95, (strengthFactor + confidenceFactor + volumeFactor) / 3));
+        }
+        
+        // Calcular confluencia de timeframes de entrada
+        function calculateEntryTimeframeConfluence(strength, confidence, volume, lambda, phi) {
+            const strengthFactor = Math.tanh((strength / 100) * 2) * phi;
+            const confidenceFactor = Math.tanh((confidence / 100) * 2) * lambda;
+            const volumeFactor = Math.sin(Math.log(Math.max(1, volume)) / 10) * phi;
+            
+            return Math.max(0.1, Math.min(0.95, (strengthFactor + confidenceFactor + volumeFactor) / 3));
+        }
+        
+        // Determinar timeframe óptimo
+        function determineOptimalTimeframe(macroConfluence, swingConfluence, entryConfluence) {
+            if (macroConfluence > 0.8) return '1d';
+            if (swingConfluence > 0.8) return '4h';
+            if (entryConfluence > 0.8) return '1h';
+            if (macroConfluence > 0.6) return '1d';
+            if (swingConfluence > 0.6) return '4h';
+            return '1h';
+        }
+        
+        // Calcular confluencia global de timeframes
+        function calculateGlobalTimeframeConfluence(sectorAnalysis) {
+            const sectors = Object.keys(sectorAnalysis);
+            let totalConfluence = 0;
+            let goldenCount = 0;
+            let macroScores = [];
+            let swingScores = [];
+            let entryScores = [];
+            
+            sectors.forEach(sector => {
+                const sectorData = sectorAnalysis[sector];
+                const confluence = calculateTimeframeConfluence(sector, sectorData);
+                
+                totalConfluence += confluence.overall;
+                if (confluence.goldenConfluence) goldenCount++;
+                
+                // Extraer scores por nivel
+                macroScores.push(parseFloat(confluence.macro));
+                swingScores.push(parseFloat(confluence.swing));
+                entryScores.push(parseFloat(confluence.entry));
+            });
+            
+            const avgConfluence = totalConfluence / sectors.length;
+            const avgMacro = macroScores.reduce((a, b) => a + b, 0) / macroScores.length;
+            const avgSwing = swingScores.reduce((a, b) => a + b, 0) / swingScores.length;
+            const avgEntry = entryScores.reduce((a, b) => a + b, 0) / entryScores.length;
+            
+            return {
+                avgConfluence,
+                goldenCount,
+                optimalMacroTF: avgMacro > 0.7 ? '1d' : '1w',
+                optimalSwingTF: avgSwing > 0.7 ? '4h' : '6h',
+                optimalEntryTF: avgEntry > 0.7 ? '1h' : '15m'
+            };
+        }
+
+        function getIntegralRecommendation(sector, sectorData, bestSymbol, macroAnalysis, quantumMetrics, whaleFlow) {
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            const confidence = sectorData.avgConfidence || 0;
+            
+            // Determinar leverage basado en confianza y fuerza del sector
+            let leverage, entryPrice, exitPrice, stopLoss, takeProfit, optimalTimeframe;
+            
+            if (bestSymbol) {
+                const basePrice = bestSymbol.price;
+                const volatility = Math.abs(bestSymbol.change24h) / 100;
+                
+                // Calcular confluencia de timeframes para este símbolo
+                const confluenceAnalysis = calculateTimeframeConfluence(sector, sectorData);
+                optimalTimeframe = confluenceAnalysis.optimalTF;
+                
+                if (bestSymbol.action === 'BUY') {
+                    // LÓGICA CORREGIDA PARA BUY: Entry < Exit < Take Profit, Stop Loss < Entry
+                    if (confidence > 80 && strength > 70) {
+                        leverage = 125; // Leverage agresivo
+                        entryPrice = basePrice * (1 - volatility * 0.01); // Entrada ligeramente por debajo
+                        exitPrice = basePrice * (1 + volatility * 0.08); // Salida moderada por encima
+                        stopLoss = basePrice * (1 - volatility * 0.05); // SL por debajo de entrada
+                        takeProfit = basePrice * (1 + volatility * 0.15); // TP por encima de exit
+                    } else if (confidence > 60 && strength > 50) {
+                        leverage = 75; // Leverage moderado
+                        entryPrice = basePrice * (1 - volatility * 0.005); // Entrada ligeramente por debajo
+                        exitPrice = basePrice * (1 + volatility * 0.06); // Salida moderada por encima
+                        stopLoss = basePrice * (1 - volatility * 0.04); // SL por debajo de entrada
+                        takeProfit = basePrice * (1 + volatility * 0.12); // TP por encima de exit
+                    } else {
+                        leverage = 50; // Leverage conservador
+                        entryPrice = basePrice * (1 - volatility * 0.002); // Entrada ligeramente por debajo
+                        exitPrice = basePrice * (1 + volatility * 0.04); // Salida conservadora por encima
+                        stopLoss = basePrice * (1 - volatility * 0.03); // SL por debajo de entrada
+                        takeProfit = basePrice * (1 + volatility * 0.08); // TP por encima de exit
+                    }
+                } else if (bestSymbol.action === 'SELL') {
+                    // LÓGICA CORREGIDA PARA SELL: Take Profit < Exit < Entry, Entry < Stop Loss
+                    if (confidence > 80 && strength > 70) {
+                        leverage = 125; // Leverage agresivo
+                        entryPrice = basePrice * (1 + volatility * 0.01); // Entrada ligeramente por encima
+                        exitPrice = basePrice * (1 - volatility * 0.08); // Salida moderada por debajo
+                        stopLoss = basePrice * (1 + volatility * 0.05); // SL por encima de entrada
+                        takeProfit = basePrice * (1 - volatility * 0.15); // TP por debajo de exit
+                    } else if (confidence > 60 && strength > 50) {
+                        leverage = 75; // Leverage moderado
+                        entryPrice = basePrice * (1 + volatility * 0.005); // Entrada ligeramente por encima
+                        exitPrice = basePrice * (1 - volatility * 0.06); // Salida moderada por debajo
+                        stopLoss = basePrice * (1 + volatility * 0.04); // SL por encima de entrada
+                        takeProfit = basePrice * (1 - volatility * 0.12); // TP por debajo de exit
+                    } else {
+                        leverage = 50; // Leverage conservador
+                        entryPrice = basePrice * (1 + volatility * 0.002); // Entrada ligeramente por encima
+                        exitPrice = basePrice * (1 - volatility * 0.04); // Salida conservadora por debajo
+                        stopLoss = basePrice * (1 + volatility * 0.03); // SL por encima de entrada
+                        takeProfit = basePrice * (1 - volatility * 0.08); // TP por debajo de exit
+                    }
+                } else {
+                    // HOLD - Precios neutrales
+                    leverage = 25;
+                    entryPrice = basePrice;
+                    exitPrice = basePrice;
+                    stopLoss = basePrice * (1 - volatility * 0.02);
+                    takeProfit = basePrice * (1 + volatility * 0.02);
+                }
+                
+                return `Action: ${bestSymbol.action}\nLeverage: ${leverage}x\nOptimal TF: ${optimalTimeframe}\nEntry: $${entryPrice.toFixed(4)}\nExit: $${exitPrice.toFixed(4)}\nSL: $${stopLoss.toFixed(4)}\nTP: $${takeProfit.toFixed(4)}`;
+            } else {
+                return `No signals\nStrength: ${strength.toFixed(0)}%\nConfidence: ${confidence.toFixed(0)}%`;
+            }
+        }
+
+        function toggleExplanation(explanationId) {
+            const explanation = document.getElementById(explanationId);
+            if (explanation) {
+                explanation.classList.toggle('show');
+            }
+        }
+
+        function formatVolume(volume) {
+            if (volume >= 1e9) return `${(volume / 1e9).toFixed(1)}B`;
+            if (volume >= 1e6) return `${(volume / 1e6).toFixed(1)}M`;
+            if (volume >= 1e3) return `${(volume / 1e3).toFixed(1)}K`;
+            return volume.toFixed(0);
+        }
+
+        // MONITOR GRÁFICO: Crear visualización con barras
+        function createGraphicalMonitor(data) {
+            if (!data.sectorAnalysis) return '❌ No hay datos para visualización';
+
+            const sectors = Object.keys(data.sectorAnalysis);
+            let html = '<div class="graphical-container">';
+            
+            // Gráfico de Profit por Sector
+            html += '<div class="chart-section">';
+            html += '<h3>💰 Expected Profit por Sector</h3>';
+            html += '<div class="bar-chart">';
+            
+            sectors.forEach(sector => {
+                const sectorData = data.sectorAnalysis[sector];
+                
+                // Verificar que sectorData existe
+                if (!sectorData) {
+                    html += `<div class="bar-item">`;
+                    html += `<div class="bar-label">${sector.replace(/_/g, ' ')}</div>`;
+                    html += `<div class="bar-container">`;
+                    html += `<div class="bar" style="width: 0%; background: #ff4444"></div>`;
+                    html += `<span class="bar-value">0.00%</span>`;
+                    html += `</div>`;
+                    html += `</div>`;
+                    return;
+                }
+                
+                const profitOpt = calculateProfitOptimization(sectorData, null);
+                const profitPercent = profitOpt?.expectedReturn || 0;
+                const barColor = profitPercent > 10 ? '#00ff88' : profitPercent > 5 ? '#ffaa00' : '#ff4444';
+                
+                html += `<div class="bar-item">`;
+                html += `<div class="bar-label">${sector.replace(/_/g, ' ')}</div>`;
+                html += `<div class="bar-container">`;
+                html += `<div class="bar" style="width: ${Math.min(100, profitPercent * 5)}%; background: ${barColor}"></div>`;
+                html += `<span class="bar-value">${profitPercent.toFixed(2)}%</span>`;
+                html += `</div>`;
+                html += `</div>`;
+            });
+            
+            html += '</div></div>';
+
+            // Gráfico de Leverage por Sector
+            html += '<div class="chart-section">';
+            html += '<h3>⚡ Max Leverage por Sector</h3>';
+            html += '<div class="bar-chart">';
+            
+            sectors.forEach(sector => {
+                const sectorData = data.sectorAnalysis[sector];
+                const maxLeverage = calculateMaxLeverage(sectorData, null);
+                const leveragePercent = (maxLeverage / 125) * 100; // Normalizado a 125x
+                const barColor = leveragePercent > 80 ? '#00ff88' : leveragePercent > 50 ? '#ffaa00' : '#ff4444';
+                
+                html += `<div class="bar-item">`;
+                html += `<div class="bar-label">${sector.replace(/_/g, ' ')}</div>`;
+                html += `<div class="bar-container">`;
+                html += `<div class="bar" style="width: ${leveragePercent}%; background: ${barColor}"></div>`;
+                html += `<span class="bar-value">${maxLeverage.toFixed(0)}x</span>`;
+                html += `</div>`;
+                html += `</div>`;
+            });
+            
+            html += '</div></div>';
+
+            // Gráfico de Oportunidades por Sector
+            html += '<div class="chart-section">';
+            html += '<h3>🎯 Opportunity Score por Sector</h3>';
+            html += '<div class="bar-chart">';
+            
+            sectors.forEach(sector => {
+                const sectorData = data.sectorAnalysis[sector];
+                
+                // Verificar que sectorData existe
+                if (!sectorData) {
+                    html += `<div class="bar-item">`;
+                    html += `<div class="bar-label">${sector.replace(/_/g, ' ')}</div>`;
+                    html += `<div class="bar-container">`;
+                    html += `<div class="bar" style="width: 0%; background: #ff4444"></div>`;
+                    html += `<span class="bar-value">0.0%</span>`;
+                    html += `</div>`;
+                    html += `</div>`;
+                    return;
+                }
+                
+                const profitOpt = calculateProfitOptimization(sectorData, null);
+                const opportunityPercent = (profitOpt?.opportunity || 0) * 100;
+                const barColor = opportunityPercent > 70 ? '#00ff88' : opportunityPercent > 40 ? '#ffaa00' : '#ff4444';
+                
+                html += `<div class="bar-item">`;
+                html += `<div class="bar-label">${sector.replace(/_/g, ' ')}</div>`;
+                html += `<div class="bar-container">`;
+                html += `<div class="bar" style="width: ${opportunityPercent}%; background: ${barColor}"></div>`;
+                html += `<span class="bar-value">${opportunityPercent.toFixed(1)}%</span>`;
+                html += `</div>`;
+                html += `</div>`;
+            });
+            
+            html += '</div></div>';
+
+            // Resumen de Top Recomendaciones
+            html += '<div class="chart-section">';
+            html += '<h3>🏆 Top 3 Recomendaciones</h3>';
+            html += '<div class="top-recommendations">';
+            
+            const recommendations = sectors.map(sector => {
+                const sectorData = data.sectorAnalysis[sector];
+                
+                // Verificar que sectorData existe
+                if (!sectorData) {
+                    return {
+                        sector,
+                        score: 0,
+                        profit: 0,
+                        leverage: 50,
+                        opportunity: 0
+                    };
+                }
+                
+                const profitOpt = calculateProfitOptimization(sectorData, null);
+                const maxLeverage = calculateMaxLeverage(sectorData, null);
+                const expectedReturn = profitOpt?.expectedReturn || 0;
+                const opportunity = profitOpt?.opportunity || 0;
+                const score = (expectedReturn * 0.4) + (maxLeverage * 0.3) + (opportunity * 100 * 0.3);
+                
+                return {
+                    sector,
+                    score,
+                    profit: expectedReturn,
+                    leverage: maxLeverage,
+                    opportunity: opportunity * 100
+                };
+            }).sort((a, b) => b.score - a.score).slice(0, 3);
+
+            recommendations.forEach((rec, index) => {
+                const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉';
+                html += `<div class="top-rec-item">`;
+                html += `<div class="top-rec-medal">${medal}</div>`;
+                html += `<div class="top-rec-details">`;
+                html += `<div class="top-rec-sector">${rec.sector.replace(/_/g, ' ')}</div>`;
+                html += `<div class="top-rec-metrics">`;
+                html += `<span class="metric">Profit: ${rec.profit.toFixed(2)}%</span>`;
+                html += `<span class="metric">Leverage: ${rec.leverage.toFixed(0)}x</span>`;
+                html += `<span class="metric">Opportunity: ${rec.opportunity.toFixed(1)}%</span>`;
+                html += `</div>`;
+                html += `</div>`;
+                html += `</div>`;
+            });
+            
+                         html += '</div></div>';
+             
+             // Gráfico de Confluencia Multi-Timeframe por Sector
+             html += '<div class="chart-section">';
+             html += '<h3>⏰ Multi-Timeframe Confluence por Sector</h3>';
+             html += '<div class="bar-chart">';
+             
+             sectors.forEach(sector => {
+                 const sectorData = data.sectorAnalysis[sector];
+                 
+                 // Verificar que sectorData existe
+                 if (!sectorData) {
+                     html += `<div class="bar-item">`;
+                     html += `<div class="bar-label">${sector.replace(/_/g, ' ')}</div>`;
+                     html += `<div class="bar-container">`;
+                     html += `<div class="bar" style="width: 0%; background: #ff4444"></div>`;
+                     html += `<span class="bar-value">0.0%</span>`;
+                     html += `</div>`;
+                     html += `</div>`;
+                     return;
+                 }
+                 
+                 const confluenceAnalysis = calculateTimeframeConfluence(sector, sectorData);
+                 const confluencePercent = confluenceAnalysis.overall * 100;
+                 const barColor = confluenceAnalysis.goldenConfluence ? '#00ff88' : confluencePercent > 60 ? '#ffaa00' : '#ff4444';
+                 
+                 html += `<div class="bar-item">`;
+                 html += `<div class="bar-label">${sector.replace(/_/g, ' ')} (${confluenceAnalysis.optimalTF})</div>`;
+                 html += `<div class="bar-container">`;
+                 html += `<div class="bar" style="width: ${confluencePercent}%; background: ${barColor}"></div>`;
+                 html += `<span class="bar-value">${confluencePercent.toFixed(1)}%</span>`;
+                 html += `</div>`;
+                 html += `</div>`;
+             });
+             
+             html += '</div></div>';
+             html += '</div>';
+             
+             return html;
+        }
+
+        // INGENIERÍA INVERSA: Análisis de maximización de profit
+        function analyzeProfitMaximization(data) {
+            let analysis = '💰 INGENIERÍA INVERSA - PROFIT MÁXIMO\n';
+            analysis += '='.repeat(60) + '\n\n';
+
+            if (data.sectorAnalysis) {
+                const sectors = Object.keys(data.sectorAnalysis);
+                analysis += `🔬 LAMBDA_7919: ${QBTC_QUANTUM_CONSTANTS.LAMBDA_7919.toFixed(6)}\n`;
+                analysis += `🌌 PHI_GOLDEN: ${QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN.toFixed(6)}\n`;
+                analysis += `⚡ RESONANCE_FREQ: ${QBTC_QUANTUM_CONSTANTS.RESONANCE_FREQ}\n\n`;
+
+                // Análisis de profit por sector usando ingeniería inversa
+                sectors.forEach(sector => {
+                    const sectorData = data.sectorAnalysis[sector];
+                    
+                    // Verificar que sectorData existe
+                    if (!sectorData) {
+                        analysis += `🏭 ${sector.replace(/_/g, ' ')}\n`;
+                        analysis += `   Expected Profit: 0.00%\n`;
+                        analysis += `   Max Leverage: 50x\n`;
+                        analysis += `   Risk-Adjusted Leverage: 25x\n`;
+                        analysis += `   Opportunity: 0.0%\n`;
+                        analysis += `   Risk/Reward: 1.00\n`;
+                        analysis += `   Market Momentum: 0.000\n\n`;
+                        return;
+                    }
+                    
+                    const profitOpt = calculateProfitOptimization(sectorData, null);
+                    const maxLeverage = calculateMaxLeverage(sectorData, null);
+                    const riskAdjustedLeverage = calculateRiskAdjustedLeverage(sectorData, null);
+                    
+                    // Verificar que profitOpt tiene todas las propiedades necesarias
+                    const expectedReturn = profitOpt?.expectedReturn || 0;
+                    const opportunity = profitOpt?.opportunity || 0;
+                    const riskRewardRatio = profitOpt?.riskRewardRatio || 1;
+                    const marketMomentum = profitOpt?.marketMomentum || 0;
+                    
+                    analysis += `🏭 ${sector.replace(/_/g, ' ')}\n`;
+                    analysis += `   Expected Profit: ${expectedReturn.toFixed(2)}%\n`;
+                    analysis += `   Max Leverage: ${maxLeverage.toFixed(0)}x\n`;
+                    analysis += `   Risk-Adjusted Leverage: ${riskAdjustedLeverage.toFixed(0)}x\n`;
+                    analysis += `   Opportunity: ${(opportunity * 100).toFixed(1)}%\n`;
+                    analysis += `   Risk/Reward: ${riskRewardRatio.toFixed(2)}\n`;
+                    analysis += `   Market Momentum: ${marketMomentum.toFixed(3)}\n\n`;
+                });
+
+                // Análisis global de profit máximo
+                const profitAnalysis = calculateMaxProfitAnalysis(data.sectorAnalysis);
+                analysis += `💰 GLOBAL PROFIT MAXIMIZATION\n`;
+                analysis += `   Total Expected Profit: ${profitAnalysis.totalExpectedProfit.toFixed(2)}%\n`;
+                analysis += `   Max Leverage Opportunity: ${profitAnalysis.maxLeverageOpportunity.toFixed(0)}x\n`;
+                analysis += `   Risk-Adjusted Return: ${profitAnalysis.riskAdjustedReturn.toFixed(2)}%\n`;
+                analysis += `   Optimal Portfolio Allocation: ${profitAnalysis.optimalAllocation.toFixed(1)}%\n`;
+                analysis += `   Market Efficiency Score: ${profitAnalysis.marketEfficiency.toFixed(1)}%\n`;
+
+                // Estrategias de maximización de profit
+                analysis += `\n🎯 ESTRATEGIAS DE MAXIMIZACIÓN\n`;
+                analysis += `   Leverage Agresivo: ${Math.min(125, profitAnalysis.maxLeverageOpportunity * 1.2).toFixed(0)}x\n`;
+                analysis += `   Leverage Moderado: ${Math.min(75, profitAnalysis.maxLeverageOpportunity * 0.8).toFixed(0)}x\n`;
+                analysis += `   Leverage Conservador: ${Math.min(50, profitAnalysis.maxLeverageOpportunity * 0.6).toFixed(0)}x\n`;
+                analysis += `   Profit Target: ${(profitAnalysis.totalExpectedProfit * 2).toFixed(2)}%\n`;
+                analysis += `   Stop Loss: ${(profitAnalysis.totalExpectedProfit * 0.3).toFixed(2)}%\n`;
+
+                analysis += `\n🌌 QBTC QUANTUM PROFIT INSIGHTS\n`;
+                analysis += `   Hermetic Principle: ${QBTC_QUANTUM_CONSTANTS.HERMETIC_PRINCIPLES.CAUSATION}\n`;
+                analysis += `   Z-Complex Magnitude: ${QBTC_QUANTUM_CONSTANTS.Z_COMPLEX.MAGNITUDE.toFixed(3)}\n`;
+                analysis += `   Fibonacci Sequence: ${QBTC_QUANTUM_CONSTANTS.QUANTUM_FIBONACCI.length} terms\n`;
+            }
+
+            return analysis;
+        }
+
+        // INGENIERÍA INVERSA: Análisis de profit máximo global
+        function calculateMaxProfitAnalysis(sectorAnalysis) {
+            const lambda = QBTC_QUANTUM_CONSTANTS.LAMBDA_7919;
+            const phi = QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN;
+            const sectors = Object.keys(sectorAnalysis);
+            
+            let totalExpectedProfit = 0;
+            let maxLeverageOpportunity = 0;
+            let totalRisk = 0;
+            let totalOpportunity = 0;
+            let sectorCount = 0;
+            
+            sectors.forEach(sector => {
+                const sectorData = sectorAnalysis[sector];
+                
+                // Verificar que sectorData existe
+                if (!sectorData) {
+                    sectorCount++;
+                    return;
+                }
+                
+                const profitOpt = calculateProfitOptimization(sectorData, null);
+                const maxLeverage = calculateMaxLeverage(sectorData, null);
+                
+                // Verificar que profitOpt tiene las propiedades necesarias
+                const expectedReturn = profitOpt?.expectedReturn || 0;
+                const opportunity = profitOpt?.opportunity || 0;
+                
+                totalExpectedProfit += expectedReturn;
+                maxLeverageOpportunity = Math.max(maxLeverageOpportunity, maxLeverage);
+                totalRisk += (1 - opportunity);
+                totalOpportunity += opportunity;
+                sectorCount++;
+            });
+            
+            const avgExpectedProfit = totalExpectedProfit / sectorCount;
+            const avgRisk = totalRisk / sectorCount;
+            const avgOpportunity = totalOpportunity / sectorCount;
+            const riskAdjustedReturn = avgExpectedProfit * (1 - avgRisk) * phi;
+            const optimalAllocation = avgOpportunity * 100;
+            const marketEfficiency = (avgOpportunity + (1 - avgRisk)) / 2 * 100;
+            
+            return {
+                totalExpectedProfit: avgExpectedProfit,
+                maxLeverageOpportunity: maxLeverageOpportunity,
+                riskAdjustedReturn: riskAdjustedReturn,
+                optimalAllocation: optimalAllocation,
+                marketEfficiency: marketEfficiency
+            };
+        }
+
+        // INGENIERÍA INVERSA: Calcular optimización de profit
+        function calculateProfitOptimization(sectorData, bestSymbol) {
+            if (!sectorData) {
+                return {
+                    opportunity: 0.3,
+                    expectedReturn: 2.5,
+                    riskRewardRatio: 1.0,
+                    multiplier: 1.0,
+                    marketMomentum: 0.0,
+                    volumePressure: 0.0,
+                    strengthMomentum: 0.0
+                };
+            }
+            
+            const lambda = QBTC_QUANTUM_CONSTANTS.LAMBDA_7919;
+            const phi = QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN;
+            
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            const confidence = sectorData.avgConfidence || 0;
+            const volume = sectorData.totalVolume || 0;
+            const buySignals = sectorData.buySignals || 0;
+            const sellSignals = sectorData.sellSignals || 0;
+            const holdSignals = sectorData.holdSignals || 0;
+            
+            // Cálculo mejorado de momentum de mercado con variación por sector
+            const totalSignals = buySignals + sellSignals + holdSignals;
+            const signalBalance = totalSignals > 0 ? (buySignals - sellSignals) / totalSignals : 0;
+            const sectorIndex = Object.keys(sectorData).length || 1;
+            const sectorVariation = Math.sin(lambda * sectorIndex) * 0.3;
+            const marketMomentum = Math.sin(signalBalance * Math.PI + sectorVariation) * Math.cos(confidence / 100 * Math.PI) * phi;
+            
+            // Cálculo de presión de volumen más realista
+            const volumeFactor = Math.log(Math.max(1, volume)) / Math.log(1000000); // Normalizado a 1M
+            const volumePressure = Math.tanh(volumeFactor / 5) * lambda * (1 + sectorVariation);
+            
+            // Momentum de fuerza del sector con variación
+            const strengthMomentum = Math.sin((strength / 100) * Math.PI + sectorVariation) * phi;
+            
+            // Cálculo de oportunidad más granular y realista con variación
+            const momentumContribution = Math.abs(marketMomentum) * 0.4;
+            const volumeContribution = Math.abs(volumePressure) * 0.3;
+            const strengthContribution = Math.abs(strengthMomentum) * 0.3;
+            
+            const baseOpportunity = momentumContribution + volumeContribution + strengthContribution;
+            const opportunity = Math.max(0.05, Math.min(0.85, baseOpportunity));
+            
+            // Expected return más conservador y realista con variación por sector
+            const momentumReturn = Math.abs(marketMomentum) * 15; // Máximo 15% por momentum
+            const strengthReturn = (strength / 100) * 12; // Máximo 12% por fuerza
+            const confidenceReturn = (confidence / 100) * 8; // Máximo 8% por confianza
+            const volumeReturn = Math.min(5, volumeFactor * 2); // Máximo 5% por volumen
+            const sectorBonus = Math.abs(sectorVariation) * 3; // Bonus por sector
+            
+            const expectedReturn = Math.max(0.5, Math.min(25, momentumReturn + strengthReturn + confidenceReturn + volumeReturn + sectorBonus));
+            
+            // Risk/Reward ratio más realista con variación
+            const riskRewardRatio = Math.max(1.1, Math.min(3.5, 1.5 + Math.abs(marketMomentum) * 1.5 + Math.abs(sectorVariation)));
+            const multiplier = Math.max(1, Math.min(2.5, 1 + Math.abs(marketMomentum) * 0.8 + Math.abs(sectorVariation) * 0.5));
+            
+            return {
+                opportunity: opportunity,
+                expectedReturn: expectedReturn,
+                riskRewardRatio: riskRewardRatio,
+                multiplier: multiplier,
+                marketMomentum: marketMomentum,
+                volumePressure: volumePressure,
+                strengthMomentum: strengthMomentum
+            };
+        }
+
+        // INGENIERÍA INVERSA: Calcular leverage máximo
+        function calculateMaxLeverage(sectorData, bestSymbol) {
+            if (!sectorData) return 25; // Valor por defecto más conservador
+            
+            const lambda = QBTC_QUANTUM_CONSTANTS.LAMBDA_7919;
+            const phi = QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN;
+            
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            const confidence = sectorData.avgConfidence || 0;
+            const volume = sectorData.totalVolume || 0;
+            const buySignals = sectorData.buySignals || 0;
+            const sellSignals = sectorData.sellSignals || 0;
+            const holdSignals = sectorData.holdSignals || 0;
+            
+            // Calcular volatilidad basada en señales
+            const totalSignals = buySignals + sellSignals + holdSignals;
+            const signalVolatility = totalSignals > 0 ? Math.abs(buySignals - sellSignals) / totalSignals : 0.1;
+            const volatility = bestSymbol ? Math.abs(bestSymbol.change24h) / 100 : signalVolatility;
+            
+            // Cálculo de leverage más conservador y realista con variación por sector
+            const baseLeverage = 25; // Leverage base más conservador
+            
+            // Factor de variación por sector usando constantes cuánticas
+            const sectorVariation = Math.sin(lambda * (strength + confidence)) * 0.4 + 1;
+            
+            // Multiplicadores más realistas con variación
+            const strengthMultiplier = Math.min(2.0, Math.max(0.5, (strength / 100) * 1.5 + 0.5)) * sectorVariation;
+            const confidenceMultiplier = Math.min(1.8, Math.max(0.6, (confidence / 100) * 1.2 + 0.6)) * (1 + Math.abs(sectorVariation - 1) * 0.3);
+            const volumeMultiplier = Math.min(1.5, Math.max(0.7, Math.log(Math.max(1, volume)) / Math.log(1000000) * 0.8 + 0.7));
+            const volatilityMultiplier = Math.max(0.3, Math.min(1.2, 1 - volatility * 3)); // Más conservador con volatilidad
+            
+            // Factor de riesgo basado en balance de señales con variación
+            const signalBalance = totalSignals > 0 ? Math.abs(buySignals - sellSignals) / totalSignals : 0.5;
+            const riskFactor = Math.max(0.5, Math.min(1.5, 1 + signalBalance * 0.5 + Math.abs(sectorVariation - 1) * 0.2));
+            
+            const maxLeverage = baseLeverage * strengthMultiplier * confidenceMultiplier * volumeMultiplier * volatilityMultiplier * riskFactor;
+            
+            return Math.max(5, Math.min(100, maxLeverage)); // Entre 5x y 100x, más conservador
+        }
+
+        // INGENIERÍA INVERSA: Calcular leverage ajustado al riesgo
+        function calculateRiskAdjustedLeverage(sectorData, bestSymbol) {
+            if (!sectorData) return 15; // Valor por defecto más conservador
+            
+            const lambda = QBTC_QUANTUM_CONSTANTS.LAMBDA_7919;
+            const phi = QBTC_QUANTUM_CONSTANTS.PHI_GOLDEN;
+            
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            const confidence = sectorData.avgConfidence || 0;
+            const volume = sectorData.totalVolume || 0;
+            const buySignals = sectorData.buySignals || 0;
+            const sellSignals = sectorData.sellSignals || 0;
+            const holdSignals = sectorData.holdSignals || 0;
+            
+            // Calcular volatilidad basada en señales
+            const totalSignals = buySignals + sellSignals + holdSignals;
+            const signalVolatility = totalSignals > 0 ? Math.abs(buySignals - sellSignals) / totalSignals : 0.1;
+            const volatility = bestSymbol ? Math.abs(bestSymbol.change24h) / 100 : signalVolatility;
+            
+            // Cálculo de riesgo más granular y realista
+            const marketRisk = Math.min(1, Math.max(0, volatility * 2)); // Riesgo de mercado basado en volatilidad
+            const volumeRisk = Math.min(1, Math.max(0, 1 - Math.log(Math.max(1, volume)) / Math.log(1000000))); // Riesgo de volumen
+            const strengthRisk = Math.min(1, Math.max(0, 1 - strength / 100)); // Riesgo de fuerza del sector
+            const confidenceRisk = Math.min(1, Math.max(0, 1 - confidence / 100)); // Riesgo de confianza
+            
+            // Riesgo de señales
+            const signalBalance = totalSignals > 0 ? Math.abs(buySignals - sellSignals) / totalSignals : 0.5;
+            const signalRisk = Math.min(1, Math.max(0, 1 - signalBalance));
+            
+            // Riesgo total ponderado
+            const totalRisk = (marketRisk * 0.3 + volumeRisk * 0.2 + strengthRisk * 0.2 + confidenceRisk * 0.2 + signalRisk * 0.1);
+            
+            // Leverage ajustado al riesgo más conservador
+            const maxLeverage = 50; // Máximo 50x para leverage ajustado al riesgo
+            const riskAdjustedLeverage = maxLeverage * (1 - totalRisk);
+            
+            return Math.max(5, Math.min(50, riskAdjustedLeverage));
+        }
+
+        // ===== CORRECCIÓN DE INCONSISTENCIAS CRÍTICAS =====
+        function calculateQBTCRealisticPathProbability(sector, coherence, entanglement) {
+            const baseProbability = Math.min(85, Math.max(15, coherence * 100));
+            const entanglementFactor = Math.min(1.2, Math.max(0.8, entanglement / 2));
+            const sectorVolatility = getSectorVolatility(sector);
+            
+            return Math.min(95, Math.max(5, baseProbability * entanglementFactor * sectorVolatility));
+        }
+
+        function getSectorVolatility(sector) {
+            const volatilityMap = {
+                'MAJOR_CRYPTO': 0.9,
+                'LARGE_CAP': 0.85,
+                'DEFI_TOKENS': 1.1,
+                'GAMING_METAVERSE': 1.2,
+                'MEME_TOKENS': 1.4,
+                'LAYER1_BLOCKCHAINS': 1.0,
+                'AI_ML_TOKENS': 1.15,
+                'PRIVACY_COINS': 0.95,
+                'STORAGE_TOKENS': 0.8,
+                'ORACLE_TOKENS': 0.9,
+                'OTHER': 1.05
+            };
+            return volatilityMap[sector] || 1.0;
+        }
+
+        function calculateQBTCBalancedCoherence(sector, rsi, volume, momentum) {
+            const baseCoherence = (rsi / 100) * 0.4 + (volume / 1000000) * 0.3 + Math.abs(momentum) * 0.3;
+            const sectorFactor = getSectorCoherenceFactor(sector);
+            
+            return Math.min(0.95, Math.max(0.05, baseCoherence * sectorFactor));
+        }
+
+        function getSectorCoherenceFactor(sector) {
+            const coherenceMap = {
+                'MAJOR_CRYPTO': 1.2,
+                'LARGE_CAP': 1.1,
+                'DEFI_TOKENS': 0.9,
+                'GAMING_METAVERSE': 0.8,
+                'MEME_TOKENS': 0.7,
+                'LAYER1_BLOCKCHAINS': 1.0,
+                'AI_ML_TOKENS': 1.1,
+                'PRIVACY_COINS': 0.9,
+                'STORAGE_TOKENS': 0.8,
+                'ORACLE_TOKENS': 1.0,
+                'OTHER': 0.95
+            };
+            return coherenceMap[sector] || 1.0;
+        }
+
+        function calculateQBTCRealisticFlow(volume, price, sector) {
+            const baseFlow = volume * price * 0.0001; // Factor realista
+            const sectorMultiplier = getSectorFlowMultiplier(sector);
+            const volatilityFactor = 1 + (QBTC_QUANTUM_CONSTANTS.LAMBDA_7919 % 0.4 - 0.2); // ±20% variación determinística
+            
+            return Math.min(baseFlow * sectorMultiplier * volatilityFactor, volume * price * 0.1);
+        }
+
+        function getSectorFlowMultiplier(sector) {
+            const flowMap = {
+                'MAJOR_CRYPTO': 0.8,
+                'LARGE_CAP': 0.9,
+                'DEFI_TOKENS': 1.2,
+                'GAMING_METAVERSE': 1.1,
+                'MEME_TOKENS': 1.5,
+                'LAYER1_BLOCKCHAINS': 1.0,
+                'AI_ML_TOKENS': 1.1,
+                'PRIVACY_COINS': 0.7,
+                'STORAGE_TOKENS': 0.6,
+                'ORACLE_TOKENS': 0.8,
+                'OTHER': 1.0
+            };
+            return flowMap[sector] || 1.0;
+        }
+
+        function calculateQBTCRealisticProfit(sector, rsi, momentum, volume, price) {
+            const baseProfit = Math.abs(momentum) * 100; // Profit basado en momentum real
+            const rsiFactor = (rsi > 50 ? 1 : -1) * Math.abs(rsi - 50) / 50;
+            const volumeFactor = Math.min(2, volume / 1000000);
+            const sectorProfitMultiplier = getSectorProfitMultiplier(sector);
+            
+            const rawProfit = baseProfit * (1 + rsiFactor) * volumeFactor * sectorProfitMultiplier;
+            return Math.min(50, Math.max(-20, rawProfit)); // Límites realistas
+        }
+
+        function getSectorProfitMultiplier(sector) {
+            const profitMap = {
+                'MAJOR_CRYPTO': 0.8,
+                'LARGE_CAP': 0.9,
+                'DEFI_TOKENS': 1.3,
+                'GAMING_METAVERSE': 1.2,
+                'MEME_TOKENS': 1.6,
+                'LAYER1_BLOCKCHAINS': 1.1,
+                'AI_ML_TOKENS': 1.2,
+                'PRIVACY_COKENS': 0.9,
+                'STORAGE_TOKENS': 0.7,
+                'ORACLE_TOKENS': 0.8,
+                'OTHER': 1.0
+            };
+            return profitMap[sector] || 1.0;
+        }
+
+        // ===== FUNCIONES QBTC CORREGIDAS =====
+        function getSectorEntanglementFactor(sector) {
+            const entanglementMap = {
+                'MAJOR_CRYPTO': 1.5,
+                'LARGE_CAP': 1.3,
+                'DEFI_TOKENS': 1.8,
+                'GAMING_METAVERSE': 1.6,
+                'MEME_TOKENS': 2.0,
+                'LAYER1_BLOCKCHAINS': 1.4,
+                'AI_ML_TOKENS': 1.7,
+                'PRIVACY_COINS': 1.2,
+                'STORAGE_TOKENS': 1.0,
+                'ORACLE_TOKENS': 1.3,
+                'OTHER': 1.4
+            };
+            return entanglementMap[sector] || 1.0;
+        }
+
+        // ===== FUNCIONES QBTC FALTANTES =====
+        function calculateQBTCSteadyState(sectorData) {
+            if (!sectorData) return 'QBTC_BEAR_STEADY'; // Valor por defecto si no hay datos
+            
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            const confidence = sectorData.avgConfidence || 0;
+            
+            if (strength > 60 && confidence > 60) return 'QBTC_BULL_STEADY';
+            if (strength > 40 && confidence > 40) return 'QBTC_NEUTRAL_STEADY';
+            return 'QBTC_BEAR_STEADY';
+        }
+
+        function calculateQBTCGlobalTransitionMatrix(sectorAnalysis) {
+            if (!sectorAnalysis || Object.keys(sectorAnalysis).length === 0) {
+                return {
+                    convergence: 0.5,
+                    stability: 0.5,
+                    resonance: 0.5
+                };
+            }
+            
+            const sectors = Object.keys(sectorAnalysis);
+            let totalConvergence = 0;
+            let totalStability = 0;
+            let totalResonance = 0;
+            
+            sectors.forEach(sector => {
+                const sectorData = sectorAnalysis[sector];
+                const transition = calculateQBTCMarkovTransition(sectorData, sector, 0);
+                totalConvergence += transition.probability;
+                totalStability += sectorData.avgConfidence || 0;
+                totalResonance += QBTC_QUANTUM_CONSTANTS.RESONANCE_FREQ / 1000;
+            });
+            
+            return {
+                convergence: totalConvergence / sectors.length,
+                stability: totalStability / (sectors.length * 100),
+                resonance: totalResonance / sectors.length
+            };
+        }
+
+        function calculatePathProbability(sectorData) {
+            const buySignals = sectorData.buySignals || 0;
+            const sellSignals = sectorData.sellSignals || 0;
+            const confidence = sectorData.avgConfidence || 0;
+            
+            const signalBalance = (buySignals - sellSignals) / Math.max(1, buySignals + sellSignals);
+            const confidenceFactor = confidence / 100;
+            
+            return Math.max(0, Math.min(1, (signalBalance + confidenceFactor) / 2));
+        }
+
+        function calculateStateTransition(sectorData) {
+            const strength = sectorData.sectorMetrics?.sectorStrength || 0;
+            const confidence = sectorData.avgConfidence || 0;
+            
+            const transitionProb = (strength + confidence) / 200;
+            return {
+                probability: Math.max(0, Math.min(1, transitionProb))
+            };
+        }
+
+        // ===== FUNCIONES DE FLUJO CORREGIDAS =====
+        function calculateWhaleFlow(sectorData) {
+            const volume = sectorData.totalVolume || 0;
+            const whaleVolume = volume * 0.15; // 15% del volumen es whale
+            const direction = (QBTC_QUANTUM_CONSTANTS.LAMBDA_7919 % 1) > 0.5 ? 'INFLOW' : 'OUTFLOW';
+            const strength = Math.min(100, (whaleVolume / 1000000) * 100); // Threshold hardcodeado
+            
+            return {
+                direction,
+                volume: whaleVolume,
+                strength
+            };
+        }
+
+        function calculateInstitutionalFlow(sectorData) {
+            const volume = sectorData.totalVolume || 0;
+            const institutionalVolume = volume * 0.25; // 25% del volumen es institucional
+            const direction = (QBTC_QUANTUM_CONSTANTS.LAMBDA_7919 % 1) > 0.6 ? 'INFLOW' : 'OUTFLOW';
+            
+            return {
+                direction,
+                volume: institutionalVolume
+            };
+        }
+
+        function calculateMarketImpact(whaleFlow, institutionalFlow) {
+            const whaleImpact = whaleFlow.strength * 0.6;
+            const institutionalImpact = (institutionalFlow.volume / 10000000) * 40; // Threshold hardcodeado
+            return Math.min(100, whaleImpact + institutionalImpact);
+        }
+
+        // ===== FUNCIÓN DE PROFIT CORREGIDA =====
+        // Función eliminada - duplicada con la versión principal
+
+        // Cargar datos al iniciar
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>

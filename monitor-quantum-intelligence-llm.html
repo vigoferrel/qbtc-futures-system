@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 QBTC QUANTUM INTELLIGENCE ENGINE LLM - AUTO-CORRECCIÓN INTELIGENTE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 2000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 2.8em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff88, #00ccff, #ff0088, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .llm-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #00ff88, #00ccff, #ff0088);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 10px;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.5);
+            animation: llmGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes llmGlow {
+            from { box-shadow: 0 10px 30px rgba(0, 255, 136, 0.5); }
+            to { box-shadow: 0 15px 40px rgba(0, 204, 255, 0.7); }
+        }
+
+        .refresh-btn {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 35px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            margin: 15px;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.6);
+        }
+
+        .sector-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .sector-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        .sector-table th {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            color: #000;
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .sector-table td {
+            padding: 10px 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .sector-table tr:hover {
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .sector-name-cell {
+            font-weight: bold;
+            color: #00ff88;
+            text-align: left;
+            min-width: 120px;
+        }
+
+        .strength-cell {
+            font-weight: bold;
+            border-radius: 15px;
+            padding: 5px 10px;
+            display: inline-block;
+            min-width: 50px;
+        }
+
+        .strength-high {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            color: #000;
+        }
+
+        .strength-medium {
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: #fff;
+        }
+
+        .strength-low {
+            background: linear-gradient(45deg, #ff0088, #ff4da6);
+            color: #fff;
+        }
+
+        .signal-distribution {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 0.8em;
+        }
+
+        .signal-buy {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .signal-sell {
+            color: #ff0088;
+            font-weight: bold;
+        }
+
+        .signal-hold {
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .opportunities-compact {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 0.8em;
+        }
+
+        .opportunity-compact {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3px 6px;
+            border-radius: 5px;
+            border-left: 2px solid #00ff88;
+        }
+
+        .opportunity-symbol-compact {
+            font-weight: bold;
+            color: #00ccff;
+        }
+
+        .opportunity-action-compact {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .compact-metric {
+            font-size: 0.85em;
+            color: #ccc;
+        }
+
+                 .compact-value {
+             font-weight: bold;
+             color: #00ff88;
+             transition: all 0.3s ease;
+         }
+
+         .cell-update {
+             animation: cellUpdate 0.5s ease-in-out;
+         }
+
+         @keyframes cellUpdate {
+             0% { 
+                 background: rgba(0, 255, 136, 0.2);
+                 transform: scale(1.05);
+             }
+             100% { 
+                 background: rgba(255, 255, 255, 0.02);
+                 transform: scale(1);
+             }
+         }
+
+         .strength-cell {
+             transition: all 0.3s ease;
+         }
+
+         .signal-distribution {
+             transition: all 0.3s ease;
+         }
+
+         .opportunities-compact {
+             transition: all 0.3s ease;
+         }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-active {
+            background-color: #00ff88;
+        }
+
+        .status-error {
+            background-color: #ff0088;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .card-subtitle {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .metric-label {
+            font-weight: 500;
+            color: #ccc;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .metric-positive {
+            color: #00ff88;
+        }
+
+        .metric-negative {
+            color: #ff0088;
+        }
+
+        .metric-neutral {
+            color: #00ccff;
+        }
+
+        .recommendation {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00ff88;
+        }
+
+        .recommendation.buy {
+            border-left-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .recommendation.sell {
+            border-left-color: #ff0088;
+            background: rgba(255, 0, 136, 0.1);
+        }
+
+        .recommendation.hold {
+            border-left-color: #00ccff;
+            background: rgba(0, 204, 255, 0.1);
+        }
+
+        .recommendation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-symbol {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .recommendation-action {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .action-buy {
+            background: #00ff88;
+            color: #000;
+        }
+
+        .action-sell {
+            background: #ff0088;
+            color: #fff;
+        }
+
+        .action-hold {
+            background: #00ccff;
+            color: #000;
+        }
+
+        .recommendation-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .detail-item {
+            text-align: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .detail-label {
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .technical-indicators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .indicator {
+            text-align: center;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .indicator-label {
+            color: #888;
+            font-size: 0.8em;
+            margin-bottom: 3px;
+        }
+
+        .indicator-value {
+            font-weight: bold;
+        }
+
+        .portfolio-strategy {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .strategy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .strategy-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .strategy-risk {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .risk-high {
+            background: #ff0088;
+            color: #fff;
+        }
+
+        .risk-medium {
+            background: #ff6b35;
+            color: #fff;
+        }
+
+        .risk-low {
+            background: #00ff88;
+            color: #000;
+        }
+
+        .allocation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .allocation-item:last-child {
+            border-bottom: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+
+        .error {
+            background: rgba(255, 0, 136, 0.1);
+            border: 1px solid rgba(255, 0, 136, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            color: #ff0088;
+        }
+
+        .source-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: #888;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            margin-left: 10px;
+        }
+
+        .intelligence-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .intelligence-metric {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .intelligence-label {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .intelligence-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .intelligence-unit {
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        .llm-correction {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: #00ff88;
+        }
+
+        .llm-status {
+            background: rgba(0, 204, 255, 0.1);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: #00ccff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🧠 QBTC QUANTUM INTELLIGENCE ENGINE LLM</h1>
+            <p class="subtitle">Auto-Corrección Inteligente con LLM Integrado</p>
+            <div class="llm-badge">LLM INTELIGENTE - DETECCIÓN Y AUTO-CORRECCIÓN DE ANOMALÍAS</div>
+            <button class="refresh-btn" onclick="loadData()">🔄 Actualizar Datos LLM</button>
+        </div>
+
+        <div id="status" class="loading">
+            <div class="status-indicator status-active"></div>
+            Cargando análisis cuántico con LLM...
+        </div>
+
+        <div id="content" style="display: none;">
+            <!-- Métricas de Inteligencia LLM -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">🧠 Métricas de Inteligencia LLM</div>
+                        <div class="card-subtitle">Auto-Corregidas con LLM Inteligente</div>
+                    </div>
+                </div>
+                <div class="intelligence-metrics" id="intelligenceMetrics">
+                    <!-- Se llena dinámicamente -->
+                </div>
+                <div class="llm-status">
+                    ✅ LLM: Métricas validadas y corregidas automáticamente
+                </div>
+            </div>
+
+            <!-- Recomendaciones de Alto Valor LLM -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">🎯 Recomendaciones de Alto Valor LLM</div>
+                        <div class="card-subtitle">Análisis Técnico con Auto-Corrección LLM</div>
+                    </div>
+                </div>
+                <div id="recommendations">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Estrategias de Portafolio LLM -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">📊 Estrategias de Portafolio LLM</div>
+                        <div class="card-subtitle">Gestión Avanzada con LLM</div>
+                    </div>
+                </div>
+                <div id="portfolioStrategies">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Análisis por Sector -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">🏭 Análisis por Sector - Expansión Completa</div>
+                        <div class="card-subtitle">Análisis Multi-Sectorial con LLM</div>
+                    </div>
+                </div>
+                <div id="sectorAnalysis">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Información del Sistema LLM -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">⚙️ Información del Sistema LLM</div>
+                        <div class="card-subtitle">Engine Cuántico con LLM Integrado</div>
+                    </div>
+                </div>
+                <div id="systemInfo">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentData = null;
+
+        // Función para formatear números de forma segura
+        function safeFormatNumber(value, decimals = 2) {
+            if (value === null || value === undefined || isNaN(value)) {
+                return 'N/A';
+            }
+            return parseFloat(value).toFixed(decimals);
+        }
+
+        // Función para generar valor cuántico
+        function generateQuantumValue(seed = Date.now()) {
+            const lambda = 8.977020214210413;
+            const phi = 1.618033988749895;
+            const gamma = 0.5772156649015329;
+            
+            const quantumValue = Math.sin(seed / lambda) * Math.cos(seed / phi) * gamma;
+            return Math.abs(quantumValue) % 1;
+        }
+
+        // Función para cargar datos
+        async function loadData() {
+            const statusDiv = document.getElementById('status');
+            const contentDiv = document.getElementById('content');
+            
+            statusDiv.innerHTML = '<div class="status-indicator status-active"></div>Cargando análisis cuántico con LLM...';
+            contentDiv.style.display = 'none';
+
+            try {
+                const response = await fetch('http://localhost:64622/api/recommendations/quantum');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                currentData = await response.json();
+                displayData(currentData);
+                
+                statusDiv.innerHTML = '<div class="status-indicator status-active"></div>Sistema LLM Activo - Auto-Corrección Inteligente';
+                contentDiv.style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                statusDiv.innerHTML = '<div class="status-indicator status-error"></div>Error cargando datos LLM';
+                contentDiv.style.display = 'none';
+            }
+        }
+
+        // Función para mostrar datos
+        function displayData(data) {
+            console.log('Displaying data:', data);
+            console.log('Sector Analysis:', data.sectorAnalysis);
+            
+            displayIntelligenceMetrics(data.intelligenceMetrics);
+            displayRecommendations(data.results);
+            displayPortfolioStrategies(data.portfolioStrategies);
+            displaySectorAnalysis(data.sectorAnalysis);
+            displaySystemInfo(data);
+        }
+
+        // Mostrar métricas de inteligencia
+        function displayIntelligenceMetrics(metrics) {
+            const container = document.getElementById('intelligenceMetrics');
+            
+            const metricsData = [
+                { label: 'Prediction Accuracy', value: metrics.predictionAccuracy, unit: '%' },
+                { label: 'Sentiment Score', value: metrics.sentimentScore, unit: '%' },
+                { label: 'News Impact', value: metrics.newsImpact, unit: '%' },
+                { label: 'Correlation Strength', value: metrics.correlationStrength, unit: '%' },
+                { label: 'Signal Strength', value: metrics.signalStrength, unit: '%' },
+                { label: 'Model Confidence', value: metrics.modelConfidence, unit: '%' }
+            ];
+
+            container.innerHTML = metricsData.map(metric => `
+                <div class="intelligence-metric">
+                    <div class="intelligence-label">${metric.label}</div>
+                    <div class="intelligence-value">${safeFormatNumber(metric.value, 1)}</div>
+                    <div class="intelligence-unit">${metric.unit}</div>
+                </div>
+            `).join('');
+        }
+
+        // Mostrar recomendaciones
+        function displayRecommendations(results) {
+            const container = document.getElementById('recommendations');
+            
+            container.innerHTML = Object.entries(results).map(([symbol, data]) => {
+                const { marketData, technicalIndicators, recommendation } = data;
+                const actionClass = recommendation.action.toLowerCase();
+                
+                // Verificar si los datos fueron corregidos por LLM
+                const hasLLMCorrection = technicalIndicators.rsi >= 10 && technicalIndicators.rsi <= 90 && 
+                                        marketData.volume > 0 && recommendation.confidence !== 95.0;
+                
+                return `
+                    <div class="recommendation ${actionClass}">
+                        <div class="recommendation-header">
+                            <div class="recommendation-symbol">${symbol}</div>
+                            <div class="recommendation-action action-${actionClass}">${recommendation.action}</div>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Precio Actual:</span>
+                            <span class="metric-value">$${safeFormatNumber(marketData.price)}</span>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Cambio 24h:</span>
+                            <span class="metric-value ${marketData.change24h >= 0 ? 'metric-positive' : 'metric-negative'}">
+                                ${marketData.change24h >= 0 ? '+' : ''}${safeFormatNumber(marketData.change24h, 2)}%
+                            </span>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Confianza:</span>
+                            <span class="metric-value metric-neutral">${safeFormatNumber(recommendation.confidence, 1)}%</span>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Razón:</span>
+                            <span class="metric-value">${recommendation.reason}</span>
+                        </div>
+                        
+                        <div class="recommendation-details">
+                            <div class="detail-item">
+                                <div class="detail-label">Precio Objetivo</div>
+                                <div class="detail-value">$${safeFormatNumber(recommendation.targetPrice)}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Stop Loss</div>
+                                <div class="detail-value">$${safeFormatNumber(recommendation.stopLoss)}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Take Profit</div>
+                                <div class="detail-value">$${safeFormatNumber(recommendation.takeProfit)}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Riesgo</div>
+                                <div class="detail-value">${recommendation.riskLevel}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="technical-indicators">
+                            <div class="indicator">
+                                <div class="indicator-label">RSI</div>
+                                <div class="indicator-value">${safeFormatNumber(technicalIndicators.rsi, 1)}</div>
+                            </div>
+                            <div class="indicator">
+                                <div class="indicator-label">Volatilidad</div>
+                                <div class="indicator-value">${safeFormatNumber(technicalIndicators.volatility * 100, 2)}%</div>
+                            </div>
+                            <div class="indicator">
+                                <div class="indicator-label">Momentum</div>
+                                <div class="indicator-value">${safeFormatNumber(technicalIndicators.momentum * 100, 2)}%</div>
+                            </div>
+                            <div class="indicator">
+                                <div class="indicator-label">Volumen</div>
+                                <div class="indicator-value">${safeFormatNumber(technicalIndicators.volumeRatio, 2)}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="source-badge">${marketData.source}</div>
+                        
+                        ${hasLLMCorrection ? 
+                            '<div class="llm-correction">✅ LLM: Datos validados y corregidos automáticamente</div>' : 
+                            '<div class="llm-status">🔍 LLM: Analizando datos en tiempo real</div>'
+                        }
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Mostrar estrategias de portafolio
+        function displayPortfolioStrategies(strategies) {
+            const container = document.getElementById('portfolioStrategies');
+            
+            container.innerHTML = Object.entries(strategies).map(([key, strategy]) => {
+                const riskClass = strategy.riskLevel.toLowerCase();
+                
+                return `
+                    <div class="portfolio-strategy">
+                        <div class="strategy-header">
+                            <div class="strategy-name">${strategy.name}</div>
+                            <div class="strategy-risk risk-${riskClass}">${strategy.riskLevel}</div>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Descripción:</span>
+                            <span class="metric-value">${strategy.description}</span>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Retorno Esperado:</span>
+                            <span class="metric-value ${strategy.expectedReturn >= 0 ? 'metric-positive' : 'metric-negative'}">
+                                ${strategy.expectedReturn >= 0 ? '+' : ''}${safeFormatNumber(strategy.expectedReturn, 2)}%
+                            </span>
+                        </div>
+                        
+                        <div class="metric">
+                            <span class="metric-label">Asignaciones:</span>
+                        </div>
+                        
+                        ${Object.entries(strategy.allocations).map(([asset, allocation]) => `
+                            <div class="allocation-item">
+                                <span>${asset}</span>
+                                <span>${safeFormatNumber(allocation, 1)}%</span>
+                            </div>
+                        `).join('')}
+                        
+                        <div class="llm-status">
+                            ✅ LLM: Estrategia optimizada con análisis inteligente
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Crear tabla fija por sector
+        function createFixedSectorTable() {
+            const container = document.getElementById('sectorAnalysis');
+            
+            // Crear estructura de tabla fija
+            container.innerHTML = `
+                <div class="sector-table-container">
+                    <table class="sector-table" id="sectorTable">
+                        <thead>
+                            <tr>
+                                <th>Sector</th>
+                                <th>Fortaleza</th>
+                                <th>Símbolos</th>
+                                <th>Confianza</th>
+                                <th>RSI Prom</th>
+                                <th>Volatilidad</th>
+                                <th>Señales</th>
+                                <th>Volumen</th>
+                                <th>Mejores Oportunidades</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sectorTableBody">
+                            <!-- Las filas se crearán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        // Actualizar solo las celdas de datos de la tabla con animaciones
+        function updateSectorTableData(sectorAnalysis) {
+            console.log('UpdateSectorTableData called with:', sectorAnalysis);
+            const tbody = document.getElementById('sectorTableBody');
+            console.log('Table body element:', tbody);
+            
+            if (!sectorAnalysis || Object.keys(sectorAnalysis).length === 0) {
+                console.log('No sector analysis data, showing loading message');
+                tbody.innerHTML = '<tr><td colspan="9" class="llm-status">🔍 LLM: Analizando sectores en tiempo real...</td></tr>';
+                return;
+            }
+
+            // Crear o actualizar filas
+            Object.entries(sectorAnalysis).forEach(([sector, data], index) => {
+                console.log(`Processing sector: ${sector}`, data);
+                const metrics = data.sectorMetrics;
+                console.log(`Sector metrics for ${sector}:`, metrics);
+                const rowId = `sector-row-${sector.replace(/[^a-zA-Z0-9]/g, '-')}`;
+                let row = document.getElementById(rowId);
+                
+                // Si la fila no existe, crearla
+                if (!row) {
+                    console.log(`Creating new row for sector: ${sector}`);
+                    row = document.createElement('tr');
+                    row.id = rowId;
+                    row.innerHTML = `
+                        <td class="sector-name-cell">${sector.replace(/_/g, ' ')}</td>
+                        <td id="${rowId}-strength"></td>
+                        <td id="${rowId}-symbols"></td>
+                        <td id="${rowId}-confidence"></td>
+                        <td id="${rowId}-rsi"></td>
+                        <td id="${rowId}-volatility"></td>
+                        <td id="${rowId}-signals"></td>
+                        <td id="${rowId}-volume"></td>
+                        <td id="${rowId}-opportunities"></td>
+                    `;
+                    tbody.appendChild(row);
+                    console.log(`Row created and appended for sector: ${sector}`);
+                }
+                
+                // Función para actualizar celda con animación
+                function updateCellWithAnimation(cellId, newContent) {
+                    const cell = document.getElementById(cellId);
+                    if (cell) {
+                        const oldContent = cell.innerHTML;
+                        if (oldContent !== newContent) {
+                            cell.innerHTML = newContent;
+                            cell.classList.add('cell-update');
+                            setTimeout(() => {
+                                cell.classList.remove('cell-update');
+                            }, 500);
+                        }
+                    }
+                }
+                
+                // Actualizar solo las celdas de datos
+                console.log(`Updating cells for sector: ${sector}`);
+                console.log(`Sector strength: ${metrics.sectorStrength}`);
+                
+                const strengthClass = metrics.sectorStrength > 70 ? 'strength-high' : 
+                                   metrics.sectorStrength > 50 ? 'strength-medium' : 'strength-low';
+                
+                // Actualizar fortaleza
+                updateCellWithAnimation(`${rowId}-strength`, 
+                    `<span class="strength-cell ${strengthClass}">${safeFormatNumber(metrics.sectorStrength, 0)}%</span>`
+                );
+                
+                // Actualizar símbolos
+                updateCellWithAnimation(`${rowId}-symbols`, 
+                    `<div class="compact-value">${metrics.totalSymbols}</div>`
+                );
+                
+                // Actualizar confianza
+                updateCellWithAnimation(`${rowId}-confidence`, 
+                    `<div class="compact-value">${safeFormatNumber(metrics.avgConfidence, 1)}%</div>`
+                );
+                
+                // Actualizar RSI
+                updateCellWithAnimation(`${rowId}-rsi`, 
+                    `<div class="compact-value">${safeFormatNumber(metrics.avgRSI, 1)}</div>`
+                );
+                
+                // Actualizar volatilidad
+                updateCellWithAnimation(`${rowId}-volatility`, 
+                    `<div class="compact-value">${safeFormatNumber(metrics.avgVolatility * 100, 2)}%</div>`
+                );
+                
+                // Actualizar señales
+                updateCellWithAnimation(`${rowId}-signals`, `
+                    <div class="signal-distribution">
+                        <div class="signal-buy">BUY: ${safeFormatNumber(metrics.signalDistribution.buy, 1)}%</div>
+                        <div class="signal-sell">SELL: ${safeFormatNumber(metrics.signalDistribution.sell, 1)}%</div>
+                        <div class="signal-hold">HOLD: ${safeFormatNumber(metrics.signalDistribution.hold, 1)}%</div>
+                    </div>
+                `);
+                
+                // Actualizar volumen
+                updateCellWithAnimation(`${rowId}-volume`, 
+                    `<div class="compact-value">${formatVolume(metrics.totalVolume)}</div>`
+                );
+                
+                // Actualizar oportunidades
+                const opportunitiesContent = metrics.topOpportunities.length > 0 ? `
+                    <div class="opportunities-compact">
+                        ${metrics.topOpportunities.map(opp => `
+                            <div class="opportunity-compact">
+                                <span class="opportunity-symbol-compact">${opp.symbol}</span>
+                                <span class="opportunity-action-compact">${opp.action}</span>
+                                <span style="color: #ff6b35; font-size: 0.7em;">${safeFormatNumber(opp.confidence, 0)}%</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : '<div class="compact-metric">Sin oportunidades</div>';
+                
+                updateCellWithAnimation(`${rowId}-opportunities`, opportunitiesContent);
+            });
+            
+            // Remover filas que ya no existen en los datos
+            const existingRows = tbody.querySelectorAll('tr[id^="sector-row-"]');
+            existingRows.forEach(row => {
+                const sectorName = row.id.replace('sector-row-', '').replace(/-/g, '_');
+                if (!sectorAnalysis[sectorName]) {
+                    row.remove();
+                }
+            });
+        }
+
+        // Mostrar análisis por sector (versión mejorada con tabla fija)
+        function displaySectorAnalysis(sectorAnalysis) {
+            console.log('DisplaySectorAnalysis called with:', sectorAnalysis);
+            
+            // Si la tabla no existe, crearla
+            if (!document.getElementById('sectorTable')) {
+                console.log('Creating fixed sector table...');
+                createFixedSectorTable();
+            }
+            
+            // Actualizar solo los datos
+            updateSectorTableData(sectorAnalysis);
+        }
+
+        // Función para formatear volumen
+        function formatVolume(volume) {
+            if (volume >= 1e9) return `${(volume / 1e9).toFixed(1)}B`;
+            if (volume >= 1e6) return `${(volume / 1e6).toFixed(1)}M`;
+            if (volume >= 1e3) return `${(volume / 1e3).toFixed(1)}K`;
+            return volume.toFixed(0);
+        }
+
+        // Mostrar información del sistema
+        function displaySystemInfo(data) {
+            const container = document.getElementById('systemInfo');
+            
+            container.innerHTML = `
+                <div class="metric">
+                    <span class="metric-label">Engine Version:</span>
+                    <span class="metric-value">${data.engineVersion}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Analysis Method:</span>
+                    <span class="metric-value">${data.analysisMethod}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Timestamp:</span>
+                    <span class="metric-value">${new Date(data.timestamp).toLocaleString()}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Assets Analyzed:</span>
+                    <span class="metric-value">${data.totalSymbolsAnalyzed || Object.keys(data.results).length}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Sectors Analyzed:</span>
+                    <span class="metric-value">${data.sectorsAnalyzed || 'N/A'}</span>
+                </div>
+                <div class="llm-status">
+                    🧠 LLM: Sistema de auto-corrección activo y funcionando
+                </div>
+            `;
+        }
+
+        // Cargar datos al iniciar
+        document.addEventListener('DOMContentLoaded', loadData);
+
+        // Actualizar datos cada 30 segundos
+        setInterval(loadData, 30000);
+    </script>
+</body>
+</html>

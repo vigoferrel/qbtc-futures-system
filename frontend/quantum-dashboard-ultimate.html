@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 QBTC Quantum Dashboard Ultimate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23, #1a1a3e, #2d1b69);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #4a90e2;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #4a90e2, #50c878, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.2) drop-shadow(0 0 10px #4a90e2); }
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            flex-wrap: wrap;
+        }
+        
+        .status-item {
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 5px;
+            min-width: 120px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .status-value {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .status-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .panel {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .panel h2 {
+            margin-bottom: 15px;
+            color: #4a90e2;
+            font-size: 1.3em;
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 5px;
+        }
+        
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+        
+        .metric-value {
+            font-weight: bold;
+            color: #50c878;
+        }
+        
+        .alert-item {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            border-left: 4px solid;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .alert-critical {
+            background: rgba(255, 59, 59, 0.2);
+            border-color: #ff3b3b;
+        }
+        
+        .alert-warning {
+            background: rgba(255, 193, 7, 0.2);
+            border-color: #ffc107;
+        }
+        
+        .alert-info {
+            background: rgba(23, 162, 184, 0.2);
+            border-color: #17a2b8;
+        }
+        
+        .alert-opportunity {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+        }
+        
+        .alert-supreme {
+            background: rgba(138, 43, 226, 0.2);
+            border-color: #8a2be2;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(138, 43, 226, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(138, 43, 226, 0); }
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4a90e2, #50c878, #ffd700);
+            transition: width 0.3s ease;
+            animation: shimmer 2s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+        
+        .big-bang-indicator {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 15px;
+            margin: 15px 0;
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .big-bang-ready {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border-color: #ff6b6b;
+            animation: bigBangPulse 1s ease-in-out infinite alternate;
+        }
+        
+        .big-bang-active {
+            background: linear-gradient(45deg, #ff3838, #ff9500, #ffd32a);
+            border-color: #ff3838;
+            animation: bigBangExplode 0.5s ease-in-out infinite;
+        }
+        
+        .big-bang-cooldown {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            border-color: #74b9ff;
+        }
+        
+        @keyframes bigBangPulse {
+            from { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+            to { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 107, 107, 0.8); }
+        }
+        
+        @keyframes bigBangExplode {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+        
+        .quantum-wave {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .wave {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid #4a90e2;
+            animation: wave-pulse 4s linear infinite;
+        }
+        
+        @keyframes wave-pulse {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(45deg, #feca57, #ff9f43);
+        }
+        
+        .connection-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid;
+            font-weight: bold;
+        }
+        
+        .connected {
+            color: #50c878;
+            border-color: #50c878;
+            animation: pulse-green 2s ease-in-out infinite alternate;
+        }
+        
+        .disconnected {
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+            animation: pulse-red 1s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse-green {
+            from { box-shadow: 0 0 10px rgba(80, 200, 120, 0.3); }
+            to { box-shadow: 0 0 20px rgba(80, 200, 120, 0.6); }
+        }
+        
+        @keyframes pulse-red {
+            from { box-shadow: 0 0 10px rgba(255, 107, 107, 0.3); }
+            to { box-shadow: 0 0 20px rgba(255, 107, 107, 0.6); }
+        }
+        
+        .lambda-indicator {
+            text-align: center;
+            font-size: 2em;
+            margin: 10px 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .status-bar { flex-direction: column; }
+            .main-grid { grid-template-columns: 1fr; padding: 10px; }
+            .panel { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="quantum-wave" id="quantumWave"></div>
+    
+    <div class="connection-status" id="connectionStatus">
+        🔌 Connecting...
+    </div>
+    
+    <header class="header">
+        <h1>🌌 QBTC Quantum Dashboard Ultimate</h1>
+        <p>Consciencia Cuántica • Antimateria Financiera • Big Bang Trading</p>
+    </header>
+    
+    <div class="status-bar">
+        <div class="status-item">
+            <div class="status-label">⚛️ Leverage</div>
+            <div class="status-value" id="currentLeverage">--</div>
+        </div>
+        <div class="status-item">
+            <div class="status-label">🧠 Consciencia</div>
+            <div class="status-value" id="consciousness">--</div>
+        </div>
+        <div class="status-item">
+            <div class="status-label">🌊 λ₇₉₁₉</div>
+            <div class="status-value" id="lambdaResonance">--</div>
+        </div>
+        <div class="status-item">
+            <div class="status-label">💫 Antimateria</div>
+            <div class="status-value" id="antimatterField">--</div>
+        </div>
+        <div class="status-item">
+            <div class="status-label">💥 Big Bangs</div>
+            <div class="status-value" id="bigBangCount">0</div>
+        </div>
+    </div>
+    
+    <div class="main-grid">
+        <div class="panel">
+            <h2>🚀 Big Bang Cuántico</h2>
+            <div class="big-bang-indicator" id="bigBangIndicator">
+                💤 Sistema en reposo
+            </div>
+            <div class="metric-row">
+                <span>Readiness:</span>
+                <span class="metric-value" id="bigBangReadiness">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="bigBangProgress" style="width: 0%"></div>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-danger" onclick="triggerBigBang()">💥 Trigger Big Bang</button>
+                <button class="btn btn-warning" onclick="resetQuantumState()">🔄 Reset Quantum</button>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>📊 Métricas Cuánticas</h2>
+            <div class="metric-row">
+                <span>🎯 Leverage Actual:</span>
+                <span class="metric-value" id="leverageDetail">--</span>
+            </div>
+            <div class="metric-row">
+                <span>🌀 Entropía Global:</span>
+                <span class="metric-value" id="entropy">--</span>
+            </div>
+            <div class="metric-row">
+                <span>⚛️ Coherencia:</span>
+                <span class="metric-value" id="coherence">--</span>
+            </div>
+            <div class="metric-row">
+                <span>🎭 Resonancia Poética:</span>
+                <span class="metric-value" id="poeticResonance">--</span>
+            </div>
+            <div class="metric-row">
+                <span>🌍 Campo Gravitacional:</span>
+                <span class="metric-value" id="gravitationalForce">--</span>
+            </div>
+            
+            <div class="lambda-indicator" id="lambdaDisplay">
+                λ₇₉₁₉ = 0.000
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>🚨 Alertas Cuánticas</h2>
+            <div id="alertsContainer">
+                <div class="alert-item alert-info">
+                    ℹ️ Sistema inicializando...
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>💡 Recomendaciones</h2>
+            <div id="recommendationsContainer">
+                <div class="metric-row">
+                    <span>Cargando recomendaciones...</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>📈 Estado del Sistema</h2>
+            <div class="metric-row">
+                <span>🔗 Servicios Conectados:</span>
+                <span class="metric-value" id="connectedServices">--</span>
+            </div>
+            <div class="metric-row">
+                <span>⏰ Última Actualización:</span>
+                <span class="metric-value" id="lastUpdate">--</span>
+            </div>
+            <div class="metric-row">
+                <span>🔥 Cooldown Big Bang:</span>
+                <span class="metric-value" id="bigBangCooldown">No</span>
+            </div>
+            <div class="metric-row">
+                <span>📡 Clientes WebSocket:</span>
+                <span class="metric-value" id="wsClients">--</span>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>🎯 Últimos Eventos</h2>
+            <div id="eventsContainer">
+                <div class="metric-row">
+                    <span>Esperando eventos...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let ws = null;
+        let reconnectAttempts = 0;
+        let maxReconnectAttempts = 10;
+        let isConnected = false;
+        let bigBangAnimationActive = false;
+        
+        // Conectar WebSocket
+        function connectWebSocket() {
+            console.log('Conectando a WebSocket...');
+            ws = new WebSocket('ws://localhost:14401');
+            
+            ws.onopen = function(event) {
+                console.log('WebSocket conectado');
+                isConnected = true;
+                reconnectAttempts = 0;
+                updateConnectionStatus(true);
+                
+                // Solicitar estado inicial
+                ws.send(JSON.stringify({
+                    type: 'get-quantum-state'
+                }));
+            };
+            
+            ws.onmessage = function(event) {
+                try {
+                    const data = JSON.parse(event.data);
+                    handleWebSocketMessage(data);
+                } catch (error) {
+                    console.error('Error parsing WebSocket message:', error);
+                }
+            };
+            
+            ws.onclose = function(event) {
+                console.log('WebSocket desconectado');
+                isConnected = false;
+                updateConnectionStatus(false);
+                
+                if (reconnectAttempts < maxReconnectAttempts) {
+                    reconnectAttempts++;
+                    console.log(`Reintentando conexión (${reconnectAttempts}/${maxReconnectAttempts})...`);
+                    setTimeout(connectWebSocket, 3000);
+                } else {
+                    console.log('Máximo de reintentos alcanzado');
+                }
+            };
+            
+            ws.onerror = function(error) {
+                console.error('Error WebSocket:', error);
+            };
+        }
+        
+        function handleWebSocketMessage(data) {
+            switch (data.type) {
+                case 'quantum-state-initial':
+                case 'quantum-state-response':
+                    updateQuantumState(data.data);
+                    break;
+                    
+                case 'quantum-update':
+                    updateRealTimeMetrics(data.data);
+                    updateAlerts(data.alerts);
+                    break;
+                    
+                case 'quantum-big-bang':
+                    handleBigBangEvent(data.data);
+                    break;
+                    
+                case 'quantum-alert':
+                    addAlert(data.data);
+                    break;
+                    
+                case 'quantum-recommendations':
+                    updateRecommendations(data.data);
+                    break;
+            }
+        }
+        
+        function updateConnectionStatus(connected) {
+            const statusEl = document.getElementById('connectionStatus');
+            if (connected) {
+                statusEl.className = 'connection-status connected';
+                statusEl.textContent = '✅ Conectado';
+            } else {
+                statusEl.className = 'connection-status disconnected';
+                statusEl.textContent = '❌ Desconectado';
+            }
+        }
+        
+        function updateQuantumState(state) {
+            console.log('Actualizando estado cuántico:', state);
+            
+            if (state.error) {
+                console.error('Error en estado cuántico:', state.error);
+                return;
+            }
+            
+            // Actualizar métricas en tiempo real
+            if (state.realTimeMetrics) {
+                updateRealTimeMetrics(state.realTimeMetrics);
+            }
+            
+            // Actualizar alertas
+            if (state.alerts) {
+                updateAlerts(state.alerts);
+            }
+            
+            // Actualizar recomendaciones
+            if (state.recommendations) {
+                updateRecommendations(state.recommendations);
+            }
+            
+            // Actualizar estado del sistema
+            updateSystemStatus(state);
+        }
+        
+        function updateRealTimeMetrics(metrics) {
+            // Status bar
+            document.getElementById('currentLeverage').textContent = 
+                metrics.leverage ? metrics.leverage.toFixed(2) + 'x' : '--';
+            document.getElementById('consciousness').textContent = 
+                metrics.consciousness ? (metrics.consciousness * 100).toFixed(1) + '%' : '--';
+            document.getElementById('lambdaResonance').textContent = 
+                metrics.lambdaResonance ? (metrics.lambdaResonance * 100).toFixed(1) + '%' : '--';
+            document.getElementById('antimatterField').textContent = 
+                metrics.antimatterField ? (metrics.antimatterField * 100).toFixed(1) + '%' : '--';
+            document.getElementById('bigBangCount').textContent = 
+                metrics.bigBangEvents || 0;
+            
+            // Panel de métricas detalladas
+            document.getElementById('leverageDetail').textContent = 
+                metrics.leverage ? metrics.leverage.toFixed(2) + 'x' : '--';
+            document.getElementById('entropy').textContent = 
+                metrics.entropy ? (metrics.entropy * 100).toFixed(1) + '%' : '--';
+            document.getElementById('coherence').textContent = 
+                metrics.coherence ? (metrics.coherence * 100).toFixed(1) + '%' : '--';
+            document.getElementById('poeticResonance').textContent = 
+                metrics.poeticResonance ? (metrics.poeticResonance * 100).toFixed(1) + '%' : '--';
+            document.getElementById('gravitationalForce').textContent = 
+                metrics.gravitationalForce ? (metrics.gravitationalForce * 100).toFixed(1) + '%' : '--';
+            
+            // λ₇₉₁₉ display especial
+            document.getElementById('lambdaDisplay').textContent = 
+                `λ₇₉₁₉ = ${metrics.lambdaResonance ? metrics.lambdaResonance.toFixed(3) : '0.000'}`;
+            
+            // Big Bang readiness
+            if (metrics.bigBangReadiness !== undefined) {
+                const readiness = metrics.bigBangReadiness;
+                document.getElementById('bigBangReadiness').textContent = 
+                    (readiness * 100).toFixed(1) + '%';
+                document.getElementById('bigBangProgress').style.width = 
+                    (readiness * 100) + '%';
+                
+                updateBigBangIndicator(readiness);
+            }
+            
+            // Actualizar ondas cuánticas basadas en métricas
+            updateQuantumWaves(metrics);
+        }
+        
+        function updateBigBangIndicator(readiness) {
+            const indicator = document.getElementById('bigBangIndicator');
+            
+            if (readiness > 0.95) {
+                indicator.className = 'big-bang-indicator big-bang-ready';
+                indicator.textContent = '💥 BIG BANG LISTO!';
+            } else if (readiness > 0.8) {
+                indicator.className = 'big-bang-indicator big-bang-ready';
+                indicator.textContent = '⚡ Preparando Big Bang...';
+            } else {
+                indicator.className = 'big-bang-indicator';
+                indicator.textContent = '💤 Sistema en reposo';
+            }
+        }
+        
+        function handleBigBangEvent(eventData) {
+            console.log('🚀 BIG BANG EVENT:', eventData);
+            
+            const indicator = document.getElementById('bigBangIndicator');
+            indicator.className = 'big-bang-indicator big-bang-active';
+            indicator.innerHTML = `
+                <div>💥 BIG BANG ACTIVO! 💥</div>
+                <div style="font-size: 0.7em; margin-top: 5px;">
+                    Evento #${eventData.eventNumber} | ${eventData.bigBangLeverage?.toFixed(2)}x
+                </div>
+            `;
+            
+            // Crear efecto visual extremo
+            createBigBangEffect();
+            
+            // Volver a normal después de 10 segundos
+            setTimeout(() => {
+                indicator.className = 'big-bang-indicator big-bang-cooldown';
+                indicator.textContent = '❄️ Big Bang Cooldown (5 min)';
+            }, 10000);
+        }
+        
+        function createBigBangEffect() {
+            // Crear múltiples ondas de Big Bang
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createQuantumWave(
+                        Math.random() * window.innerWidth,
+                        Math.random() * window.innerHeight,
+                        '#ff6b6b',
+                        2000 + Math.random() * 3000
+                    );
+                }, i * 100);
+            }
+            
+            // Flash de pantalla
+            const flash = document.createElement('div');
+            flash.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+                z-index: 9999; pointer-events: none;
+                animation: bigBangFlash 1s ease-out;
+            `;
+            document.body.appendChild(flash);
+            
+            setTimeout(() => flash.remove(), 1000);
+        }
+        
+        function updateAlerts(alerts) {
+            const container = document.getElementById('alertsContainer');
+            container.innerHTML = '';
+            
+            if (alerts && alerts.length > 0) {
+                alerts.slice(0, 5).forEach(alert => {
+                    const alertEl = document.createElement('div');
+                    alertEl.className = `alert-item alert-${alert.type}`;
+                    
+                    const emoji = {
+                        'critical': '🚨',
+                        'warning': '⚠️',
+                        'info': 'ℹ️',
+                        'opportunity': '💫',
+                        'supreme': '👑'
+                    };
+                    
+                    alertEl.innerHTML = `
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>${emoji[alert.type]} ${alert.message}</span>
+                            <span style="opacity: 0.7; font-size: 0.8em;">
+                                ${new Date(alert.timestamp).toLocaleTimeString()}
+                            </span>
+                        </div>
+                    `;
+                    
+                    container.appendChild(alertEl);
+                });
+            } else {
+                container.innerHTML = '<div class="alert-item alert-info">ℹ️ Sin alertas</div>';
+            }
+        }
+        
+        function addAlert(alert) {
+            // Crear alerta individual para broadcast inmediato
+            const container = document.getElementById('alertsContainer');
+            const alertEl = document.createElement('div');
+            alertEl.className = `alert-item alert-${alert.type}`;
+            
+            const emoji = {
+                'critical': '🚨',
+                'warning': '⚠️',
+                'info': 'ℹ️',
+                'opportunity': '💫',
+                'supreme': '👑'
+            };
+            
+            alertEl.innerHTML = `
+                <div style="display: flex; justify-content: space-between;">
+                    <span>${emoji[alert.type]} ${alert.message}</span>
+                    <span style="opacity: 0.7; font-size: 0.8em;">NUEVO</span>
+                </div>
+            `;
+            
+            container.insertBefore(alertEl, container.firstChild);
+            
+            // Mantener solo las últimas 5 alertas
+            while (container.children.length > 5) {
+                container.removeChild(container.lastChild);
+            }
+        }
+        
+        function updateRecommendations(recommendations) {
+            const container = document.getElementById('recommendationsContainer');
+            container.innerHTML = '';
+            
+            if (recommendations && recommendations.length > 0) {
+                recommendations.slice(0, 3).forEach(rec => {
+                    const recEl = document.createElement('div');
+                    recEl.className = 'metric-row';
+                    recEl.innerHTML = `
+                        <div>
+                            <strong>${rec.priority}:</strong> ${rec.message}
+                            <div style="font-size: 0.8em; opacity: 0.8; margin-top: 3px;">
+                                ${rec.details}
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(recEl);
+                });
+            } else {
+                container.innerHTML = '<div class="metric-row"><span>Sin recomendaciones activas</span></div>';
+            }
+        }
+        
+        function updateSystemStatus(state) {
+            document.getElementById('connectedServices').textContent = 
+                state.connectedServices ? state.connectedServices.length + '/5' : '--';
+            document.getElementById('lastUpdate').textContent = 
+                state.lastUpdate ? new Date(state.lastUpdate).toLocaleTimeString() : '--';
+            document.getElementById('bigBangCooldown').textContent = 
+                state.bigBangCooldown ? 'Sí' : 'No';
+        }
+        
+        function updateQuantumWaves(metrics) {
+            // Crear ondas cuánticas basadas en consciencia y λ₇₉₁₉
+            if (metrics.consciousness > 0.9 || metrics.lambdaResonance > 0.9) {
+                createQuantumWave(
+                    Math.random() * window.innerWidth,
+                    Math.random() * window.innerHeight,
+                    '#4a90e2',
+                    3000
+                );
+            }
+        }
+        
+        function createQuantumWave(x, y, color, duration) {
+            const wave = document.createElement('div');
+            wave.className = 'wave';
+            wave.style.cssText = `
+                left: ${x}px; top: ${y}px; border-color: ${color};
+                animation: wave-pulse ${duration}ms linear;
+            `;
+            
+            document.getElementById('quantumWave').appendChild(wave);
+            setTimeout(() => wave.remove(), duration);
+        }
+        
+        function triggerBigBang() {
+            if (ws && isConnected) {
+                ws.send(JSON.stringify({
+                    type: 'trigger-big-bang'
+                }));
+                console.log('🚀 Big Bang triggered manually');
+            } else {
+                alert('No hay conexión WebSocket');
+            }
+        }
+        
+        function resetQuantumState() {
+            if (ws && isConnected) {
+                if (confirm('¿Estás seguro de resetear el estado cuántico?')) {
+                    ws.send(JSON.stringify({
+                        type: 'reset-quantum-state'
+                    }));
+                    console.log('🔄 Quantum state reset');
+                }
+            } else {
+                alert('No hay conexión WebSocket');
+            }
+        }
+        
+        // Inicializar dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🌌 QBTC Quantum Dashboard Ultimate iniciado');
+            connectWebSocket();
+            
+            // Crear ondas de fondo periódicamente
+            setInterval(() => {
+                createQuantumWave(
+                    Math.random() * window.innerWidth,
+                    Math.random() * window.innerHeight,
+                    '#4a90e2',
+                    4000
+                );
+            }, 2000);
+        });
+        
+        // Agregar estilos de animación dinámicos
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bigBangFlash {
+                0% { opacity: 0; }
+                50% { opacity: 1; }
+                100% { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

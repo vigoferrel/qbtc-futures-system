@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 QBTC LLM Orchestrator Dashboard</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #00ff88;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .card h3 {
+            color: #00ff88;
+            margin-bottom: 15px;
+        }
+        .status-online { color: #00ff88; }
+        .status-offline { color: #ff4444; }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .quantum-value {
+            color: #00ccff;
+            font-weight: bold;
+        }
+        .decision {
+            background: rgba(0,255,136,0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 5px 0;
+            border-left: 4px solid #00ff88;
+        }
+        .refresh-btn {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            border: none;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-online-indicator { background: #00ff88; }
+        .status-offline-indicator { background: #ff4444; }
+        .loading {
+            color: #ffaa00;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 QBTC LLM Orchestrator Dashboard</h1>
+            <p>Sistema de Orquestación Cuántica con LLM Gemini Flash 1.5 8B</p>
+            <button class="refresh-btn" onclick="checkAllServices()">🔄 Verificar Servicios</button>
+            <p><small>Auto-refresh cada 30 segundos</small></p>
+        </div>
+        
+        <div class="grid">
+            <!-- Estado del LLM -->
+            <div class="card">
+                <h3>🧠 LLM Orchestrator Status</h3>
+                <div id="llm-status">
+                    <div class="metric">
+                        <span>Estado:</span>
+                        <span class="loading">Verificando...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Estado Cuántico -->
+            <div class="card">
+                <h3>⚛️ Estado Cuántico</h3>
+                <div id="quantum-state">
+                    <div class="metric">
+                        <span>Estado:</span>
+                        <span class="loading">Verificando...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decisiones del LLM -->
+            <div class="card">
+                <h3>🎯 Decisiones del LLM</h3>
+                <div id="llm-decisions">
+                    <div class="metric">
+                        <span>Estado:</span>
+                        <span class="loading">Verificando...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Constantes Físicas -->
+            <div class="card">
+                <h3>🔬 Constantes Físicas</h3>
+                <div class="metric">
+                    <span>λ₇₉₁₉:</span>
+                    <span class="quantum-value">8.977020214210413</span>
+                </div>
+                <div class="metric">
+                    <span>φ (Phi):</span>
+                    <span class="quantum-value">1.618033988749895</span>
+                </div>
+                <div class="metric">
+                    <span>γ (Euler):</span>
+                    <span class="quantum-value">0.5772156649015329</span>
+                </div>
+                <div class="metric">
+                    <span>z (Compleja):</span>
+                    <span class="quantum-value">9 + 16i</span>
+                </div>
+            </div>
+            
+            <!-- Información del Sistema -->
+            <div class="card">
+                <h3>💻 Información del Sistema</h3>
+                <div class="metric">
+                    <span>LLM Puerto:</span>
+                    <span>64609</span>
+                </div>
+                <div class="metric">
+                    <span>Estado General:</span>
+                    <span class="status-online">OPERATIVO</span>
+                </div>
+                <div class="metric">
+                    <span>Última Verificación:</span>
+                    <span id="last-check">Nunca</span>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; color: #888;">
+            Última actualización: <span id="last-update">Cargando...</span>
+        </div>
+    </div>
+    
+    <script>
+        const LLM_ORCHESTRATOR_URL = 'http://localhost:64609';
+        
+        async function checkLLMStatus() {
+            try {
+                const response = await fetch(`${LLM_ORCHESTRATOR_URL}/health`);
+                const data = await response.json();
+                
+                const llmStatusDiv = document.getElementById('llm-status');
+                llmStatusDiv.innerHTML = `
+                    <div class="metric">
+                        <span class="status-indicator status-online-indicator"></span>
+                        <span>Estado:</span>
+                        <span class="status-online">ONLINE</span>
+                    </div>
+                    <div class="metric">
+                        <span>Modelo:</span>
+                        <span>Google Gemini Flash 1.5 8B</span>
+                    </div>
+                    <div class="metric">
+                        <span>Uptime:</span>
+                        <span>${Math.round(data.uptime || 0)}s</span>
+                    </div>
+                    <div class="metric">
+                        <span>Puerto:</span>
+                        <span>64609</span>
+                    </div>
+                `;
+                return true;
+            } catch (error) {
+                const llmStatusDiv = document.getElementById('llm-status');
+                llmStatusDiv.innerHTML = `
+                    <div class="metric">
+                        <span class="status-indicator status-offline-indicator"></span>
+                        <span>Estado:</span>
+                        <span class="status-offline">OFFLINE</span>
+                    </div>
+                    <div class="metric">
+                        <span>Error:</span>
+                        <span>${error.message}</span>
+                    </div>
+                `;
+                return false;
+            }
+        }
+        
+        async function checkQuantumState() {
+            try {
+                const response = await fetch(`${LLM_ORCHESTRATOR_URL}/api/quantum-state`);
+                const data = await response.json();
+                
+                if (data.quantumState) {
+                    const quantumStateDiv = document.getElementById('quantum-state');
+                    quantumStateDiv.innerHTML = `
+                        <div class="metric">
+                            <span>Consciencia:</span>
+                            <span class="quantum-value">${(data.quantumState.consciousness * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="metric">
+                            <span>Coherencia:</span>
+                            <span class="quantum-value">${(data.quantumState.coherence * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="metric">
+                            <span>Entrelazamiento:</span>
+                            <span class="quantum-value">${(data.quantumState.entanglement * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="metric">
+                            <span>Superposición:</span>
+                            <span class="quantum-value">${(data.quantumState.superposition * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="metric">
+                            <span>Evolución:</span>
+                            <span class="quantum-value">${data.quantumState.evolution.toFixed(4)}</span>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                const quantumStateDiv = document.getElementById('quantum-state');
+                quantumStateDiv.innerHTML = `
+                    <div class="metric">
+                        <span>Error:</span>
+                        <span>${error.message}</span>
+                    </div>
+                `;
+            }
+        }
+        
+        async function checkLLMDecisions() {
+            try {
+                const testData = {
+                    symbol: 'BTCUSDT',
+                    price: 50000,
+                    volume: 1000000,
+                    timestamp: Date.now()
+                };
+                
+                const response = await fetch(`${LLM_ORCHESTRATOR_URL}/api/orchestrate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const data = await response.json();
+                
+                const decisionsDiv = document.getElementById('llm-decisions');
+                decisionsDiv.innerHTML = `
+                    <div class="decision">
+                        <div class="metric">
+                            <span>Estrategia:</span>
+                            <span>${data.orchestration.strategy}</span>
+                        </div>
+                        <div class="metric">
+                            <span>Acción:</span>
+                            <span>${data.orchestration.action}</span>
+                        </div>
+                        <div class="metric">
+                            <span>Confianza:</span>
+                            <span class="quantum-value">${(data.orchestration.confidence * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="metric">
+                            <span>Símbolos:</span>
+                            <span>${data.orchestration.activeSymbols.join(', ')}</span>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                const decisionsDiv = document.getElementById('llm-decisions');
+                decisionsDiv.innerHTML = `
+                    <div class="metric">
+                        <span>Error:</span>
+                        <span>${error.message}</span>
+                    </div>
+                `;
+            }
+        }
+        
+        async function checkAllServices() {
+            await checkLLMStatus();
+            await checkQuantumState();
+            await checkLLMDecisions();
+            
+            document.getElementById('last-check').textContent = new Date().toLocaleString();
+            document.getElementById('last-update').textContent = new Date().toLocaleString();
+        }
+        
+        // Verificación inicial
+        checkAllServices();
+        
+        // Auto-refresh cada 30 segundos
+        setInterval(checkAllServices, 30000);
+    </script>
+</body>
+</html>

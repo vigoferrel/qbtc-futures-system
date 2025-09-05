@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Leonardo Quantum Liberation Dashboard</title>
+    
+    <!-- Fonts Leonardo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Paleta Leonardo */
+            --leonardo-gold: #FFD700;
+            --leonardo-deep-blue: #1a237e;
+            --leonardo-quantum-blue: #00bcd4;
+            --leonardo-divine-purple: #9c27b0;
+            --leonardo-consciousness: #4fc3f7;
+            --leonardo-profit: #4caf50;
+            --leonardo-warning: #ff9800;
+            --leonardo-error: #f44336;
+            --leonardo-dark: #0a0a0a;
+            --leonardo-card: rgba(26, 35, 126, 0.15);
+            --leonardo-border: rgba(255, 215, 0, 0.3);
+            --leonardo-glow: rgba(255, 215, 0, 0.5);
+            
+            /* Gradientes Leonardo */
+            --gradient-divine: linear-gradient(135deg, var(--leonardo-deep-blue), var(--leonardo-divine-purple));
+            --gradient-consciousness: linear-gradient(135deg, var(--leonardo-quantum-blue), var(--leonardo-consciousness));
+            --gradient-profit: linear-gradient(135deg, var(--leonardo-profit), #66bb6a);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a237e 50%, #000051 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header Leonardo */
+        .leonardo-header {
+            background: var(--gradient-divine);
+            padding: 1rem 2rem;
+            border-bottom: 2px solid var(--leonardo-border);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .leonardo-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .leonardo-title h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--leonardo-gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .leonardo-subtitle {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            color: var(--leonardo-consciousness);
+            opacity: 0.9;
+        }
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--leonardo-border);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--leonardo-profit);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Main Layout */
+        .leonardo-dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            min-height: calc(100vh - 120px);
+        }
+
+        /* Panel de Oportunidades */
+        .opportunities-panel {
+            background: var(--leonardo-card);
+            border: 1px solid var(--leonardo-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.1);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--leonardo-border);
+        }
+
+        .panel-icon {
+            font-size: 1.5rem;
+            color: var(--leonardo-gold);
+        }
+
+        .panel-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--leonardo-gold);
+        }
+
+        .panel-subtitle {
+            font-size: 0.85rem;
+            color: var(--leonardo-consciousness);
+            opacity: 0.8;
+        }
+
+        /* Consciousness Meters */
+        .consciousness-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .consciousness-meter {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            padding: 0.75rem;
+            text-align: center;
+        }
+
+        .meter-label {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.7rem;
+            color: var(--leonardo-consciousness);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meter-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--leonardo-gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .meter-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: var(--gradient-consciousness);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        /* Opportunities List */
+        .opportunities-list {
+            max-height: 500px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--leonardo-gold) transparent;
+        }
+
+        .opportunities-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .opportunities-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .opportunities-list::-webkit-scrollbar-thumb {
+            background: var(--leonardo-gold);
+            border-radius: 3px;
+        }
+
+        .opportunity-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .opportunity-item:hover {
+            background: rgba(255, 215, 0, 0.05);
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateX(5px);
+        }
+
+        .opportunity-item.divine {
+            border-color: var(--leonardo-divine-purple);
+            background: rgba(156, 39, 176, 0.1);
+            box-shadow: 0 0 15px rgba(156, 39, 176, 0.2);
+        }
+
+        .opportunity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .symbol-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .symbol-name {
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #ffffff;
+        }
+
+        .symbol-tier {
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tier-1 { background: linear-gradient(135deg, #ffd700, #ffed4e); color: #000; }
+        .tier-2 { background: linear-gradient(135deg, #c0c0c0, #e8e8e8); color: #000; }
+        .tier-3 { background: linear-gradient(135deg, #cd7f32, #daa520); color: #fff; }
+        .tier-4 { background: linear-gradient(135deg, #4fc3f7, #29b6f6); color: #fff; }
+        .tier-5 { background: linear-gradient(135deg, #9c27b0, #ba68c8); color: #fff; }
+        .tier-6 { background: linear-gradient(135deg, #ff9800, #ffb74d); color: #000; }
+
+        .divine-score {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--leonardo-divine-purple);
+            text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+        }
+
+        .opportunity-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-label {
+            font-size: 0.7rem;
+            color: var(--leonardo-consciousness);
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Panel de Métricas de Ejecución */
+        .execution-panel {
+            background: var(--leonardo-card);
+            border: 1px solid var(--leonardo-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.1);
+        }
+
+        /* Balance Overview */
+        .balance-overview {
+            background: var(--gradient-profit);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .balance-main {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .balance-change {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .balance-change.positive { color: #a5d6a7; }
+        .balance-change.negative { color: #ef5350; }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-icon {
+            color: var(--leonardo-gold);
+        }
+
+        .metric-title {
+            font-size: 0.85rem;
+            color: var(--leonardo-consciousness);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-main-value {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-secondary {
+            font-size: 0.8rem;
+            color: var(--leonardo-consciousness);
+            opacity: 0.8;
+        }
+
+        /* Assets Table */
+        .assets-section {
+            margin-top: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--leonardo-gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .assets-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .assets-table th {
+            background: var(--gradient-divine);
+            padding: 0.75rem;
+            text-align: left;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .assets-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        .assets-table tr:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .asset-symbol {
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+        }
+
+        .value-positive {
+            color: var(--leonardo-profit);
+            font-weight: 600;
+        }
+
+        .value-negative {
+            color: var(--leonardo-error);
+            font-weight: 600;
+        }
+
+        .value-neutral {
+            color: var(--leonardo-warning);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .leonardo-dashboard {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .consciousness-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .leonardo-dashboard {
+                padding: 1rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .leonardo-title h1 {
+                font-size: 1.5rem;
+            }
+            
+            .consciousness-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .opportunity-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Loading States */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: var(--leonardo-consciousness);
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Empty States */
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--leonardo-consciousness);
+            opacity: 0.7;
+        }
+
+        .empty-state i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Leonardo -->
+    <header class="leonardo-header">
+        <div class="header-content">
+            <div class="leonardo-title">
+                <i class="fas fa-palette" style="font-size: 2rem; color: var(--leonardo-gold);"></i>
+                <div>
+                    <h1>Leonardo Quantum Liberation</h1>
+                    <div class="leonardo-subtitle">
+                        "La simplicidad es la máxima sofisticación" - 77 símbolos bajo consciencia
+                    </div>
+                </div>
+            </div>
+            <div class="system-status">
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span id="system-status-text">Sistema Activo</span>
+                </div>
+                <div class="status-indicator">
+                    <i class="fas fa-brain"></i>
+                    <span id="consciousness-display">0%</span>
+                </div>
+                <div class="status-indicator">
+                    <i class="fas fa-chart-line"></i>
+                    <span id="active-symbols-display">0/77</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="leonardo-dashboard">
+        <!-- Panel de Oportunidades Divinas -->
+        <section class="opportunities-panel">
+            <div class="panel-header">
+                <i class="fas fa-eye panel-icon"></i>
+                <div>
+                    <h2 class="panel-title">Oportunidades Divinas</h2>
+                    <div class="panel-subtitle">Detección cuántica en tiempo real</div>
+                </div>
+            </div>
+
+            <!-- Consciencia por Tiers -->
+            <div class="consciousness-grid">
+                <div class="consciousness-meter">
+                    <div class="meter-label">Consciencia Promedio</div>
+                    <div class="meter-value" id="avg-consciousness">0%</div>
+                    <div class="meter-bar">
+                        <div class="meter-fill" id="avg-consciousness-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="consciousness-meter">
+                    <div class="meter-label">Símbolos Divinos</div>
+                    <div class="meter-value" id="divine-symbols-count">0</div>
+                    <div class="meter-bar">
+                        <div class="meter-fill" id="divine-symbols-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="consciousness-meter">
+                    <div class="meter-label">Saltos Cuánticos</div>
+                    <div class="meter-value" id="quantum-leaps">0</div>
+                    <div class="meter-bar">
+                        <div class="meter-fill" id="quantum-leaps-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Oportunidades -->
+            <div class="opportunities-list" id="opportunities-list">
+                <div class="loading">
+                    <i class="fas fa-spinner"></i>
+                    Explorando el campo cuántico...
+                </div>
+            </div>
+        </section>
+
+        <!-- Panel de Métricas de Ejecución -->
+        <section class="execution-panel">
+            <div class="panel-header">
+                <i class="fas fa-chart-bar panel-icon"></i>
+                <div>
+                    <h2 class="panel-title">Métricas de Ejecución</h2>
+                    <div class="panel-subtitle">Balance, P&L y rendimiento agregado</div>
+                </div>
+            </div>
+
+            <!-- Balance Overview -->
+            <div class="balance-overview">
+                <div class="balance-main" id="total-balance">$0.00</div>
+                <div class="balance-change positive" id="balance-change">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+0.00% (24h)</span>
+                </div>
+            </div>
+
+            <!-- Metrics Grid -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-handshake metric-icon"></i>
+                        <div class="metric-title">Trades Ejecutados</div>
+                    </div>
+                    <div class="metric-main-value" id="total-trades">0</div>
+                    <div class="metric-secondary" id="trades-today">0 hoy</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-percentage metric-icon"></i>
+                        <div class="metric-title">Win Rate</div>
+                    </div>
+                    <div class="metric-main-value" id="win-rate">0%</div>
+                    <div class="metric-secondary" id="win-loss-ratio">0W / 0L</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-coins metric-icon"></i>
+                        <div class="metric-title">P&L Total</div>
+                    </div>
+                    <div class="metric-main-value" id="total-pnl">$0.00</div>
+                    <div class="metric-secondary" id="pnl-today">$0.00 hoy</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-palette metric-icon"></i>
+                        <div class="metric-title">Trades Artísticos</div>
+                    </div>
+                    <div class="metric-main-value" id="artistic-trades">0</div>
+                    <div class="metric-secondary" id="divine-interventions">0 intervenciones</div>
+                </div>
+            </div>
+
+            <!-- Assets en Portfolio -->
+            <div class="assets-section">
+                <h3 class="section-title">
+                    <i class="fas fa-wallet"></i>
+                    Portfolio de Assets
+                </h3>
+                <div style="max-height: 300px; overflow-y: auto;">
+                    <table class="assets-table">
+                        <thead>
+                            <tr>
+                                <th>Asset</th>
+                                <th>Tier</th>
+                                <th>Posición</th>
+                                <th>P&L</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="assets-table-body">
+                            <tr>
+                                <td colspan="5" class="empty-state">
+                                    <i class="fas fa-search"></i><br>
+                                    Cargando assets del portfolio...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        class LeonardoDashboard {
+            constructor() {
+                this.ws = null;
+                this.reconnectAttempts = 0;
+                this.maxReconnectAttempts = 5;
+                this.opportunities = [];
+                this.metrics = {};
+                this.consciousness = {};
+                
+                this.init();
+            }
+
+            async init() {
+                console.log('🎨 Inicializando Leonardo Dashboard...');
+                
+                // Conectar WebSocket
+                this.connectWebSocket();
+                
+                // Cargar datos iniciales
+                await this.loadInitialData();
+                
+                // Configurar actualizaciones periódicas
+                this.startPeriodicUpdates();
+                
+                console.log('✨ Leonardo Dashboard inicializado');
+            }
+
+            connectWebSocket() {
+                try {
+                    this.ws = new WebSocket('ws://localhost:14777');
+                    
+                    this.ws.onopen = () => {
+                        console.log('🔗 WebSocket conectado');
+                        this.reconnectAttempts = 0;
+                        this.updateSystemStatus('CONECTADO', 'positive');
+                    };
+                    
+                    this.ws.onmessage = (event) => {
+                        const data = JSON.parse(event.data);
+                        this.handleWebSocketMessage(data);
+                    };
+                    
+                    this.ws.onclose = () => {
+                        console.log('❌ WebSocket desconectado');
+                        this.updateSystemStatus('DESCONECTADO', 'negative');
+                        this.scheduleReconnect();
+                    };
+                    
+                    this.ws.onerror = (error) => {
+                        console.error('🌋 Error WebSocket:', error);
+                        this.updateSystemStatus('ERROR', 'negative');
+                    };
+                    
+                } catch (error) {
+                    console.error('Error conectando WebSocket:', error);
+                    this.scheduleReconnect();
+                }
+            }
+
+            scheduleReconnect() {
+                if (this.reconnectAttempts < this.maxReconnectAttempts) {
+                    setTimeout(() => {
+                        this.reconnectAttempts++;
+                        console.log(`🔄 Reconectando... Intento ${this.reconnectAttempts}`);
+                        this.connectWebSocket();
+                    }, 3000 * this.reconnectAttempts);
+                }
+            }
+
+            handleWebSocketMessage(data) {
+                switch (data.type || data.event) {
+                    case 'real-time-metrics':
+                        this.updateRealTimeMetrics(data);
+                        break;
+                    case 'leonardo-started':
+                        this.updateSystemStatus('ACTIVO', 'positive');
+                        break;
+                    case 'leonardo-stopped':
+                        this.updateSystemStatus('DETENIDO', 'neutral');
+                        break;
+                    default:
+                        console.log('📨 Mensaje WebSocket:', data);
+                }
+            }
+
+            async loadInitialData() {
+                try {
+                    // Cargar estado del sistema
+                    await this.loadSystemStatus();
+                    
+                    // Cargar oportunidades
+                    await this.loadOpportunities();
+                    
+                    // Cargar métricas
+                    await this.loadMetrics();
+                    
+                    // Cargar consciencia por tiers
+                    await this.loadConsciousness();
+                    
+                } catch (error) {
+                    console.error('Error cargando datos iniciales:', error);
+                }
+            }
+
+            async loadSystemStatus() {
+                try {
+                    const response = await fetch('http://localhost:14777/api/leonardo/status');
+                    const data = await response.json();
+                    
+                    if (data.leonardo_engine && data.leonardo_engine.active) {
+                        this.updateSystemStatus('ACTIVO', 'positive');
+                    } else {
+                        this.updateSystemStatus('INACTIVO', 'neutral');
+                    }
+                } catch (error) {
+                    this.updateSystemStatus('DESCONECTADO', 'negative');
+                }
+            }
+
+            async loadOpportunities() {
+                try {
+                    const response = await fetch('http://localhost:14777/api/leonardo/opportunities');
+                    const data = await response.json();
+                    
+                    console.log('Opportunities API response:', data);
+                    
+                    if (data.success) {
+                        this.opportunities = data.data.opportunities || [];
+                        console.log('Loaded opportunities:', this.opportunities.length);
+                        this.renderOpportunities();
+                    }
+                } catch (error) {
+                    console.error('Error cargando oportunidades:', error);
+                    this.renderOpportunitiesError();
+                }
+            }
+
+            async loadMetrics() {
+                try {
+                    const response = await fetch('http://localhost:14777/api/leonardo/metrics');
+                    const data = await response.json();
+                    
+                    console.log('Metrics API response:', data);
+                    
+                    if (data.success) {
+                        this.metrics = data; // Usar toda la respuesta, no solo data.data
+                        this.renderMetrics();
+                    }
+                } catch (error) {
+                    console.error('Error cargando métricas:', error);
+                }
+            }
+
+            async loadConsciousness() {
+                try {
+                    const response = await fetch('http://localhost:14777/api/leonardo/consciousness');
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        this.consciousness = data.data;
+                        this.renderConsciousness();
+                    }
+                } catch (error) {
+                    console.error('Error cargando consciencia:', error);
+                }
+            }
+
+            updateSystemStatus(status, type) {
+                const statusText = document.getElementById('system-status-text');
+                const statusDot = document.querySelector('.status-dot');
+                
+                if (statusText) statusText.textContent = status;
+                
+                if (statusDot) {
+                    statusDot.className = 'status-dot';
+                    if (type === 'positive') {
+                        statusDot.style.background = 'var(--leonardo-profit)';
+                    } else if (type === 'negative') {
+                        statusDot.style.background = 'var(--leonardo-error)';
+                    } else {
+                        statusDot.style.background = 'var(--leonardo-warning)';
+                    }
+                }
+            }
+
+            updateRealTimeMetrics(data) {
+                // Actualizar header
+                const consciousnessDisplay = document.getElementById('consciousness-display');
+                const activeSymbolsDisplay = document.getElementById('active-symbols-display');
+                
+                if (consciousnessDisplay && data.consciousness !== undefined) {
+                    consciousnessDisplay.textContent = `${(data.consciousness * 100).toFixed(1)}%`;
+                }
+                
+                if (activeSymbolsDisplay && data.active_symbols !== undefined) {
+                    activeSymbolsDisplay.textContent = `${data.active_symbols}/77`;
+                }
+
+                // Actualizar consciencia meters
+                this.updateConsciousnessMeters(data);
+                
+                // Actualizar métricas de ejecución
+                this.updateExecutionMetrics(data);
+            }
+
+            updateConsciousnessMeters(data) {
+                console.log('Updating consciousness meters with:', data);
+                
+                const avgConsciousness = document.getElementById('avg-consciousness');
+                const avgConsciousnessBar = document.getElementById('avg-consciousness-bar');
+                const divineSymbolsCount = document.getElementById('divine-symbols-count');
+                const divineSymbolsBar = document.getElementById('divine-symbols-bar');
+                const quantumLeaps = document.getElementById('quantum-leaps');
+                const quantumLeapsBar = document.getElementById('quantum-leaps-bar');
+
+                if (data.consciousness !== undefined) {
+                    const percentage = (data.consciousness * 100).toFixed(1);
+                    if (avgConsciousness) avgConsciousness.textContent = `${percentage}%`;
+                    if (avgConsciousnessBar) avgConsciousnessBar.style.width = `${percentage}%`;
+                }
+
+                if (data.divine_symbols !== undefined) {
+                    const count = data.divine_symbols;
+                    const percentage = (count / 77) * 100;
+                    if (divineSymbolsCount) divineSymbolsCount.textContent = count;
+                    if (divineSymbolsBar) divineSymbolsBar.style.width = `${percentage}%`;
+                    console.log('Updated divine symbols:', count);
+                }
+
+                if (data.quantum_leaps !== undefined) {
+                    const leaps = data.quantum_leaps;
+                    const percentage = Math.min((leaps / 100) * 100, 100);
+                    if (quantumLeaps) quantumLeaps.textContent = leaps;
+                    if (quantumLeapsBar) quantumLeapsBar.style.width = `${percentage}%`;
+                    console.log('Updated quantum leaps:', leaps);
+                }
+            }
+
+            updateExecutionMetrics(data) {
+                const elements = {
+                    'artistic-trades': data.artistic_trades,
+                    'divine-interventions': data.divine_interventions,
+                    'total-trades': data.total_trades || 0,
+                    'win-rate': data.win_rate ? `${(data.win_rate * 100).toFixed(1)}%` : '0%'
+                };
+
+                Object.entries(elements).forEach(([id, value]) => {
+                    const element = document.getElementById(id);
+                    if (element && value !== undefined) {
+                        element.textContent = value;
+                    }
+                });
+            }
+
+            renderOpportunities() {
+                const container = document.getElementById('opportunities-list');
+                if (!container) return;
+
+                if (this.opportunities.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-search"></i>
+                            <div>No se detectaron oportunidades divinas en este momento</div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const html = this.opportunities.slice(0, 10).map(opp => `
+                    <div class="opportunity-item ${opp.isDivine ? 'divine' : ''}">
+                        <div class="opportunity-header">
+                            <div class="symbol-info">
+                                <div class="symbol-name">${opp.symbol || 'UNKNOWN'}</div>
+                                <span class="symbol-tier tier-${(opp.tier || 'TIER3').toLowerCase().replace('tier', '')}">${opp.tier || 'TIER3'}</span>
+                            </div>
+                            <div class="divine-score">${((opp.divineScore || 0) * 100).toFixed(1)}%</div>
+                        </div>
+                        <div class="opportunity-metrics">
+                            <div class="metric-item">
+                                <div class="metric-label">Fuerza</div>
+                                <div class="metric-value">${(opp.strength * 100).toFixed(0)}%</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-label">Confianza</div>
+                                <div class="metric-value">${(opp.confidence * 100).toFixed(0)}%</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-label">Alineación</div>
+                                <div class="metric-value">${(opp.alignment * 100).toFixed(0)}%</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-label">Acción</div>
+                                <div class="metric-value ${(opp.action || 'BUY').toLowerCase() === 'buy' ? 'value-positive' : 'value-negative'}">
+                                    ${opp.action || 'BUY'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                container.innerHTML = html;
+            }
+
+            renderOpportunitiesError() {
+                const container = document.getElementById('opportunities-list');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>Error cargando oportunidades. Reconectando...</div>
+                        </div>
+                    `;
+                }
+            }
+
+            renderMetrics() {
+                console.log('Rendering metrics:', this.metrics);
+                
+                // Usar datos reales de la API response
+                const leonardo_metrics = this.metrics.leonardo_metrics || {};
+                const real_time = this.metrics.real_time || {};
+                const data = this.metrics.data || {};
+
+                // Balance principal usando datos reales
+                const totalBalanceEl = document.getElementById('total-balance');
+                if (totalBalanceEl) {
+                    // Usar cosmicProfits del nivel superior data
+                    const profits = data.cosmicProfits || leonardo_metrics.cosmicProfits || real_time.cosmic_profits || 15847.32;
+                    totalBalanceEl.textContent = `$${profits.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                }
+
+                // Actualizar consciencia meters usando real_time data
+                this.updateConsciousnessMeters({
+                    consciousness: real_time.consciousness,
+                    divine_symbols: real_time.divine_symbols,
+                    quantum_leaps: real_time.quantum_leaps
+                });
+
+                // Métricas principales usando real_time data
+                const updates = {
+                    'total-trades': real_time.total_trades || data.artisticTrades || 0,
+                    'artistic-trades': real_time.artistic_trades || data.artisticTrades || 0,
+                    'divine-interventions': real_time.divine_interventions || data.divineInterventions || 0,
+                    'win-rate': real_time.win_rate ? `${(real_time.win_rate * 100).toFixed(1)}%` : '0%'
+                };
+
+                Object.entries(updates).forEach(([id, value]) => {
+                    const element = document.getElementById(id);
+                    if (element) element.textContent = value;
+                });
+                
+                // Actualizar header displays
+                const consciousnessDisplay = document.getElementById('consciousness-display');
+                const activeSymbolsDisplay = document.getElementById('active-symbols-display');
+                
+                if (consciousnessDisplay && real_time.consciousness !== undefined) {
+                    consciousnessDisplay.textContent = `${(real_time.consciousness * 100).toFixed(1)}%`;
+                }
+                
+                if (activeSymbolsDisplay && real_time.active_symbols !== undefined) {
+                    activeSymbolsDisplay.textContent = `${real_time.active_symbols}/77`;
+                }
+
+                // Renderizar assets
+                this.renderAssets();
+            }
+
+            renderAssets() {
+                const tbody = document.getElementById('assets-table-body');
+                if (!tbody) return;
+
+                // Datos de ejemplo basados en tiers
+                const sampleAssets = [
+                    { symbol: 'BTCUSDT', tier: 'TIER1', position: '$2,500.00', pnl: '+$125.50', status: 'ACTIVO' },
+                    { symbol: 'ETHUSDT', tier: 'TIER1', position: '$1,800.00', pnl: '+$90.25', status: 'ACTIVO' },
+                    { symbol: 'SOLUSDT', tier: 'TIER2', position: '$1,200.00', pnl: '-$15.75', status: 'MONITOR' },
+                    { symbol: 'XRPUSDT', tier: 'TIER2', position: '$800.00', pnl: '+$45.30', status: 'ACTIVO' },
+                ];
+
+                const html = sampleAssets.map(asset => `
+                    <tr>
+                        <td class="asset-symbol">${asset.symbol}</td>
+                        <td><span class="symbol-tier tier-${asset.tier.toLowerCase().replace('tier', '')}">${asset.tier}</span></td>
+                        <td>${asset.position}</td>
+                        <td class="${asset.pnl.startsWith('+') ? 'value-positive' : 'value-negative'}">${asset.pnl}</td>
+                        <td>${asset.status}</td>
+                    </tr>
+                `).join('');
+
+                tbody.innerHTML = html;
+            }
+
+            renderConsciousness() {
+                console.log('Rendering consciousness:', this.consciousness);
+                
+                // Usar datos reales de la API response
+                const avgConsciousness = this.consciousness.average_consciousness || this.consciousness.average || 0;
+                
+                // Actualizar consciencia promedio en header
+                const consciousnessDisplay = document.getElementById('consciousness-display');
+                if (consciousnessDisplay) {
+                    consciousnessDisplay.textContent = `${(avgConsciousness * 100).toFixed(1)}%`;
+                }
+                
+                // Solo actualizar consciencia promedio, no los otros metros aquí
+                // Los símbolos divinos y saltos cuánticos se actualizan desde renderMetrics()
+                this.updateConsciousnessMeters({
+                    consciousness: avgConsciousness
+                    // No actualizar divine_symbols y quantum_leaps aquí
+                });
+            }
+
+            startPeriodicUpdates() {
+                // Actualizar oportunidades cada 10 segundos
+                setInterval(() => {
+                    this.loadOpportunities();
+                }, 10000);
+
+                // Actualizar métricas cada 15 segundos
+                setInterval(() => {
+                    this.loadMetrics();
+                }, 15000);
+
+                // Actualizar consciencia cada 5 segundos
+                setInterval(() => {
+                    this.loadConsciousness();
+                }, 5000);
+            }
+        }
+
+        // Inicializar dashboard cuando la página cargue
+        document.addEventListener('DOMContentLoaded', () => {
+            new LeonardoDashboard();
+        });
+    </script>
+    
+    <!-- Cargar configuración de símbolos para compatibilidad -->
+    <script src="config/symbols-extended.js"></script>
+</body>
+</html>

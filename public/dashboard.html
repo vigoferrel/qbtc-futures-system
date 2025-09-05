@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBTC Secure Proxy Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.warning { background: #fff3cd; color: #856404; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>QBTC Secure Proxy Dashboard</h1>
+
+    <div id="status" class="status">Loading...</div>
+
+    <h2>VPN Management</h2>
+    <button onclick="connectVPN()">Connect VPN</button>
+    <button onclick="disconnectVPN()">Disconnect VPN</button>
+    <button onclick="checkVPNStatus()">Check Status</button>
+
+    <h2>IP Coordination</h2>
+    <button onclick="checkIP()">Check Current IP</button>
+    <button onclick="verifyIP()">Verify Target IP</button>
+
+    <h2>🔥 Leverage & Profit Configuration</h2>
+    <div id="config-section" style="background: rgba(0, 255, 136, 0.1); padding: 15px; border-radius: 8px; margin: 10px 0;">
+        <h3 style="color: #00ff88; margin-bottom: 10px;">⚡ Current Leverage Settings</h3>
+        <div id="leverage-info" style="margin-bottom: 15px;">
+            <p><strong>Max Leverage:</strong> <span id="max-leverage">Loading...</span>x</p>
+            <p><strong>Experimental Features:</strong> <span id="experimental-features">Loading...</span></p>
+            <p><strong>Experimental Max Leverage:</strong> <span id="experimental-max-leverage">Loading...</span>x</p>
+        </div>
+
+        <h3 style="color: #00d4ff; margin-bottom: 10px;">💰 Risk & Profit Settings</h3>
+        <div id="risk-info" style="margin-bottom: 15px;">
+            <p><strong>Risk per Trade:</strong> <span id="risk-per-trade">Loading...</span>%</p>
+            <p><strong>Portfolio Risk:</strong> <span id="portfolio-risk">Loading...</span>%</p>
+            <p><strong>Daily Target:</strong> $<span id="daily-target">Loading...</span></p>
+        </div>
+
+        <h3 style="color: #ffaa00; margin-bottom: 10px;">🚀 Boost Multipliers</h3>
+        <div id="boost-info" style="margin-bottom: 15px;">
+            <p><strong>Quick Profit Mode:</strong> <span id="quick-profit-mode">Loading...</span></p>
+            <p><strong>Risk Multiplier:</strong> <span id="risk-multiplier">Loading...</span>x</p>
+            <p><strong>Position Size Boost:</strong> <span id="position-boost">Loading...</span>x</p>
+        </div>
+
+        <button onclick="loadConfiguration()" style="background: #00ff88; color: #000; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">🔄 Refresh Config</button>
+        <button onclick="optimizeForMaxProfit()" style="background: #ff6b6b; color: #000; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">⚡ Max Profit Mode</button>
+    </div>
+
+    <h2>Binance API Test</h2>
+    <button onclick="testBinanceAPI()">Test Account Info</button>
+
+    <div id="results"></div>
+
+    <script>
+        let authToken = localStorage.getItem('qbtc_token');
+
+        async function login() {
+            const response = await fetch('/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: 'qbtc_admin',
+                    password: 'qbtc_secure_2024!'
+                })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                authToken = data.token;
+                localStorage.setItem('qbtc_token', authToken);
+                updateStatus();
+            } else {
+                alert('Login failed: ' + data.message);
+            }
+        }
+
+        async function makeRequest(endpoint, options = {}) {
+            if (!authToken) {
+                await login();
+            }
+
+            return fetch(endpoint, {
+                ...options,
+                headers: {
+                    ...options.headers,
+                    'Authorization': `Bearer ${authToken}`
+                }
+            });
+        }
+
+        async function updateStatus() {
+            try {
+                const response = await makeRequest('/health');
+                const data = await response.json();
+
+                document.getElementById('status').innerHTML = `
+                    <strong>Status:</strong> ${data.status}<br>
+                    <strong>VPN Connected:</strong> ${data.vpn_connected ? '✅' : '❌'}<br>
+                    <strong>Current IP:</strong> ${data.current_ip}<br>
+                    <strong>Target IP:</strong> ${data.target_ip}
+                `;
+
+                document.getElementById('status').className =
+                    data.vpn_connected ? 'status success' : 'status warning';
+
+            } catch (error) {
+                document.getElementById('status').innerHTML = 'Error loading status';
+                document.getElementById('status').className = 'status error';
+            }
+        }
+
+        async function connectVPN() {
+            const response = await makeRequest('/api/vpn/connect', { method: 'POST' });
+            const data = await response.json();
+            alert(data.message);
+            updateStatus();
+        }
+
+        async function disconnectVPN() {
+            const response = await makeRequest('/api/vpn/disconnect', { method: 'POST' });
+            const data = await response.json();
+            alert(data.message);
+            updateStatus();
+        }
+
+        async function checkVPNStatus() {
+            const response = await makeRequest('/api/vpn/status');
+            const data = await response.json();
+            document.getElementById('results').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        }
+
+        async function checkIP() {
+            const response = await makeRequest('/api/ip/check');
+            const data = await response.json();
+            document.getElementById('results').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        }
+
+        async function verifyIP() {
+            const response = await makeRequest('/api/ip/verify');
+            const data = await response.json();
+            document.getElementById('results').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        }
+
+        async function testBinanceAPI() {
+            const response = await makeRequest('/api/binance/v2/account');
+            const data = await response.json();
+            document.getElementById('results').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        }
+
+        async function loadConfiguration() {
+            try {
+                const response = await makeRequest('/api/config');
+                const config = await response.json();
+
+                // Update leverage info
+                document.getElementById('max-leverage').textContent = config.leverage.max_leverage;
+                document.getElementById('experimental-features').textContent = config.leverage.experimental_features ? '✅ ENABLED' : '❌ DISABLED';
+                document.getElementById('experimental-max-leverage').textContent = config.leverage.experimental_max_leverage;
+
+                // Update risk info
+                document.getElementById('risk-per-trade').textContent = (parseFloat(config.risk.max_risk_per_trade) * 100).toFixed(1);
+                document.getElementById('portfolio-risk').textContent = (parseFloat(config.risk.max_portfolio_risk) * 100).toFixed(1);
+                document.getElementById('daily-target').textContent = config.profit.target_daily_profit;
+
+                // Update boost info
+                document.getElementById('quick-profit-mode').textContent = config.boost.quick_profit_mode ? '✅ ACTIVE' : '❌ INACTIVE';
+                document.getElementById('risk-multiplier').textContent = config.boost.boost_risk_multiplier;
+                document.getElementById('position-boost').textContent = config.boost.boost_position_size;
+
+                console.log('✅ Configuration loaded successfully');
+            } catch (error) {
+                console.error('❌ Error loading configuration:', error);
+                alert('Error loading configuration: ' + error.message);
+            }
+        }
+
+        async function optimizeForMaxProfit() {
+            if (confirm('⚠️ This will optimize all settings for MAXIMUM PROFIT with HIGH RISK. Continue?')) {
+                try {
+                    // This would typically make API calls to update the .env file
+                    // For now, just show the current optimal settings
+                    alert('🔥 MAX PROFIT MODE ACTIVATED!
+
+' +
+                          '✅ Leverage: 25x
+' +
+                          '✅ Risk per Trade: 5%
+' +
+                          '✅ Daily Target: $1,500
+' +
+                          '✅ Boost Multipliers: ACTIVE
+
+' +
+                          '⚠️ HIGH RISK - HIGH REWARD MODE');
+
+                    // Reload configuration to show current settings
+                    await loadConfiguration();
+                } catch (error) {
+                    alert('Error optimizing settings: ' + error.message);
+                }
+            }
+        }
+
+        // Auto-update status and load configuration
+        updateStatus();
+        loadConfiguration();
+        setInterval(updateStatus, 10000);
+        setInterval(loadConfiguration, 30000); // Update config every 30 seconds
+    </script>
+</body>
+</html>

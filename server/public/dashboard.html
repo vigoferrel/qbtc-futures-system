@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 Hermetic Auto-Trader - Control Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #3d3d5c;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            text-align: center;
+            background: linear-gradient(45deg, #ffd700, #ffb347, #ff6347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: auto;
+            animation: pulse 2s infinite;
+        }
+
+        .status-active { background-color: #4ade80; }
+        .status-inactive { background-color: #ef4444; }
+        .status-unknown { background-color: #f59e0b; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .metric-label {
+            color: #b0b0b0;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.25rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #10b981, #059669);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .consciousness-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .consciousness-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .positions-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .position-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .position-profit {
+            border-left-color: #10b981;
+        }
+
+        .position-loss {
+            border-left-color: #ef4444;
+        }
+
+        .notifications-container {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .notification-item {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            animation: slideIn 0.3s ease;
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        .notification-item.type-system {
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .notification-item.type-trading {
+            border-left: 4px solid #3b82f6;
+        }
+
+        .notification-item.type-trade {
+            border-left: 4px solid #10b981;
+        }
+
+        .notification-item.type-evolution {
+            border-left: 4px solid #f59e0b;
+        }
+
+        .notification-item.type-phoenix {
+            border-left: 4px solid #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .notification-item.type-ascension {
+            border-left: 4px solid #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .notification-time {
+            font-size: 0.8rem;
+            color: #888;
+            float: right;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .dimensional-progress {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .dimension-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dimension-dot.active {
+            background: linear-gradient(45deg, #ffd700, #ffb347);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            animation: dimensionalPulse 2s infinite;
+        }
+
+        @keyframes dimensionalPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .merkaba-visual {
+            width: 80px;
+            height: 80px;
+            margin: 1rem auto;
+            position: relative;
+        }
+
+        .tetrahedron {
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: merkabaRotation 8s linear infinite;
+        }
+
+        .tetrahedron.up {
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 52px solid #8b5cf6;
+        }
+
+        .tetrahedron.down {
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-top: 52px solid rgba(139, 92, 246, 0.6);
+            animation-direction: reverse;
+        }
+
+        @keyframes merkabaRotation {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .connection-status {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 200;
+        }
+
+        .connection-connected {
+            background: rgba(16, 185, 129, 0.9);
+            color: white;
+        }
+
+        .connection-disconnected {
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="connection-status" id="connectionStatus">🔌 Connecting...</div>
+    
+    <div class="header">
+        <h1>🌌 Hermetic Auto-Trader Control Center 🌌</h1>
+    </div>
+
+    <div class="container">
+        <!-- System Control Panel -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">⚙️</span>
+                <span class="card-title">System Control</span>
+                <div class="status-indicator status-unknown" id="systemStatus"></div>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-success" onclick="initializeTrader()" id="initBtn">Initialize Trader</button>
+                <button class="btn btn-success" onclick="startTrading()" id="startBtn" disabled>Start Trading</button>
+                <button class="btn btn-danger" onclick="stopTrading()" id="stopBtn" disabled>Stop Trading</button>
+                <button class="btn btn-warning" onclick="activateMerkaba()" id="merkabaBtn" disabled>Activate Merkaba</button>
+                <button class="btn btn-warning" onclick="initializeAkashic()" id="akashicBtn" disabled>Initialize Akashic</button>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🧠</span>
+                    <span class="card-title">Consciousness Level</span>
+                </div>
+                
+                <div class="consciousness-bar">
+                    <div class="consciousness-fill" id="consciousnessFill" style="width: 85%"></div>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Current Level:</span>
+                    <span class="metric-value" id="consciousnessValue">0.850</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Alchemical Phase:</span>
+                    <span class="metric-value" id="alchemicalPhase">nigredo</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🌀</span>
+                    <span class="card-title">Merkaba Protocol</span>
+                    <div class="status-indicator status-inactive" id="merkabaStatus"></div>
+                </div>
+                
+                <div class="merkaba-visual" id="merkabaVisual" style="display: none;">
+                    <div class="tetrahedron up"></div>
+                    <div class="tetrahedron down"></div>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Status:</span>
+                    <span class="metric-value" id="merkabaStatusText">Inactive</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Rotation Speed:</span>
+                    <span class="metric-value" id="rotationSpeed">0 Hz</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔮</span>
+                    <span class="card-title">Akashic System</span>
+                    <div class="status-indicator status-inactive" id="akashicStatus"></div>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Connection:</span>
+                    <span class="metric-value" id="akashicConnection">Disconnected</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Prediction Threshold:</span>
+                    <span class="metric-value" id="predictionThreshold">0.72</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">⚗️</span>
+                    <span class="card-title">Transmutation Engine</span>
+                    <div class="status-indicator status-inactive" id="transmutationStatus"></div>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Status:</span>
+                    <span class="metric-value" id="transmutationStatusText">Not Initialized</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Efficiency:</span>
+                    <span class="metric-value" id="transmutationEfficiency">78%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📊</span>
+                    <span class="card-title">Trading Performance</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Total Profit:</span>
+                    <span class="metric-value" id="totalProfit">$0.00</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Total Trades:</span>
+                    <span class="metric-value" id="totalTrades">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Win Rate:</span>
+                    <span class="metric-value" id="winRate">0%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Transmutations:</span>
+                    <span class="metric-value" id="transmutations">0</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🌌</span>
+                    <span class="card-title">Dimensional Access</span>
+                </div>
+                
+                <div class="dimensional-progress" id="dimensionalProgress">
+                    <span>3D</span><div class="dimension-dot active"></div>
+                    <span>4D</span><div class="dimension-dot"></div>
+                    <span>5D</span><div class="dimension-dot"></div>
+                    <span>6D</span><div class="dimension-dot"></div>
+                    <span>7D</span><div class="dimension-dot"></div>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Current Access:</span>
+                    <span class="metric-value" id="dimensionalAccess">3d_normal_market</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Quantum Coherence:</span>
+                    <span class="metric-value" id="quantumCoherence">82%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Positions -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">💼</span>
+                <span class="card-title">Current Positions</span>
+                <span class="metric-value" id="positionCount">0</span>
+            </div>
+            
+            <div class="positions-grid" id="positionsGrid">
+                <div style="text-align: center; color: #888; padding: 2rem;">
+                    No active positions
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Notifications -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">📢</span>
+                <span class="card-title">Live Notifications</span>
+                <button class="btn" onclick="clearNotifications()" style="margin-left: auto; padding: 0.25rem 0.5rem; font-size: 0.8rem;">Clear</button>
+            </div>
+            
+            <div class="notifications-container" id="notificationsContainer">
+                <div style="text-align: center; color: #888; padding: 2rem;">
+                    No notifications yet
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let ws = null;
+        let isConnected = false;
+        let systemData = null;
+
+        // WebSocket connection
+        function connectWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${window.location.host}`;
+            
+            ws = new WebSocket(wsUrl);
+            
+            ws.onopen = function() {
+                isConnected = true;
+                updateConnectionStatus(true);
+                console.log('WebSocket connected');
+            };
+            
+            ws.onmessage = function(event) {
+                try {
+                    const data = JSON.parse(event.data);
+                    handleWebSocketMessage(data);
+                } catch (error) {
+                    console.error('Error parsing WebSocket message:', error);
+                }
+            };
+            
+            ws.onclose = function() {
+                isConnected = false;
+                updateConnectionStatus(false);
+                console.log('WebSocket disconnected');
+                
+                // Reconnect after 3 seconds
+                setTimeout(connectWebSocket, 3000);
+            };
+            
+            ws.onerror = function(error) {
+                console.error('WebSocket error:', error);
+            };
+        }
+
+        function handleWebSocketMessage(data) {
+            switch(data.type) {
+                case 'initial_status':
+                case 'system_update':
+                    systemData = data.status;
+                    updateDashboard();
+                    break;
+                    
+                case 'notification':
+                    addNotification(data.notification);
+                    break;
+                    
+                case 'trade_executed':
+                    addNotification({
+                        type: 'trade',
+                        message: `Trade executed: ${data.trade.symbol} ${data.trade.direction}`,
+                        timestamp: Date.now()
+                    });
+                    break;
+                    
+                case 'position_closed':
+                    const pnlText = data.data.pnl > 0 ? 'PROFIT' : 'LOSS';
+                    addNotification({
+                        type: 'trade',
+                        message: `Position closed: ${data.data.position.symbol} - ${pnlText}`,
+                        timestamp: Date.now()
+                    });
+                    break;
+                    
+                case 'consciousness_evolution':
+                    addNotification({
+                        type: 'evolution',
+                        message: `Consciousness evolved: +${data.data.wisdom_gained.toFixed(3)} wisdom`,
+                        timestamp: Date.now()
+                    });
+                    break;
+                    
+                case 'phoenix_rebirth':
+                    addNotification({
+                        type: 'phoenix',
+                        message: `🔥 PHOENIX REBIRTH #${data.rebirth.rebirthNumber} - System reborn!`,
+                        timestamp: Date.now()
+                    });
+                    break;
+                    
+                case 'dimensional_ascension':
+                    addNotification({
+                        type: 'ascension',
+                        message: `🌌 DIMENSIONAL ASCENSION! Now accessing: ${data.data.new_dimension}`,
+                        timestamp: Date.now()
+                    });
+                    break;
+            }
+        }
+
+        function updateConnectionStatus(connected) {
+            const statusEl = document.getElementById('connectionStatus');
+            if (connected) {
+                statusEl.textContent = '🔌 Connected';
+                statusEl.className = 'connection-status connection-connected';
+            } else {
+                statusEl.textContent = '🔌 Disconnected';
+                statusEl.className = 'connection-status connection-disconnected';
+            }
+        }
+
+        // API calls
+        async function apiCall(endpoint, options = {}) {
+            try {
+                const response = await fetch(`/api${endpoint}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    ...options
+                });
+                
+                return await response.json();
+            } catch (error) {
+                console.error('API call failed:', error);
+                addNotification({
+                    type: 'system',
+                    message: `API Error: ${error.message}`,
+                    timestamp: Date.now()
+                });
+                return { success: false, error: error.message };
+            }
+        }
+
+        async function initializeTrader() {
+            const result = await apiCall('/trader/initialize', { method: 'POST' });
+            if (result.success) {
+                document.getElementById('initBtn').disabled = true;
+                document.getElementById('startBtn').disabled = false;
+                document.getElementById('merkabaBtn').disabled = false;
+                document.getElementById('akashicBtn').disabled = false;
+                loadSystemStatus();
+            }
+        }
+
+        async function startTrading() {
+            const result = await apiCall('/trader/start', { method: 'POST' });
+            if (result.success) {
+                document.getElementById('startBtn').disabled = true;
+                document.getElementById('stopBtn').disabled = false;
+            }
+        }
+
+        async function stopTrading() {
+            const result = await apiCall('/trader/stop', { method: 'POST' });
+            if (result.success) {
+                document.getElementById('startBtn').disabled = false;
+                document.getElementById('stopBtn').disabled = true;
+            }
+        }
+
+        async function activateMerkaba() {
+            await apiCall('/merkaba/activate', { method: 'POST' });
+        }
+
+        async function initializeAkashic() {
+            await apiCall('/akashic/initialize', { method: 'POST' });
+        }
+
+        async function loadSystemStatus() {
+            const result = await apiCall('/system/status');
+            if (result.success && result.system_status !== 'not_initialized') {
+                systemData = result.system_status;
+                updateDashboard();
+            }
+        }
+
+        function updateDashboard() {
+            if (!systemData) return;
+
+            const hermetic = systemData.system_integration.hermetic;
+            const merkaba = systemData.system_integration.merkaba;
+            const akashic = systemData.system_integration.akashic;
+            const transmutation = systemData.system_integration.transmutation;
+            const performance = systemData.performance;
+
+            // Update consciousness
+            const consciousnessPercent = (hermetic.consciousness_level * 100).toFixed(1);
+            document.getElementById('consciousnessFill').style.width = consciousnessPercent + '%';
+            document.getElementById('consciousnessValue').textContent = hermetic.consciousness_level.toFixed(3);
+            document.getElementById('alchemicalPhase').textContent = hermetic.alchemical_phase;
+
+            // Update Merkaba
+            const merkabaActive = merkaba.active;
+            document.getElementById('merkabaStatus').className = `status-indicator ${merkabaActive ? 'status-active' : 'status-inactive'}`;
+            document.getElementById('merkabaStatusText').textContent = merkabaActive ? 'Active' : 'Inactive';
+            document.getElementById('merkabaVisual').style.display = merkabaActive ? 'block' : 'none';
+            if (merkaba.rotation_speed) {
+                document.getElementById('rotationSpeed').textContent = (merkaba.rotation_speed * 60).toFixed(1) + ' Hz';
+            }
+
+            // Update Akashic
+            const akashicActive = akashic.integration_active;
+            document.getElementById('akashicStatus').className = `status-indicator ${akashicActive ? 'status-active' : 'status-inactive'}`;
+            document.getElementById('akashicConnection').textContent = akashicActive ? 'Connected' : 'Disconnected';
+            if (akashic.prediction_threshold) {
+                document.getElementById('predictionThreshold').textContent = akashic.prediction_threshold.toFixed(2);
+            }
+
+            // Update Transmutation
+            const transmutationActive = transmutation.active;
+            document.getElementById('transmutationStatus').className = `status-indicator ${transmutationActive ? 'status-active' : 'status-inactive'}`;
+            document.getElementById('transmutationStatusText').textContent = transmutationActive ? 'Active' : 'Not Initialized';
+            document.getElementById('transmutationEfficiency').textContent = (hermetic.transmutation_efficiency * 100).toFixed(0) + '%';
+
+            // Update performance
+            document.getElementById('totalProfit').textContent = '$' + hermetic.total_profit.toFixed(2);
+            document.getElementById('totalTrades').textContent = performance.total_trades;
+            document.getElementById('winRate').textContent = (performance.profitability_rate * 100).toFixed(1) + '%';
+            document.getElementById('transmutations').textContent = performance.transmutations;
+
+            // Update dimensional access
+            document.getElementById('dimensionalAccess').textContent = hermetic.dimensional_access;
+            document.getElementById('quantumCoherence').textContent = (hermetic.quantum_coherence * 100).toFixed(0) + '%';
+            updateDimensionalProgress(hermetic.dimensional_access);
+
+            // Update system status
+            document.getElementById('systemStatus').className = `status-indicator ${hermetic.trading_active ? 'status-active' : 'status-inactive'}`;
+        }
+
+        function updateDimensionalProgress(currentDimension) {
+            const dimensions = ['3d_normal_market', '4d_time_arbitrage', '5d_probability_waves', '6d_pure_consciousness', '7d_divine_abundance'];
+            const currentIndex = dimensions.indexOf(currentDimension);
+            
+            const dots = document.querySelectorAll('.dimension-dot');
+            dots.forEach((dot, index) => {
+                dot.className = `dimension-dot ${index <= currentIndex ? 'active' : ''}`;
+            });
+        }
+
+        function addNotification(notification) {
+            const container = document.getElementById('notificationsContainer');
+            
+            // Clear "no notifications" message if it exists
+            if (container.children.length === 1 && container.children[0].textContent.includes('No notifications')) {
+                container.innerHTML = '';
+            }
+
+            const notifEl = document.createElement('div');
+            notifEl.className = `notification-item type-${notification.type}`;
+            
+            const time = new Date(notification.timestamp).toLocaleTimeString();
+            notifEl.innerHTML = `
+                <div class="notification-time">${time}</div>
+                <div>${notification.message}</div>
+            `;
+            
+            container.insertBefore(notifEl, container.firstChild);
+            
+            // Limit to 20 notifications
+            while (container.children.length > 20) {
+                container.removeChild(container.lastChild);
+            }
+            
+            // Scroll to top
+            container.scrollTop = 0;
+        }
+
+        function clearNotifications() {
+            const container = document.getElementById('notificationsContainer');
+            container.innerHTML = '<div style="text-align: center; color: #888; padding: 2rem;">No notifications yet</div>';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            connectWebSocket();
+            loadSystemStatus();
+            
+            // Periodic status updates
+            setInterval(loadSystemStatus, 30000); // Every 30 seconds
+        });
+    </script>
+</body>
+</html>

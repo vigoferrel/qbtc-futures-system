@@ -1,0 +1,10 @@
+{
+  "apiKey": "LUFHLzW721iW8fj1RslpKllR1IBSRUAxeVef7wgdrv59HJjmKkmOCIM8zjQ59B0Q",
+  "secretKey": "maNaQIFdSvfwkUP36Xqt9Gd0YATu1qk13HyIZJuOit6SQldLr8oTQPmVjLZLkcEu",
+  "testnet": false,
+  "timeout": 10000,
+  "recvWindow": 5000
+}
+
+
+

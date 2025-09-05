@@ -1,0 +1,953 @@
+/* Dashboard Multidimensional Hermético - Estilos CSS */
+
+:root {
+    /* Colores Dimensionales */
+    --cosmic-black: #0a0a0a;
+    --void-black: #151515;
+    --quantum-blue: #00ffff;
+    --akashic-gold: #ffd700;
+    --merkaba-purple: #9d4edd;
+    --consciousness-green: #39ff14;
+    --infinite-white: #ffffff;
+    --dimensional-gradient: linear-gradient(135deg, #00ffff, #ff00ff, #ffff00);
+    
+    /* Geometría Sagrada */
+    --golden-ratio: 1.618;
+    --sacred-spacing: calc(1rem * var(--golden-ratio));
+    --quantum-border-radius: 13px;
+    --merkaba-angle: 60deg;
+    
+    /* Tipografía Cósmica */
+    --font-cosmic: 'Orbitron', monospace;
+    --font-readable: 'Inter', sans-serif;
+    
+    /* Sombras Dimensionales */
+    --quantum-glow: 0 0 20px rgba(0, 255, 255, 0.5);
+    --akashic-glow: 0 0 15px rgba(255, 215, 0, 0.4);
+    --merkaba-glow: 0 0 25px rgba(157, 78, 221, 0.6);
+    --consciousness-glow: 0 0 10px rgba(57, 255, 20, 0.3);
+}
+
+/* Reset y Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-readable);
+    background: var(--cosmic-black);
+    color: var(--infinite-white);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Contenedor Cósmico */
+.cosmic-container {
+    min-height: 100vh;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+        var(--cosmic-black);
+    background-attachment: fixed;
+}
+
+/* Header Multidimensional */
+.multidimensional-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(21, 21, 21, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--quantum-blue);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--quantum-glow);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.quantum-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.merkaba-symbol {
+    font-size: 2rem;
+    color: var(--merkaba-purple);
+    animation: merkaba-spin 4s linear infinite;
+    text-shadow: var(--merkaba-glow);
+}
+
+@keyframes merkaba-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.quantum-logo h1 {
+    font-family: var(--font-cosmic);
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: var(--dimensional-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dimensional-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dimension-indicator {
+    background: var(--quantum-blue);
+    color: var(--cosmic-black);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--quantum-border-radius);
+    font-family: var(--font-cosmic);
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: var(--quantum-glow);
+}
+
+.consciousness-level {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.consciousness-bar {
+    width: 100px;
+    height: 8px;
+    background: var(--void-black);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--consciousness-green);
+}
+
+.consciousness-fill {
+    height: 100%;
+    width: 73%;
+    background: linear-gradient(90deg, var(--consciousness-green), var(--quantum-blue));
+    transition: width 0.5s ease;
+    box-shadow: 0 0 10px var(--consciousness-green);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.merkaba-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.merkaba-btn, .akashic-btn, .dimension-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid;
+    border-radius: var(--quantum-border-radius);
+    background: transparent;
+    color: var(--infinite-white);
+    font-family: var(--font-cosmic);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.merkaba-btn {
+    border-color: var(--merkaba-purple);
+    box-shadow: var(--merkaba-glow);
+}
+
+.merkaba-btn:hover {
+    background: var(--merkaba-purple);
+    transform: scale(1.05);
+}
+
+.akashic-btn {
+    border-color: var(--akashic-gold);
+    box-shadow: var(--akashic-glow);
+}
+
+.akashic-btn:hover {
+    background: var(--akashic-gold);
+    color: var(--cosmic-black);
+    transform: scale(1.05);
+}
+
+.dimension-btn {
+    border-color: var(--quantum-blue);
+    box-shadow: var(--quantum-glow);
+}
+
+.dimension-btn:hover {
+    background: var(--quantum-blue);
+    color: var(--cosmic-black);
+    transform: scale(1.05);
+}
+
+.cosmic-time {
+    text-align: center;
+}
+
+.time-display {
+    font-family: var(--font-cosmic);
+    font-size: 1.1rem;
+    color: var(--quantum-blue);
+    text-shadow: var(--quantum-glow);
+}
+
+.lunar-phase {
+    font-size: 1.5rem;
+    animation: lunar-pulse 3s ease-in-out infinite;
+}
+
+@keyframes lunar-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Paneles Base */
+.panel {
+    background: rgba(21, 21, 21, 0.9);
+    border: 2px solid transparent;
+    border-radius: var(--quantum-border-radius);
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--dimensional-gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -2;
+    border-radius: var(--quantum-border-radius);
+}
+
+.panel:hover::before {
+    opacity: 0.1;
+}
+
+.panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+}
+
+.panel h2 {
+    font-family: var(--font-cosmic);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--infinite-white);
+}
+
+.panel h2 .icon {
+    font-size: 1.5rem;
+}
+
+/* Panel Dimensional */
+.dimensional-panel {
+    border-color: var(--quantum-blue);
+    grid-column: span 2;
+}
+
+.dimensions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.dimension-card {
+    background: rgba(10, 10, 10, 0.8);
+    border: 2px solid var(--void-black);
+    border-radius: var(--quantum-border-radius);
+    padding: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dimension-card.active {
+    border-color: var(--consciousness-green);
+    box-shadow: var(--consciousness-glow);
+}
+
+.dimension-card[data-dimension="4D"]:hover {
+    border-color: var(--quantum-blue);
+    box-shadow: var(--quantum-glow);
+}
+
+.dimension-card[data-dimension="5D"] {
+    opacity: 0.6;
+    border-style: dashed;
+}
+
+.dimension-card[data-dimension="∞D"] {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.9), rgba(50, 50, 50, 0.5));
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.dimension-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.dimension-name {
+    font-family: var(--font-cosmic);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.dimension-status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.dimension-status.active {
+    background: var(--consciousness-green);
+    color: var(--cosmic-black);
+}
+
+.dimension-status.locked {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+}
+
+.dimension-status.mystery {
+    background: var(--dimensional-gradient);
+    color: var(--cosmic-black);
+    animation: mystery-shimmer 2s ease-in-out infinite;
+}
+
+@keyframes mystery-shimmer {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+.dimension-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.metric-label {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.metric-value {
+    font-weight: 600;
+    font-family: var(--font-cosmic);
+}
+
+.metric-value.positive {
+    color: var(--consciousness-green);
+    text-shadow: var(--consciousness-glow);
+}
+
+/* Panel Akásico */
+.akashic-panel {
+    border-color: var(--akashic-gold);
+}
+
+.akashic-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.akashic-status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: var(--quantum-border-radius);
+    border: 1px solid var(--akashic-gold);
+}
+
+.status-indicator {
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.pulse-ring, .pulse-dot {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--akashic-gold);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: var(--akashic-glow);
+}
+
+.pulse-ring {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--akashic-gold);
+    animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+.predictions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.prediction-item {
+    background: rgba(10, 10, 10, 0.8);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--akashic-gold);
+    font-size: 0.9rem;
+}
+
+.accuracy-circle {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.accuracy-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.accuracy-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.accuracy-value {
+    display: block;
+    font-family: var(--font-cosmic);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--akashic-gold);
+}
+
+.accuracy-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Panel Merkaba */
+.merkaba-panel {
+    border-color: var(--merkaba-purple);
+}
+
+.merkaba-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.merkaba-visualization {
+    height: 200px;
+    background: radial-gradient(circle, rgba(157, 78, 221, 0.2), transparent);
+    border-radius: var(--quantum-border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.merkaba-controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.merkaba-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.status-value {
+    font-family: var(--font-cosmic);
+    font-weight: 600;
+    color: var(--merkaba-purple);
+}
+
+.merkaba-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    padding: 0.75rem;
+    border: 2px solid var(--merkaba-purple);
+    border-radius: var(--quantum-border-radius);
+    background: transparent;
+    color: var(--infinite-white);
+    font-family: var(--font-cosmic);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.action-btn:hover {
+    background: var(--merkaba-purple);
+    transform: scale(1.05);
+    box-shadow: var(--merkaba-glow);
+}
+
+/* Panel Trading */
+.trading-panel {
+    border-color: var(--consciousness-green);
+    grid-column: span 2;
+}
+
+.trading-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.trading-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.summary-card {
+    background: rgba(10, 10, 10, 0.8);
+    padding: 1.5rem;
+    border-radius: var(--quantum-border-radius);
+    border: 2px solid var(--void-black);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+    border-color: var(--consciousness-green);
+    transform: translateY(-3px);
+}
+
+.summary-card h3 {
+    font-family: var(--font-cosmic);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.value-display {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.value {
+    font-family: var(--font-cosmic);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.value.positive {
+    color: var(--consciousness-green);
+}
+
+.change {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.change.positive {
+    color: var(--consciousness-green);
+}
+
+.trading-chart {
+    height: 300px;
+    background: rgba(10, 10, 10, 0.5);
+    border-radius: var(--quantum-border-radius);
+    border: 1px solid var(--void-black);
+    padding: 1rem;
+}
+
+.positions-table {
+    background: rgba(10, 10, 10, 0.5);
+    border-radius: var(--quantum-border-radius);
+    padding: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Panel Cuántico */
+.quantum-panel {
+    border-color: var(--quantum-blue);
+}
+
+.quantum-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.quantum-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.quantum-metric {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(10, 10, 10, 0.8);
+    padding: 1rem;
+    border-radius: var(--quantum-border-radius);
+    border: 1px solid var(--void-black);
+    transition: all 0.3s ease;
+}
+
+.quantum-metric:hover {
+    border-color: var(--quantum-blue);
+    transform: scale(1.05);
+}
+
+.metric-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+}
+
+.metric-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.metric-name {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.quantum-field {
+    height: 150px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.1), transparent);
+    border-radius: var(--quantum-border-radius);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Panel de Eventos */
+.events-panel {
+    border-color: var(--infinite-white);
+}
+
+.events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.events-feed {
+    background: rgba(10, 10, 10, 0.5);
+    border-radius: var(--quantum-border-radius);
+    padding: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--void-black);
+}
+
+.event-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+}
+
+.event-item:last-child {
+    border-bottom: none;
+}
+
+.event-time {
+    color: var(--quantum-blue);
+    font-family: var(--font-cosmic);
+    font-size: 0.8rem;
+}
+
+.triggers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.trigger-btn {
+    padding: 1rem;
+    border: 2px solid var(--infinite-white);
+    border-radius: var(--quantum-border-radius);
+    background: transparent;
+    color: var(--infinite-white);
+    font-family: var(--font-cosmic);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.trigger-btn:hover {
+    background: var(--infinite-white);
+    color: var(--cosmic-black);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: var(--void-black);
+    margin: 10% auto;
+    border: 2px solid var(--quantum-blue);
+    border-radius: var(--quantum-border-radius);
+    width: 400px;
+    max-width: 90%;
+    box-shadow: var(--quantum-glow);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--void-black);
+}
+
+.modal-header h2 {
+    font-family: var(--font-cosmic);
+    margin: 0;
+}
+
+.modal-close {
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--infinite-white);
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--quantum-blue);
+}
+
+.modal-body {
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.activation-progress {
+    margin-bottom: 2rem;
+}
+
+.progress-ring {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.progress-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.progress-value {
+    display: block;
+    font-family: var(--font-cosmic);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--quantum-blue);
+}
+
+.progress-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.activation-message {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .dimensional-panel,
+    .trading-panel {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .multidimensional-header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .header-left,
+    .header-right {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .quantum-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .triggers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .trading-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .merkaba-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animaciones Adicionales */
+@keyframes quantum-pulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes dimensional-flow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+.quantum-pulse {
+    animation: quantum-pulse 2s ease-in-out infinite;
+}
+
+.dimensional-flow {
+    animation: dimensional-flow 10s linear infinite;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--void-black);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--quantum-blue);
+    border-radius: 4px;
+    box-shadow: var(--quantum-glow);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--consciousness-green);
+}

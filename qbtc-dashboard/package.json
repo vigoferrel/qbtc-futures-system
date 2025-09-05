@@ -1,0 +1,46 @@
+{
+  "name": "qbtc-dashboard",
+  "version": "1.0.0",
+  "description": "QBTC Quantum Dashboard - Interfaz web para análisis cuántico",
+  "main": "server.cjs",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.cjs",
+    "dev": "nodemon server.cjs",
+    "test": "node test-dashboard.js",
+    "test:manual": "node test-dashboard.js",
+    "health": "curl -s http://localhost:4000/health || echo 'Server not running'",
+    "build": "echo \"No build step required for static dashboard\"",
+    "setup": "npm install && echo 'Setup complete. Copy .env.example to .env and configure.'"
+  },
+  "keywords": [
+    "trading",
+    "quantum",
+    "dashboard",
+    "binance",
+    "futures",
+    "analysis"
+  ],
+  "author": "QBTC Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "config": {
+    "port": 4000,
+    "rateLimit": {
+      "windowMs": 900000,
+      "maxRequests": 100
+    }
+  }
+}

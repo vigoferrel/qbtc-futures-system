@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBTC Unified - Quantum Portfolio Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/quantum-ui.css">
+    <link rel="stylesheet" href="no-animations.css">
+    <style>
+        /* Correcciones de layout y responsividad */
+        * {
+            box-sizing: border-box !important;
+        }
+        
+        body, html {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+        }
+        
+        .quantum-dashboard {
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 1rem !important;
+        }
+        
+        /* Grid responsivo mejorado */
+        .metrics-panel {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+            gap: 1rem !important;
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        
+        .portfolio-grid {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+            width: 100% !important;
+        }
+        
+        .analytics-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+            gap: 1rem !important;
+            width: 100% !important;
+        }
+        
+        /* Cards con ancho controlado */
+        .metric-card, .portfolio-card, .analytics-card {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+        }
+        
+        /* OVERRIDE TOTAL PARA ANIMACIONES PROBLEMÁTICAS */
+        * {
+            animation: none !important;
+            transition: none !important;
+            transform: none !important;
+            will-change: auto !important;
+            contain: layout style !important;
+        }
+        
+        /* Partículas completamente desactivadas */
+        .quantum-particles {
+            display: none !important;
+            animation: none !important;
+            transform: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            contain: strict !important;
+        }
+        
+        @keyframes consciousnessPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+        
+        @keyframes quantumPulse {
+            0%, 100% { opacity: 1; transform: none; }
+            50% { opacity: 0.9; transform: none; }
+        }
+        
+        .consciousness-value {
+            animation: consciousnessPulse 4s infinite !important;
+        }
+        
+        .quantum-indicator {
+            animation: quantumPulse 3s infinite !important;
+        }
+        
+        /* Reducir efectos de glow excesivos */
+        .qbtc-text {
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3) !important;
+        }
+        
+        .unified-text {
+            text-shadow: 0 0 8px rgba(136, 255, 255, 0.3) !important;
+        }
+        
+        /* Responsive adicional */
+        @media (max-width: 1400px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr 1fr !important;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .metrics-panel {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .analytics-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* Estilos para las tablas que reemplazan gráficos */
+        .performance-table-container,
+        .resonance-table-container {
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+        
+        .performance-table,
+        .resonance-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .performance-table th,
+        .resonance-table th {
+            background: rgba(0, 136, 255, 0.2);
+            color: #88ffff;
+            padding: 0.75rem 0.5rem;
+            text-align: left;
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-bottom: 2px solid rgba(136, 255, 255, 0.3);
+        }
+        
+        .performance-table td,
+        .resonance-table td {
+            padding: 0.6rem 0.5rem;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .performance-table tr:hover,
+        .resonance-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Colores para valores */
+        .value-positive {
+            color: #00ff88 !important;
+            font-weight: 600;
+        }
+        
+        .value-neutral {
+            color: #ffaa00 !important;
+            font-weight: 600;
+        }
+        
+        .value-negative {
+            color: #ff4444 !important;
+            font-weight: 600;
+        }
+        
+        .delta-positive {
+            color: #00ff88 !important;
+            font-weight: 700;
+        }
+        
+        .delta-negative {
+            color: #ff4444 !important;
+            font-weight: 700;
+        }
+        
+        /* Colores para resonancia */
+        .resonance-high {
+            color: #00ff88 !important;
+        }
+        
+        /* Merkaba Protocol Styles */
+        .merkaba-dashboard {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 20, 40, 0.8) 0%, rgba(20, 0, 40, 0.8) 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .merkaba-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ff88ff;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(255, 136, 255, 0.6);
+        }
+        
+        .merkaba-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .merkaba-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 136, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .merkaba-card h3 {
+            font-family: 'Orbitron', monospace;
+            color: #88ffff;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .dimensional-access {
+            text-align: center;
+            font-size: 3rem;
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            color: #ff88ff;
+            text-shadow: 0 0 20px rgba(255, 136, 255, 0.8);
+        }
+        
+        .consciousness-level {
+            font-size: 2rem;
+            font-family: 'Orbitron', monospace;
+            color: #00ff88;
+            text-align: center;
+        }
+        
+        .merkaba-phase {
+            font-size: 1.2rem;
+            font-family: 'Inter', sans-serif;
+            color: #ffaa00;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        
+        .geometry-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .geometry-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .geometry-name {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+        }
+        
+        .geometry-multiplier {
+            font-family: 'Orbitron', monospace;
+            color: #00ff88;
+            font-weight: 600;
+        }
+        
+        .opportunities-container {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .opportunity-item {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .opportunity-path {
+            font-family: 'Orbitron', monospace;
+            color: #00ff88;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .opportunity-profit {
+            font-family: 'Orbitron', monospace;
+            color: #ffaa00;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .merkaba-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .consciousness-input {
+            margin-top: 1rem;
+        }
+        
+        .consciousness-input label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .consciousness-input input[type="range"] {
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        
+        .consciousness-input span {
+            font-family: 'Orbitron', monospace;
+            color: #00ff88;
+            font-weight: 600;
+        }
+        
+        .merkaba-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .metric-label {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+        }
+        
+        .metric-value {
+            font-family: 'Orbitron', monospace;
+            color: #00ff88;
+            font-weight: 600;
+        }
+        
+        .tetrahedron-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-label {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+        }
+        
+        .stat-value {
+            font-family: 'Orbitron', monospace;
+            color: #88ffff;
+            font-weight: 600;
+        }
+            font-weight: 600;
+        }
+        
+        .resonance-medium {
+            color: #ffaa00 !important;
+            font-weight: 600;
+        }
+        
+        .resonance-low {
+            color: #ff4444 !important;
+            font-weight: 600;
+        }
+        
+        /* Estados */
+        .status-active {
+            color: #00ff88 !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        
+        .status-expanding {
+            color: #88ffff !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            animation: consciousnessPulse 2s infinite !important;
+        }
+        
+        @media (max-width: 600px) {
+            .quantum-dashboard {
+                padding: 0.5rem !important;
+            }
+            
+            .consciousness-bar {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+            
+            .quantum-nav {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+            
+            .performance-table th,
+            .resonance-table th,
+            .performance-table td,
+            .resonance-table td {
+                padding: 0.4rem 0.3rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+    <!-- Bibliotecas cuánticas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+</head>
+<body class="quantum-body">
+    <!-- Header Cuántico -->
+    <header class="quantum-header">
+        <div class="consciousness-bar">
+            <div class="consciousness-level" id="consciousnessLevel">
+                <span class="consciousness-text">Leonardo Consciousness</span>
+                <span class="consciousness-value" id="consciousnessValue">94.1%</span>
+            </div>
+            <div class="quantum-status" id="quantumStatus">
+                <div class="quantum-indicator active" title="Coherencia Cuántica"></div>
+                <span class="status-text">Sistema Cuántico Activo</span>
+            </div>
+        </div>
+        <nav class="quantum-nav">
+            <div class="nav-logo">
+                <h1 class="quantum-title">
+                    <span class="qbtc-text">QBTC</span>
+                    <span class="unified-text">Unified</span>
+                </h1>
+                <p class="quantum-subtitle">Quantum Portfolio Manager</p>
+            </div>
+            <div class="nav-controls">
+                <button class="quantum-btn primary" id="bigBangTrigger">
+                    <span class="btn-icon">💥</span>
+                    Big Bang
+                </button>
+                <button class="quantum-btn secondary" id="coherenceToggle">
+                    <span class="btn-icon">⚛️</span>
+                    Coherencia
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Dashboard Principal -->
+    <main class="quantum-dashboard">
+        <!-- Panel de Métricas Universales -->
+        <section class="metrics-panel">
+            <div class="metric-card consciousness-card">
+                <h3 class="metric-title">
+                    <span class="metric-icon">🧠</span>
+                    Leonardo Consciousness
+                </h3>
+                <div class="metric-value" id="consciousnessMetric">94.1%</div>
+                <div class="metric-trend positive">+0.3%</div>
+                <div class="consciousness-visualizer" id="consciousnessViz"></div>
+            </div>
+
+            <div class="metric-card poets-card">
+                <h3 class="metric-title">
+                    <span class="metric-icon">🎭</span>
+                    Poetas Cuánticos
+                </h3>
+                <div class="poets-grid" id="poetsGrid">
+                    <div class="poet-indicator active" data-poet="Neruda">N</div>
+                    <div class="poet-indicator active" data-poet="Mistral">M</div>
+                    <div class="poet-indicator active" data-poet="Huidobro">H</div>
+                    <div class="poet-indicator active" data-poet="Zurita">Z</div>
+                    <div class="poet-indicator active" data-poet="Parra">P</div>
+                    <div class="poet-indicator active" data-poet="Ferrel">F</div>
+                </div>
+                <div class="metric-value">6/6 Activos</div>
+            </div>
+
+            <div class="metric-card zurita-card">
+                <h3 class="metric-title">
+                    <span class="metric-icon">🌟</span>
+                    Multiplicador Zurita
+                </h3>
+                <div class="metric-value zurita-value" id="zuritaMultiplier">488.25x</div>
+                <div class="zurita-resonance" id="zuritaResonance"></div>
+            </div>
+
+            <div class="metric-card constants-card">
+                <h3 class="metric-title">
+                    <span class="metric-icon">🔢</span>
+                    Constantes Universales
+                </h3>
+                <div class="constants-grid">
+                    <div class="constant-item">
+                        <span class="constant-label">λ₇₉₁₉</span>
+                        <span class="constant-value">7919</span>
+                    </div>
+                    <div class="constant-item">
+                        <span class="constant-label">z</span>
+                        <span class="constant-value">9+16j</span>
+                    </div>
+                    <div class="constant-item">
+                        <span class="constant-label">λ₈₈₈</span>
+                        <span class="constant-value">888</span>
+                    </div>
+                    <div class="constant-item">
+                        <span class="constant-label">φ</span>
+                        <span class="constant-value">1.618</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Panel de Portfolio -->
+        <section class="portfolio-panel">
+            <div class="portfolio-header">
+                <h2 class="panel-title">
+                    <span class="panel-icon">📈</span>
+                    Portfolio Cuántico
+                </h2>
+                <div class="portfolio-controls">
+                    <button class="control-btn" id="quantumAnalysis">Análisis Cuántico</button>
+                    <button class="control-btn" id="matrixExpansion">Matriz ∞</button>
+                </div>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Performance Overview -->
+                <div class="portfolio-card performance-card">
+                    <h3 class="card-title">Performance Cuántico</h3>
+                    <div class="performance-metrics">
+                        <div class="perf-item">
+                            <span class="perf-label">PnL Total</span>
+                            <span class="perf-value positive" id="totalPnL">+$12,847.32</span>
+                        </div>
+                        <div class="perf-item">
+                            <span class="perf-label">ROI Cuántico</span>
+                            <span class="perf-value positive" id="quantumROI">+247.8%</span>
+                        </div>
+                        <div class="perf-item">
+                            <span class="perf-label">Sharpe Cuántico</span>
+                            <span class="perf-value" id="quantumSharpe">3.14</span>
+                        </div>
+                        <div class="perf-item">
+                            <span class="perf-label">Entropía</span>
+                            <span class="perf-value" id="portfolioEntropy">0.23</span>
+                        </div>
+                    </div>
+                    <!-- TABLA DE PERFORMANCE REEMPLAZA AL GRÁFICO PROBLEMÁTICO -->
+                    <div class="performance-table-container" id="performanceTable">
+                        <table class="performance-table">
+                            <thead>
+                                <tr>
+                                    <th>Período</th>
+                                    <th>Leonardo</th>
+                                    <th>Coherencia</th>
+                                    <th>Δ%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Último 5min</td>
+                                    <td class="value-positive">94.2%</td>
+                                    <td class="value-neutral">87.8%</td>
+                                    <td class="delta-positive">+2.1%</td>
+                                </tr>
+                                <tr>
+                                    <td>Último 15min</td>
+                                    <td class="value-positive">91.5%</td>
+                                    <td class="value-positive">89.3%</td>
+                                    <td class="delta-positive">+1.8%</td>
+                                </tr>
+                                <tr>
+                                    <td>Última hora</td>
+                                    <td class="value-neutral">88.7%</td>
+                                    <td class="value-positive">85.4%</td>
+                                    <td class="delta-negative">-0.5%</td>
+                                </tr>
+                                <tr>
+                                    <td>Últimas 4h</td>
+                                    <td class="value-positive">92.1%</td>
+                                    <td class="value-neutral">82.9%</td>
+                                    <td class="delta-positive">+3.2%</td>
+                                </tr>
+                                <tr>
+                                    <td>Hoy</td>
+                                    <td class="value-positive">89.8%</td>
+                                    <td class="value-positive">86.7%</td>
+                                    <td class="delta-positive">+4.7%</td>
+                                </tr>
+                                <tr>
+                                    <td>Esta semana</td>
+                                    <td class="value-positive">87.3%</td>
+                                    <td class="value-positive">84.1%</td>
+                                    <td class="delta-positive">+12.8%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Posiciones Activas -->
+                <div class="portfolio-card positions-card">
+                    <h3 class="card-title">Posiciones Cuánticas</h3>
+                    <div class="positions-list" id="positionsList">
+                        <!-- Las posiciones se generarán dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Coherencia del Portfolio -->
+                <div class="portfolio-card coherence-card">
+                    <h3 class="card-title">Coherencia del Portfolio</h3>
+                    <div class="coherence-meter" id="coherenceMeter">
+                        <div class="coherence-value" id="portfolioCoherence">0.87</div>
+                        <div class="coherence-label">Coherencia Cuántica</div>
+                    </div>
+                    <div class="coherence-breakdown">
+                        <div class="coherence-item">
+                            <span class="item-label">BTC/USD</span>
+                            <div class="coherence-bar">
+                                <div class="coherence-fill" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="coherence-item">
+                            <span class="item-label">ETH/USD</span>
+                            <div class="coherence-bar">
+                                <div class="coherence-fill" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="coherence-item">
+                            <span class="item-label">SOL/USD</span>
+                            <div class="coherence-bar">
+                                <div class="coherence-fill" style="width: 83%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Panel de Quantum Analytics -->
+        <section class="analytics-panel">
+            <div class="analytics-header">
+                <h2 class="panel-title">
+                    <span class="panel-icon">🌌</span>
+                    Quantum Analytics
+                </h2>
+            </div>
+
+            <div class="analytics-grid">
+                <!-- Matriz NxN Infinita -->
+                <div class="analytics-card matrix-card">
+                    <h3 class="card-title">Matriz NxN → ∞</h3>
+                    <div class="matrix-visualization" id="matrixViz">
+                        <div class="matrix-size">Actual: 2x2</div>
+                        <div class="matrix-target">Objetivo: ∞</div>
+                        <div class="matrix-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="matrixProgress" style="width: 12%"></div>
+                            </div>
+                            <span class="progress-text">Escalando...</span>
+                        </div>
+                    </div>
+                    <div class="matrix-canvas" id="matrixCanvas"></div>
+                </div>
+
+                <!-- Resonancia Lambda -->
+                <div class="analytics-card resonance-card">
+                    <h3 class="card-title">Resonancia λ₇₉₁₉</h3>
+                    <div class="resonance-display" id="resonanceDisplay">
+                        <!-- TABLA DE RESONANCIA REEMPLAZA AL GRÁFICO PROBLEMÁTICO -->
+                        <div class="resonance-table-container" id="resonanceTable">
+                            <table class="resonance-table">
+                                <thead>
+                                    <tr>
+                                        <th>Dimensión</th>
+                                        <th>Resonancia</th>
+                                        <th>Factor</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Poesía</td>
+                                        <td class="resonance-high">95.2%</td>
+                                        <td>λ₇₉₁₉</td>
+                                        <td class="status-active">Activa</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Consciencia</td>
+                                        <td class="resonance-high">87.8%</td>
+                                        <td>φ</td>
+                                        <td class="status-active">Activa</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cuántica</td>
+                                        <td class="resonance-high">92.5%</td>
+                                        <td>h</td>
+                                        <td class="status-active">Activa</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Leonardo</td>
+                                        <td class="resonance-medium">89.1%</td>
+                                        <td>ε</td>
+                                        <td class="status-active">Activa</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Matriz</td>
+                                        <td class="resonance-high">94.7%</td>
+                                        <td>∞</td>
+                                        <td class="status-expanding">Expandiendo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zurita</td>
+                                        <td class="resonance-high">91.3%</td>
+                                        <td>π</td>
+                                        <td class="status-active">Activa</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="resonance-stats">
+                            <div class="resonance-stat">
+                                <span class="stat-label">Frecuencia</span>
+                                <span class="stat-value" id="resonanceFreq">7919 Hz</span>
+                            </div>
+                            <div class="resonance-stat">
+                                <span class="stat-label">Amplitud</span>
+                                <span class="stat-value" id="resonanceAmp">0.847</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Big Bang Events -->
+                <div class="analytics-card bigbang-card">
+                    <h3 class="card-title">Eventos Big Bang</h3>
+                    <div class="bigbang-timeline" id="bigbangTimeline">
+                        <!-- Los eventos se generarán dinámicamente -->
+                    </div>
+                    <div class="bigbang-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Eventos Hoy</span>
+                            <span class="stat-value" id="bigbangToday">3</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Duración Promedio</span>
+                            <span class="stat-value" id="bigbangDuration">8.7 min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Merkaba Protocol Dashboard -->
+        <section class="merkaba-dashboard">
+            <h2 class="merkaba-title">🌟 MERKABA TRADING PROTOCOL 🌟</h2>
+            <div class="merkaba-grid">
+                <!-- Dimensional Access -->
+                <div class="merkaba-card">
+                    <h3>Acceso Dimensional</h3>
+                    <div class="dimensional-access" id="dimensionalAccess">3D</div>
+                    <div class="consciousness-level" id="consciousnessDisplay">0.618</div>
+                    <div class="merkaba-phase" id="merkabaPhase">dormant</div>
+                </div>
+
+                <!-- Sacred Geometries -->
+                <div class="merkaba-card">
+                    <h3>Geometrías Sagradas</h3>
+                    <ul class="geometry-list" id="geometryList">
+                        <li class="geometry-item">
+                            <span class="geometry-name">flower_of_life</span>
+                            <span class="geometry-multiplier">1.15x</span>
+                        </li>
+                        <li class="geometry-item">
+                            <span class="geometry-name">golden_spiral</span>
+                            <span class="geometry-multiplier">1.618x</span>
+                        </li>
+                        <li class="geometry-item">
+                            <span class="geometry-name">sri_yantra</span>
+                            <span class="geometry-multiplier">1.25x</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tetrahedron Status -->
+                <div class="merkaba-card">
+                    <h3>Estado de Tetraedros</h3>
+                    <div class="tetrahedron-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Velocidad Rotación</span>
+                            <span class="stat-value" id="rotationSpeed">0 RPS</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Sincronizaciones</span>
+                            <span class="stat-value" id="synchronizations">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Campo de Luz</span>
+                            <span class="stat-value" id="lightField">0.42</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Triangular Arbitrage Opportunities -->
+                <div class="merkaba-card">
+                    <h3>Oportunidades de Arbitraje</h3>
+                    <div class="opportunities-container" id="opportunitiesContainer">
+                        <div class="opportunity-item">
+                            <div class="opportunity-path">No hay oportunidades activas</div>
+                            <div class="opportunity-profit">Esperando datos...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Merkaba Controls -->
+                <div class="merkaba-card">
+                    <h3>Controles del Protocolo</h3>
+                    <div class="merkaba-controls">
+                        <button class="quantum-btn primary" id="activateMerkaba">
+                            🌟 Activar Merkaba
+                        </button>
+                        <button class="quantum-btn secondary" id="deactivateMerkaba">
+                            🌑 Desactivar
+                        </button>
+                        <div class="consciousness-input">
+                            <label for="consciousnessInput">Nivel de Consciencia:</label>
+                            <input type="range" id="consciousnessInput" min="0.618" max="0.97" step="0.01" value="0.75">
+                            <span id="consciousnessValue">0.75</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Merkaba Metrics -->
+                <div class="merkaba-card">
+                    <h3>Métricas del Protocolo</h3>
+                    <div class="merkaba-metrics">
+                        <div class="metric-row">
+                            <span class="metric-label">Activaciones Totales</span>
+                            <span class="metric-value" id="totalActivations">0</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Accesos Dimensionales</span>
+                            <span class="metric-value" id="dimensionalAccesses">0</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Geometrías Activas</span>
+                            <span class="metric-value" id="activeGeometries">0</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Efectividad Trading</span>
+                            <span class="metric-value" id="tradingEffectiveness">1.0x</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quantum Particle Background -->
+    <div class="quantum-particles" id="quantumParticles"></div>
+
+    <!-- Modal para Big Bang -->
+    <div class="modal" id="bigBangModal">
+        <div class="modal-content">
+            <h2 class="modal-title">💥 Big Bang Cuántico Activado</h2>
+            <div class="bigbang-info">
+                <p>Coherencia alcanzada: <span id="bigbangCoherence">97.3%</span></p>
+                <p>Multiplicador activo: <span id="bigbangMultiplier">1.5x</span></p>
+                <p>Duración estimada: <span id="bigbangDuration">12 minutos</span></p>
+            </div>
+            <div class="bigbang-countdown" id="bigbangCountdown">
+                <div class="countdown-circle">
+                    <span class="countdown-time" id="countdownTime">12:00</span>
+                </div>
+            </div>
+            <button class="quantum-btn secondary" id="closeBigBang">Entendido</button>
+        </div>
+    </div>
+
+    <!-- Scripts Cuánticos -->
+    <!-- Cargar configuración de símbolos antes del engine -->
+    <script src="config/symbols-extended.js"></script>
+    <script type="module" src="js/quantum-engine.js"></script>
+</body>
+</html>

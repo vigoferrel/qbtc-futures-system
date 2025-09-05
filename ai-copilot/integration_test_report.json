@@ -1,0 +1,105 @@
+{
+  "timestamp": "2025-09-02T00:44:13.146290",
+  "summary": {
+    "total_tests": 10,
+    "successful_tests": 6,
+    "success_rate": 60.0,
+    "critical_failures": 2,
+    "connectivity_score": "1/5",
+    "component_score": "5/5"
+  },
+  "detailed_results": {
+    "connectivity_tests": {
+      "master_control": {
+        "status": "error",
+        "error": "Cannot connect to host localhost:14001 ssl:default [El equipo remoto rechazó la conexión de red]",
+        "critical": true
+      },
+      "trading_metrics": {
+        "status": "error",
+        "error": "Cannot connect to host localhost:8080 ssl:default [El equipo remoto rechazó la conexión de red]",
+        "critical": false
+      },
+      "quantum_analysis": {
+        "status": "error",
+        "error": "Cannot connect to host localhost:14100 ssl:default [El equipo remoto rechazó la conexión de red]",
+        "critical": true
+      },
+      "akashic_system": {
+        "status": "error",
+        "error": "Cannot connect to host localhost:14200 ssl:default [El equipo remoto rechazó la conexión de red]",
+        "critical": false
+      },
+      "proxy_server": {
+        "status": "success",
+        "response_time": "unknown",
+        "data": {
+          "status": "healthy",
+          "service": "QBTC Secure Proxy Server",
+          "timestamp": "2025-09-02T04:43:53.693Z",
+          "vpn_connected": false,
+          "current_ip": "181.43.148.169",
+          "target_ip": "181.43.212.196"
+        }
+      }
+    },
+    "component_tests": {
+      "qbtc-secure-proxy-server.js": {
+        "status": "success",
+        "file_size": 1000,
+        "readable": true
+      },
+      "akashic/akashic-prediction-system.js": {
+        "status": "success",
+        "file_size": 1000,
+        "readable": true
+      },
+      "analysis-engine/quantum-analysis-server.js": {
+        "status": "success",
+        "file_size": 1000,
+        "readable": true
+      },
+      "metrics/trading-metrics-system.js": {
+        "status": "success",
+        "file_size": 1000,
+        "readable": true
+      },
+      "enhanced_copilot": {
+        "status": "success",
+        "response_length": 281,
+        "test_message": "estado del sistema"
+      }
+    },
+    "api_tests": {
+      "Main API Status": {
+        "status": "error",
+        "error": "Cannot connect to host localhost:3000 ssl:default [El equipo remoto rechazó la conexión de red]"
+      },
+      "Metrics API": {
+        "status": "error",
+        "error": "Cannot connect to host localhost:8080 ssl:default [El equipo remoto rechazó la conexión de red]"
+      },
+      "Proxy API": {
+        "status": "warning",
+        "status_code": 401,
+        "message": "Unexpected status code"
+      },
+      "Quantum Analysis API": {
+        "status": "error",
+        "error": "Cannot connect to host localhost:14100 ssl:default [El equipo remoto rechazó la conexión de red]"
+      }
+    },
+    "performance_tests": {
+      "status": "success",
+      "average_execution_time": 0.00011014938354492188,
+      "max_execution_time": 0.0003304481506347656,
+      "min_execution_time": 0.0,
+      "commands_tested": 3
+    }
+  },
+  "recommendations": [
+    "🔴 CRÍTICO: Revisar componentes críticos que fallaron",
+    "📡 Mejorar conectividad con componentes QBTC"
+  ],
+  "overall_status": "warning"
+}

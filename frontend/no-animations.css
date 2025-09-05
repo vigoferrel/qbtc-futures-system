@@ -1,0 +1,108 @@
+/* OVERRIDE TOTAL Y DEFINITIVO - SIN ANIMACIONES */
+
+/* DESACTIVACIÓN GLOBAL ABSOLUTA */
+* {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    will-change: auto !important;
+    contain: layout style !important;
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    -ms-animation: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -o-transform: none !important;
+    -ms-transform: none !important;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+}
+
+*::before,
+*::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    will-change: auto !important;
+    contain: layout style !important;
+}
+
+/* Desactivar específicamente todas las animaciones definidas */
+.quantum-particles,
+.quantum-particles::before,
+.quantum-particles::after {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    animation: none !important;
+    transform: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+}
+
+/* Desactivar animaciones específicas */
+.consciousness-card .metric-value,
+.consciousness-value,
+.quantum-indicator,
+.quantum-indicator.active,
+.poet-indicator,
+.poet-indicator.active,
+.zurita-value,
+.progress-fill,
+.countdown-circle,
+.quantum-btn,
+.quantum-btn:hover,
+.control-btn,
+.control-btn:hover {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+/* Desactivar todos los keyframes */
+@keyframes quantumFloat { from, to { transform: none !important; } }
+@keyframes quantumPulse { from, to { opacity: 1 !important; transform: none !important; } }
+@keyframes consciousnessPulse { from, to { opacity: 1 !important; } }
+@keyframes zuritaGlow { from, to { text-shadow: none !important; } }
+@keyframes matrixProgress { from, to { background-position: 0% 50% !important; } }
+@keyframes bigBangPulse { from, to { transform: none !important; box-shadow: none !important; } }
+@keyframes bigBangAppear { from, to { opacity: 1 !important; transform: none !important; } }
+@keyframes quantumGlow { from, to { box-shadow: none !important; } }
+@keyframes consciousnessActive { from, to { border-color: initial !important; box-shadow: none !important; } }
+
+/* Forzar estilo estático para elementos problemáticos */
+.quantum-body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+.quantum-dashboard {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* Desactivar cualquier efecto de hover problemático */
+.quantum-btn:hover,
+.control-btn:hover,
+.poet-indicator:hover {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Asegurar que nada se expanda más allá del viewport */
+* {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}

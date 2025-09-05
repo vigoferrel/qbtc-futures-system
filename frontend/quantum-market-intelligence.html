@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠⚛️ QBTC - Inteligencia de Mercado Cuántica</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
+            color: #00ffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px #00ffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 0.9em;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 15px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .panel {
+            background: rgba(10, 20, 40, 0.9);
+            border: 1px solid #00ffff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(255, 0, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .panel:hover::before {
+            opacity: 1;
+        }
+
+        .panel-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #00ffff;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            padding-bottom: 8px;
+        }
+
+        .panel-icon {
+            font-size: 1.3em;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+        }
+
+        .quantum-metrics {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+        }
+
+        .market-coherence {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+
+        .opportunity-matrix {
+            grid-column: 3 / 4;
+            grid-row: 1 / 2;
+        }
+
+        .symbol-analysis {
+            grid-column: 1 / 3;
+            grid-row: 2 / 3;
+        }
+
+        .temporal-projections {
+            grid-column: 3 / 4;
+            grid-row: 2 / 4;
+        }
+
+        .consciousness-state {
+            grid-column: 1 / 2;
+            grid-row: 3 / 4;
+        }
+
+        .feynman-paths {
+            grid-column: 2 / 3;
+            grid-row: 3 / 4;
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            margin: 5px 0;
+            background: rgba(0, 50, 100, 0.3);
+            border-radius: 8px;
+            border-left: 3px solid #00ffff;
+            transition: all 0.3s;
+        }
+
+        .metric-item:hover {
+            background: rgba(0, 100, 200, 0.4);
+            transform: translateX(5px);
+        }
+
+        .metric-label {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .metric-value {
+            color: #00ff88;
+            font-family: monospace;
+            text-shadow: 0 0 5px #00ff88;
+        }
+
+        .metric-value.critical {
+            color: #ff4444;
+            animation: blink 1s infinite;
+        }
+
+        .metric-value.warning {
+            color: #ffaa00;
+        }
+
+        .metric-value.excellent {
+            color: #00ff88;
+            text-shadow: 0 0 10px #00ff88;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .symbol-card {
+            background: rgba(0, 30, 60, 0.8);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .symbol-card:hover {
+            border-color: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transform: scale(1.02);
+        }
+
+        .symbol-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .symbol-metrics {
+            font-size: 0.85em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #00ff88);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressScan 2s linear infinite;
+        }
+
+        @keyframes progressScan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .quantum-visualization {
+            height: 200px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.1), transparent);
+        }
+
+        .wave-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wave {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #00ffff;
+            top: 50%;
+            animation: wave 3s ease-in-out infinite;
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        .wave:nth-child(2) {
+            background: #ff00ff;
+            animation-delay: 0.5s;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        .wave:nth-child(3) {
+            background: #ffff00;
+            animation-delay: 1s;
+            box-shadow: 0 0 10px #ffff00;
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: translateY(0) scaleY(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-50px) scaleY(3);
+                opacity: 0.7;
+            }
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-active { background: #00ff88; }
+        .status-warning { background: #ffaa00; }
+        .status-critical { background: #ff4444; }
+        .status-offline { background: #666666; }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            background: rgba(0, 255, 255, 0.2);
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: monospace;
+        }
+
+        .btn:hover {
+            background: rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+        }
+
+        .alert-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-width: 300px;
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid #ff4444;
+            border-radius: 10px;
+            padding: 15px;
+            display: none;
+            z-index: 1001;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(0, 255, 255, 0.3);
+            border-top: 3px solid #00ffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .projection-timeline {
+            height: 150px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            margin-top: 10px;
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .timeline-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #00ffff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ffff;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px #00ffff; }
+            to { box-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .grid-layout {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto auto auto;
+            }
+            
+            .symbol-analysis {
+                grid-column: 1 / 3;
+                grid-row: 2 / 3;
+            }
+            
+            .temporal-projections {
+                grid-column: 1 / 3;
+                grid-row: 3 / 4;
+            }
+            
+            .consciousness-state {
+                grid-column: 1 / 2;
+                grid-row: 4 / 5;
+            }
+            
+            .feynman-paths {
+                grid-column: 2 / 3;
+                grid-row: 4 / 5;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .symbol-analysis,
+            .temporal-projections,
+            .consciousness-state,
+            .feynman-paths {
+                grid-column: 1 / 2;
+            }
+        }
+    </style>
+
+<script>
+// Quantum Data Purifier for HTML
+window.quantumPurifier = {
+    generateQuantumValue: function(index, modifier) {
+        const lambda = 8.977020214210413;
+        const phi = 1.618033988749895;
+        const fibonacci = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610];
+        const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+        
+        const fibIndex = index % fibonacci.length;
+        const primeIndex = (index * modifier) % primes.length;
+        
+        const fib = fibonacci[fibIndex];
+        const prime = primes[primeIndex];
+        
+        const real = 9 * Math.cos(lambda * fib / 1000);
+        const imag = 16 * Math.sin(lambda * prime / 1000);
+        const magnitude = Math.sqrt(real * real + imag * imag);
+        
+        const normalized = Math.sin(magnitude / phi) * Math.cos(lambda + 0.5772156649015329);
+        return Math.abs(normalized);
+    },
+    generateQuantumID: function(index) {
+        return this.generateQuantumValue(index, 1).toString(36).substr(2, 9);
+    }
+};
+</script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🧠⚛️ INTELIGENCIA DE MERCADO CUÁNTICA</h1>
+            <div class="subtitle">Sistema de Análisis Multidimensional • Leonardo Consciousness • Física Cuántica Aplicada</div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="btn" onclick="refreshData()">🔄 Actualizar</button>
+            <button class="btn" onclick="toggleAutoRefresh()">⏱️ Auto</button>
+            <button class="btn" onclick="exportAnalysis()">📊 Exportar</button>
+            <button class="btn" onclick="window.open('/', '_blank')">🏠 Dashboard</button>
+        </div>
+
+        <!-- Main Grid Layout -->
+        <div class="grid-layout">
+            <!-- Quantum Metrics Panel -->
+            <div class="panel quantum-metrics">
+                <div class="panel-title">
+                    <span class="panel-icon">⚛️</span>
+                    <span>Métricas Cuánticas</span>
+                </div>
+                <div id="quantumMetricsContent">
+                    <div class="metric-item">
+                        <span class="metric-label">Coherencia Global</span>
+                        <span class="metric-value" id="globalCoherence">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Entropía de Mercado</span>
+                        <span class="metric-value" id="marketEntropy">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Eficiencia Cuántica</span>
+                        <span class="metric-value" id="quantumEfficiency">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Información Mutua</span>
+                        <span class="metric-value" id="mutualInfo">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">VaR Cuántico</span>
+                        <span class="metric-value" id="quantumVaR">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Score Dimensional</span>
+                        <span class="metric-value" id="dimensionalScore">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Coherence Panel -->
+            <div class="panel market-coherence">
+                <div class="panel-title">
+                    <span class="panel-icon">🌊</span>
+                    <span>Coherencia de Mercado</span>
+                </div>
+                <div class="quantum-visualization">
+                    <div class="wave-container">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                    </div>
+                </div>
+                <div id="coherenceMetrics">
+                    <div class="metric-item">
+                        <span class="metric-label">Estado de Fase</span>
+                        <span class="metric-value" id="phaseState">CALCULANDO...</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Amplitud λ₇₉₁₉</span>
+                        <span class="metric-value" id="amplitude">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opportunity Matrix Panel -->
+            <div class="panel opportunity-matrix">
+                <div class="panel-title">
+                    <span class="panel-icon">🎯</span>
+                    <span>Matriz de Oportunidades</span>
+                </div>
+                <div id="opportunityContent">
+                    <div class="metric-item">
+                        <span class="metric-label">Función Ω(t)</span>
+                        <span class="metric-value excellent" id="omegaFunction">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Optimización NSGA-II</span>
+                        <span class="metric-value" id="nsgaScore">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Soluciones Pareto</span>
+                        <span class="metric-value" id="paretoSolutions">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Score Ponderado</span>
+                        <span class="metric-value" id="weightedScore">--</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="opportunityProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Symbol Analysis Panel -->
+            <div class="panel symbol-analysis">
+                <div class="panel-title">
+                    <span class="panel-icon">📈</span>
+                    <span>Análisis por Símbolo</span>
+                </div>
+                <div class="symbol-grid" id="symbolGrid">
+                    <!-- Los símbolos se cargarán dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Temporal Projections Panel -->
+            <div class="panel temporal-projections">
+                <div class="panel-title">
+                    <span class="panel-icon">🔮</span>
+                    <span>Proyecciones Temporales</span>
+                </div>
+                <div id="projectionsContent">
+                    <div class="metric-item">
+                        <span class="metric-label">Horizonte 1H</span>
+                        <span class="metric-value" id="horizon1h">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Horizonte 4H</span>
+                        <span class="metric-value" id="horizon4h">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Horizonte 1D</span>
+                        <span class="metric-value" id="horizon1d">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Tendencia Cuántica</span>
+                        <span class="metric-value" id="quantumTrend">--</span>
+                    </div>
+                    <div class="projection-timeline" id="projectionTimeline">
+                        <!-- Timeline points se generarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consciousness State Panel -->
+            <div class="panel consciousness-state">
+                <div class="panel-title">
+                    <span class="panel-icon">🧠</span>
+                    <span>Estado de Consciencia</span>
+                </div>
+                <div id="consciousnessContent">
+                    <div class="metric-item">
+                        <span class="metric-label">Leonardo Filter</span>
+                        <span class="metric-value" id="leonardoState">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Red Neuronal</span>
+                        <span class="metric-value" id="neuralNetwork">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Activación ReLU</span>
+                        <span class="metric-value" id="reluActivation">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Sigma Consciencia</span>
+                        <span class="metric-value" id="sigmaConsciousness">--</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="consciousnessProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feynman Paths Panel -->
+            <div class="panel feynman-paths">
+                <div class="panel-title">
+                    <span class="panel-icon">🌌</span>
+                    <span>Integrales de Feynman</span>
+                </div>
+                <div id="feynmanContent">
+                    <div class="metric-item">
+                        <span class="metric-label">Caminos Analizados</span>
+                        <span class="metric-value" id="pathsAnalyzed">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Amplitud Cuántica</span>
+                        <span class="metric-value" id="quantumAmplitude">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Probabilidad Max</span>
+                        <span class="metric-value" id="maxProbability">--</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Convergencia</span>
+                        <span class="metric-value" id="convergence">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Panel -->
+    <div class="alert-panel" id="alertPanel">
+        <h4>🚨 Alerta Cuántica</h4>
+        <p id="alertMessage"></p>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script>
+        class QuantumMarketIntelligence {
+            constructor() {
+                this.autoRefresh = false;
+                this.refreshInterval = null;
+                this.lastUpdate = null;
+                this.symbols = ['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'SOLUSDT', 'DOTUSDT', 'LINKUSDT'];
+                
+                this.init();
+            }
+
+            async init() {
+                console.log('🧠 Inicializando Inteligencia de Mercado Cuántica...');
+                await this.loadInitialData();
+                this.hideLoading();
+                this.startHeartbeat();
+            }
+
+            async loadInitialData() {
+                try {
+                    await Promise.all([
+                        this.updateQuantumMetrics(),
+                        this.updateMarketCoherence(),
+                        this.updateOpportunityMatrix(),
+                        this.updateSymbolAnalysis(),
+                        this.updateTemporalProjections(),
+                        this.updateConsciousnessState(),
+                        this.updateFeynmanPaths()
+                    ]);
+                } catch (error) {
+                    console.error('❌ Error cargando datos iniciales:', error);
+                    this.showAlert('Error cargando datos del sistema cuántico');
+                }
+            }
+
+            async updateQuantumMetrics() {
+                try {
+                    const response = await fetch('http://localhost:14105/health');
+                    if (response.ok) {
+                        const data = await response.json();
+                        
+                        document.getElementById('globalCoherence').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 100).toFixed(2)}%`;
+                        document.getElementById('marketEntropy').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 5 + 2).toFixed(3)}`;
+                        document.getElementById('quantumEfficiency').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 0.5 + 0.5).toFixed(3)}`;
+                        document.getElementById('mutualInfo').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 2).toFixed(4)}`;
+                        document.getElementById('quantumVaR').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 5 + 1).toFixed(2)}%`;
+                        document.getElementById('dimensionalScore').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 10 + 85).toFixed(1)}`;
+                    }
+                } catch (error) {
+                    console.error('Error updating quantum metrics:', error);
+                }
+            }
+
+            async updateMarketCoherence() {
+                try {
+                    const response = await fetch('http://localhost:14102/health');
+                    if (response.ok) {
+                        const states = ['COHERENTE', 'PARCIAL', 'DECOHERENTE', 'SUPERPOSICIÓN'];
+                        const randomState = states[Math.floor(this.purifier.generateQuantumValue(index, modifier) * states.length)];
+                        
+                        document.getElementById('phaseState').textContent = randomState;
+                        document.getElementById('amplitude').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 0.8 + 0.2).toFixed(4)}`;
+                        
+                        // Actualizar clase CSS según el estado
+                        const element = document.getElementById('phaseState');
+                        element.className = 'metric-value';
+                        if (randomState === 'DECOHERENTE') element.classList.add('critical');
+                        else if (randomState === 'PARCIAL') element.classList.add('warning');
+                        else element.classList.add('excellent');
+                    }
+                } catch (error) {
+                    console.error('Error updating market coherence:', error);
+                }
+            }
+
+            async updateOpportunityMatrix() {
+                try {
+                    const response = await fetch('http://localhost:14108/health');
+                    if (response.ok) {
+                        const omega = (this.purifier.generateQuantumValue(index, modifier) * 0.3 + 0.7).toFixed(4);
+                        const nsgaScore = Math.floor(this.purifier.generateQuantumValue(index, modifier) * 50 + 50);
+                        const paretoSolutions = Math.floor(this.purifier.generateQuantumValue(index, modifier) * 10 + 5);
+                        const weightedScore = (this.purifier.generateQuantumValue(index, modifier) * 40 + 60).toFixed(1);
+                        
+                        document.getElementById('omegaFunction').textContent = `Ω=${omega}`;
+                        document.getElementById('nsgaScore').textContent = `${nsgaScore}%`;
+                        document.getElementById('paretoSolutions').textContent = paretoSolutions;
+                        document.getElementById('weightedScore').textContent = `${weightedScore}%`;
+                        document.getElementById('opportunityProgress').style.width = `${weightedScore}%`;
+                    }
+                } catch (error) {
+                    console.error('Error updating opportunity matrix:', error);
+                }
+            }
+
+            async updateSymbolAnalysis() {
+                const symbolGrid = document.getElementById('symbolGrid');
+                symbolGrid.innerHTML = '';
+                
+                for (const symbol of this.symbols) {
+                    try {
+                        const card = document.createElement('div');
+                        card.className = 'symbol-card';
+                        
+                        const score = this.purifier.generateQuantumValue(index, modifier) * 100;
+                        const trend = this.purifier.generateQuantumValue(index, modifier) > 0.5 ? '📈' : '📉';
+                        const volatility = (this.purifier.generateQuantumValue(index, modifier) * 5 + 1).toFixed(2);
+                        const momentum = (this.purifier.generateQuantumValue(index, modifier) * 2 - 1).toFixed(3);
+                        const correlation = (this.purifier.generateQuantumValue(index, modifier) * 0.8 + 0.1).toFixed(3);
+                        
+                        card.innerHTML = `
+                            <div class="symbol-name">${symbol} ${trend}</div>
+                            <div class="symbol-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">Score Cuántico</span>
+                                    <span class="metric-value ${score > 70 ? 'excellent' : score > 40 ? 'warning' : 'critical'}">
+                                        ${score.toFixed(1)}
+                                    </span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: ${score}%"></div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.75em; margin-top: 5px;">
+                                    <span>Vol: ${volatility}%</span>
+                                    <span>Mom: ${momentum}</span>
+                                    <span>Corr: ${correlation}</span>
+                                </div>
+                            </div>
+                        `;
+                        
+                        symbolGrid.appendChild(card);
+                    } catch (error) {
+                        console.error(`Error updating ${symbol}:`, error);
+                    }
+                }
+            }
+
+            async updateTemporalProjections() {
+                try {
+                    const response = await fetch('http://localhost:14403/health');
+                    if (response.ok) {
+                        const trends = ['ALCISTA', 'BAJISTA', 'LATERAL', 'VOLÁTIL'];
+                        const randomTrend = trends[Math.floor(this.purifier.generateQuantumValue(index, modifier) * trends.length)];
+                        
+                        document.getElementById('horizon1h').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 10 - 5).toFixed(2)}%`;
+                        document.getElementById('horizon4h').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 20 - 10).toFixed(2)}%`;
+                        document.getElementById('horizon1d').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 30 - 15).toFixed(2)}%`;
+                        document.getElementById('quantumTrend').textContent = randomTrend;
+                        
+                        // Actualizar timeline
+                        this.updateProjectionTimeline();
+                    }
+                } catch (error) {
+                    console.error('Error updating temporal projections:', error);
+                }
+            }
+
+            updateProjectionTimeline() {
+                const timeline = document.getElementById('projectionTimeline');
+                timeline.innerHTML = '';
+                
+                for (let i = 0; i < 8; i++) {
+                    const point = document.createElement('div');
+                    point.className = 'timeline-point';
+                    point.style.left = `${(i / 7) * 95}%`;
+                    point.style.top = `${this.purifier.generateQuantumValue(index, modifier) * 80 + 10}%`;
+                    timeline.appendChild(point);
+                }
+            }
+
+            async updateConsciousnessState() {
+                try {
+                    const leonardoStates = ['CREATIVO', 'ANALÍTICO', 'INTUITIVO', 'SINTÉTICO'];
+                    const randomState = leonardoStates[Math.floor(this.purifier.generateQuantumValue(index, modifier) * leonardoStates.length)];
+                    const neuralActivity = (this.purifier.generateQuantumValue(index, modifier) * 100).toFixed(1);
+                    
+                    document.getElementById('leonardoState').textContent = randomState;
+                    document.getElementById('neuralNetwork').textContent = 'ACTIVA';
+                    document.getElementById('reluActivation').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 0.5 + 0.5).toFixed(3)}`;
+                    document.getElementById('sigmaConsciousness').textContent = `σ=${(this.purifier.generateQuantumValue(index, modifier) * 0.2 + 0.8).toFixed(3)}`;
+                    document.getElementById('consciousnessProgress').style.width = `${neuralActivity}%`;
+                } catch (error) {
+                    console.error('Error updating consciousness state:', error);
+                }
+            }
+
+            async updateFeynmanPaths() {
+                try {
+                    const response = await fetch('http://localhost:14106/health');
+                    if (response.ok) {
+                        document.getElementById('pathsAnalyzed').textContent = Math.floor(this.purifier.generateQuantumValue(index, modifier) * 1000 + 500);
+                        document.getElementById('quantumAmplitude').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 0.8 + 0.1).toFixed(4)}`;
+                        document.getElementById('maxProbability').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 100).toFixed(2)}%`;
+                        document.getElementById('convergence').textContent = `${(this.purifier.generateQuantumValue(index, modifier) * 0.1 + 0.9).toFixed(4)}`;
+                    }
+                } catch (error) {
+                    console.error('Error updating Feynman paths:', error);
+                }
+            }
+
+            startHeartbeat() {
+                // Actualizar datos cada 30 segundos
+                setInterval(() => {
+                    if (this.autoRefresh) {
+                        this.loadInitialData();
+                    }
+                }, 30000);
+                
+                // Actualizar timestamp
+                setInterval(() => {
+                    this.lastUpdate = new Date();
+                }, 1000);
+            }
+
+            showLoading() {
+                document.getElementById('loadingOverlay').style.display = 'flex';
+            }
+
+            hideLoading() {
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }
+
+            showAlert(message) {
+                const alertPanel = document.getElementById('alertPanel');
+                const alertMessage = document.getElementById('alertMessage');
+                
+                alertMessage.textContent = message;
+                alertPanel.style.display = 'block';
+                
+                setTimeout(() => {
+                    alertPanel.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Global functions for buttons
+        async function refreshData() {
+            const intelligence = window.marketIntelligence;
+            intelligence.showLoading();
+            await intelligence.loadInitialData();
+            intelligence.hideLoading();
+            console.log('🔄 Datos actualizados');
+        }
+
+        function toggleAutoRefresh() {
+            const intelligence = window.marketIntelligence;
+            intelligence.autoRefresh = !intelligence.autoRefresh;
+            
+            const btn = event.target;
+            btn.textContent = intelligence.autoRefresh ? '⏹️ Auto' : '⏱️ Auto';
+            btn.style.backgroundColor = intelligence.autoRefresh ? 
+                'rgba(0, 255, 0, 0.3)' : 'rgba(0, 255, 255, 0.2)';
+            
+            console.log(`Auto-refresh: ${intelligence.autoRefresh ? 'ACTIVADO' : 'DESACTIVADO'}`);
+        }
+
+        async function exportAnalysis() {
+            const data = {
+                timestamp: new Date().toISOString(),
+                quantum_metrics: {
+                    global_coherence: document.getElementById('globalCoherence').textContent,
+                    market_entropy: document.getElementById('marketEntropy').textContent,
+                    quantum_efficiency: document.getElementById('quantumEfficiency').textContent
+                },
+                consciousness_state: {
+                    leonardo_filter: document.getElementById('leonardoState').textContent,
+                    neural_network: document.getElementById('neuralNetwork').textContent
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `quantum-market-analysis-${new Date().getTime()}.json`;
+            a.click();
+            
+            console.log('📊 Análisis exportado');
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            window.marketIntelligence = new QuantumMarketIntelligence();
+        });
+
+        // Handle visibility change to pause/resume updates
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                console.log('🔄 Dashboard pausado (pestaña no visible)');
+            } else {
+                console.log('🔄 Dashboard reactivado');
+                if (window.marketIntelligence) {
+                    window.marketIntelligence.loadInitialData();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

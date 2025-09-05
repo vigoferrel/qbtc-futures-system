@@ -1,0 +1,36 @@
+{
+  "price_BTCUSDT_20250902_010419": {
+    "id": "price_BTCUSDT_20250902_010419",
+    "type": "AlertType.PRICE_ALERT",
+    "symbol": "BTCUSDT",
+    "condition": "AlertCondition.ABOVE",
+    "target_value": 45000,
+    "severity": "AlertSeverity.HIGH",
+    "message": "🚀 BTC superó los $45,000!",
+    "enabled": true,
+    "created_at": "2025-09-02 01:04:19.868845",
+    "last_triggered": null,
+    "trigger_count": 0,
+    "metadata": {
+      "alert_type": "price",
+      "target_price": 45000
+    }
+  },
+  "tech_ETHUSDT_RSI_20250902_010419": {
+    "id": "tech_ETHUSDT_RSI_20250902_010419",
+    "type": "AlertType.TECHNICAL_ALERT",
+    "symbol": "ETHUSDT",
+    "condition": "AlertCondition.ABOVE",
+    "target_value": 70,
+    "severity": "AlertSeverity.MEDIUM",
+    "message": "📈 ETH RSI sobrecomprado (>70)",
+    "enabled": true,
+    "created_at": "2025-09-02 01:04:19.874940",
+    "last_triggered": null,
+    "trigger_count": 0,
+    "metadata": {
+      "alert_type": "technical",
+      "indicator": "RSI"
+    }
+  }
+}

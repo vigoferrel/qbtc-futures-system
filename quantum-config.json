@@ -1,0 +1,326 @@
+{
+    "quantum": {
+        "consciousness": {
+            "evolution_rate": 0.001,
+            "awakening_threshold": 0.618,
+            "max_level": 0.99,
+            "min_level": 0.01,
+            "evolution_factors": {
+                "system_activity_weight": 0.001,
+                "field_strength_weight": 0.1,
+                "client_activity_weight": 0.0005
+            }
+        },
+        "field": {
+            "base_strength": 0.5,
+            "phi_influence": true,
+            "lambda_7919_influence": true,
+            "fibonacci_resonance": true,
+            "calculation_precision": 6
+        },
+        "coherence": {
+            "min_threshold": 0.3,
+            "optimal_threshold": 0.75,
+            "calculation_method": "weighted_average",
+            "factors": {
+                "consciousness_weight": 0.4,
+                "field_strength_weight": 0.4,
+                "system_stability_weight": 0.2
+            }
+        },
+        "constants": {
+            "phi": 1.618033988749895,
+            "lambda_7919": 8.977279923499,
+            "e": 2.718281828459045,
+            "pi": 3.141592653589793,
+            "sqrt_2": 1.4142135623730951,
+            "sqrt_5": 2.23606797749979
+        },
+        "sequences": {
+            "fibonacci": [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987],
+            "primes": [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+        },
+        "thresholds": {
+            "coherence_min": 0.618,
+            "consciousness_target": 0.786,
+            "stability_optimal": 0.854,
+            "entanglement_sync": 0.724,
+            "precision_quantum": 0.809
+        }
+    },
+    "temporal": {
+        "enabled": true,
+        "cycles": ["4h", "1d", "7d", "30d"],
+        "lunar_phases": {
+            "enabled": true,
+            "influence_weight": 0.15,
+            "known_new_moon": "2024-01-11",
+            "cycle_days": 29.53058770576
+        },
+        "fibonacci_time": {
+            "enabled": true,
+            "resonance_calculation": "normalized",
+            "update_interval_minutes": 1
+        },
+        "analysis": {
+            "min_data_points": 50,
+            "confidence_threshold": 0.65,
+            "max_cycles_detected": 10
+        }
+    },
+    "weighting": {
+        "enabled": true,
+        "dimensions": 8,
+        "adaptive_weights": {
+            "enabled": true,
+            "adaptation_rate": 0.01,
+            "convergence_threshold": 0.001
+        },
+        "coherence": {
+            "threshold": 0.75,
+            "calculation_method": "multidimensional",
+            "optimization_cycles": 100
+        },
+        "market_conditions": {
+            "bullish_threshold": 2.0,
+            "bearish_threshold": -2.0,
+            "volatility_calculation": "absolute_average"
+        }
+    },
+    "ranking": {
+        "enabled": true,
+        "validation": {
+            "enabled": true,
+            "precision_threshold": 0.45,
+            "correlation_threshold": 0.6,
+            "stability_threshold": 0.7
+        },
+        "backtesting": {
+            "enabled": true,
+            "test_samples": 100,
+            "historical_days": 30,
+            "accuracy_threshold": 0.55
+        },
+        "auto_calibration": {
+            "enabled": true,
+            "calibration_interval_hours": 6,
+            "drift_threshold": 0.1,
+            "max_calibrations_per_day": 8
+        },
+        "tier_correction": {
+            "tier1": 1.618,
+            "tier2": 1.414,
+            "tier3": 1.272,
+            "tier4": 1.189,
+            "tier5": 1.129,
+            "tier6": 1.090
+        }
+    },
+    "trading": {
+        "enabled": false,
+        "safety_mode": true,
+        "consciousness_required": 0.85,
+        "risk_management": {
+            "max_positions": 5,
+            "risk_per_trade": 0.02,
+            "max_portfolio_risk": 0.10,
+            "stop_loss_percentage": 0.05,
+            "take_profit_percentage": 0.10
+        },
+        "signal_generation": {
+            "min_confidence": 0.75,
+            "quantum_score_threshold": 0.70,
+            "coherence_required": 0.80
+        },
+        "execution": {
+            "dry_run_mode": true,
+            "confirmation_required": true,
+            "max_slippage": 0.005
+        }
+    },
+    "system": {
+        "server": {
+            "port": 14001,
+            "host": "localhost",
+            "cors_enabled": true,
+            "compression": true,
+            "max_json_size": "10mb"
+        },
+        "realtime": {
+            "update_interval": 1000,
+            "max_clients": 100,
+            "compression": true,
+            "ping_interval": 30000
+        },
+        "database": {
+            "path": "./data/quantum-brain.db",
+            "auto_backup": true,
+            "backup_interval_hours": 1,
+            "max_backups": 10,
+            "wal_mode": true,
+            "cache_size": 10000
+        },
+        "performance": {
+            "history_limit": 500,
+            "cleanup_interval_hours": 24,
+            "data_retention_days": 30
+        },
+        "logging": {
+            "level": "info",
+            "console_output": true,
+            "file_output": false,
+            "quantum_events": true
+        },
+        "rate_limiting": {
+            "enabled": true,
+            "window_minutes": 1,
+            "max_requests": 1000,
+            "ban_duration_minutes": 5
+        }
+    },
+    "market_data": {
+        "binance": {
+            "enabled": true,
+            "update_interval_seconds": 30,
+            "symbols": [
+                "BTCUSDT", "ETHUSDT", "SOLUSDT", "ADAUSDT", "DOTUSDT", "LINKUSDT",
+                "AVAXUSDT", "MATICUSDT", "ATOMUSDT", "FILUSDT", "LTCUSDT", "TRXUSDT",
+                "ETCUSDT", "XLMUSDT", "VETUSDT", "ICPUSDT", "FTMUSDT", "HBARUSDT"
+            ],
+            "timeout_seconds": 5,
+            "retry_attempts": 3
+        },
+        "cache": {
+            "ttl_minutes": 5,
+            "max_entries": 1000,
+            "cleanup_interval_minutes": 15
+        },
+        "validation": {
+            "price_change_limit": 0.5,
+            "volume_spike_threshold": 10,
+            "freshness_threshold_minutes": 10
+        }
+    },
+    "ui": {
+        "theme": "quantum_dark",
+        "animations": {
+            "enabled": true,
+            "duration": 300,
+            "easing": "ease-in-out"
+        },
+        "dashboard": {
+            "auto_refresh": true,
+            "refresh_interval_seconds": 2,
+            "max_chart_points": 100,
+            "responsive_breakpoints": {
+                "mobile": 768,
+                "tablet": 1024,
+                "desktop": 1440
+            }
+        },
+        "quantum_effects": {
+            "field_visualization": true,
+            "consciousness_glow": true,
+            "entanglement_lines": true,
+            "coherence_pulse": true
+        }
+    },
+    "api": {
+        "version": "1.0.0",
+        "documentation": {
+            "enabled": true,
+            "swagger_ui": false,
+            "endpoint": "/api/docs"
+        },
+        "security": {
+            "api_key_required": false,
+            "cors_origins": ["*"],
+            "https_redirect": false
+        },
+        "features": {
+            "quantum_endpoints": true,
+            "temporal_endpoints": true,
+            "ranking_endpoints": true,
+            "consciousness_endpoints": true,
+            "trading_endpoints": false,
+            "system_endpoints": true,
+            "market_data_endpoints": true
+        }
+    },
+    "modules": {
+        "dynamic_loading": {
+            "enabled": true,
+            "lazy_loading": true,
+            "cache_modules": true
+        },
+        "quantum_core": {
+            "enabled": true,
+            "auto_initialize": true
+        },
+        "temporal_analyzer": {
+            "enabled": true,
+            "mock_mode": true,
+            "auto_initialize": true
+        },
+        "weighting_engine": {
+            "enabled": true,
+            "mock_mode": true,
+            "auto_initialize": true
+        },
+        "ranking_engine": {
+            "enabled": true,
+            "mock_mode": false,
+            "auto_initialize": true
+        },
+        "trading_executor": {
+            "enabled": false,
+            "mock_mode": true,
+            "auto_initialize": false
+        },
+        "consciousness_core": {
+            "enabled": true,
+            "auto_initialize": true
+        }
+    },
+    "alerts": {
+        "enabled": true,
+        "max_alerts": 30,
+        "severity_levels": ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
+        "auto_resolve": {
+            "enabled": true,
+            "timeout_minutes": 60
+        },
+        "notifications": {
+            "consciousness_awakening": true,
+            "quantum_field_spike": true,
+            "coherence_drop": true,
+            "system_errors": true,
+            "performance_issues": false
+        }
+    },
+    "development": {
+        "debug_mode": false,
+        "verbose_logging": false,
+        "mock_data": {
+            "enabled": false,
+            "realistic_values": true,
+            "update_interval": 5000
+        },
+        "testing": {
+            "unit_tests": false,
+            "integration_tests": false,
+            "load_testing": false
+        }
+    },
+    "metadata": {
+        "version": "1.0.0-QUANTUM",
+        "created": "2024-01-01T00:00:00Z",
+        "last_modified": "2024-01-01T00:00:00Z",
+        "description": "QBTC Quantum Brain unified configuration",
+        "schema_version": "1.0",
+        "compatibility": {
+            "min_node_version": "18.0.0",
+            "platforms": ["linux", "darwin", "win32"]
+        }
+    }
+}

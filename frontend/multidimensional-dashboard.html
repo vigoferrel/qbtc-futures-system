@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBTC - Dashboard Multidimensional Hermético</title>
+    <link rel="stylesheet" href="multidimensional-dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cosmic-container">
+        <!-- Header Multidimensional -->
+        <header class="multidimensional-header">
+            <div class="header-left">
+                <div class="quantum-logo">
+                    <div class="merkaba-symbol">⧨</div>
+                    <h1>QBTC Multidimensional Trading</h1>
+                </div>
+                <div class="dimensional-status">
+                    <span class="dimension-indicator" id="current-dimension">Dimensión 3D</span>
+                    <div class="consciousness-level">
+                        <span>Consciencia: </span>
+                        <div class="consciousness-bar">
+                            <div class="consciousness-fill" id="consciousness-fill"></div>
+                        </div>
+                        <span id="consciousness-value">73%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="merkaba-controls">
+                    <button class="merkaba-btn" id="activate-merkaba">Activar Merkaba</button>
+                    <button class="akashic-btn" id="connect-akashic">Conectar Akásico</button>
+                    <button class="dimension-btn" id="ascend-dimension">Ascender Dimensión</button>
+                </div>
+                <div class="cosmic-time">
+                    <div class="time-display" id="cosmic-time">00:00:00</div>
+                    <div class="lunar-phase" id="lunar-phase">🌕</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Principal -->
+        <main class="dashboard-grid">
+            <!-- Panel de Dimensiones Activas -->
+            <section class="panel dimensional-panel">
+                <h2><span class="icon">🌌</span> Dimensiones Activas</h2>
+                <div class="dimensions-container">
+                    <div class="dimension-card active" data-dimension="3D">
+                        <div class="dimension-header">
+                            <span class="dimension-name">3D - Físico</span>
+                            <span class="dimension-status active">ACTIVA</span>
+                        </div>
+                        <div class="dimension-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Trades Activos:</span>
+                                <span class="metric-value" id="trades-3d">12</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Profit:</span>
+                                <span class="metric-value positive" id="profit-3d">+2,847 USDT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dimension-card" data-dimension="4D">
+                        <div class="dimension-header">
+                            <span class="dimension-name">4D - Temporal</span>
+                            <span class="dimension-status">DISPONIBLE</span>
+                        </div>
+                        <div class="dimension-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Predicciones:</span>
+                                <span class="metric-value" id="predictions-4d">7</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Precisión:</span>
+                                <span class="metric-value" id="accuracy-4d">89%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dimension-card" data-dimension="5D">
+                        <div class="dimension-header">
+                            <span class="dimension-name">5D - Akásico</span>
+                            <span class="dimension-status locked">BLOQUEADA</span>
+                        </div>
+                        <div class="dimension-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Req. Consciencia:</span>
+                                <span class="metric-value" id="req-consciousness-5d">85%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dimension-card" data-dimension="∞D">
+                        <div class="dimension-header">
+                            <span class="dimension-name">∞D - Infinito</span>
+                            <span class="dimension-status mystery">MISTERIO</span>
+                        </div>
+                        <div class="dimension-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Estado:</span>
+                                <span class="metric-value" id="infinity-status">???</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel Akásico -->
+            <section class="panel akashic-panel">
+                <h2><span class="icon">📚</span> Registros Akásicos</h2>
+                <div class="akashic-container">
+                    <div class="akashic-status">
+                        <div class="status-indicator" id="akashic-indicator">
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-dot"></div>
+                        </div>
+                        <span id="akashic-status">Conectando...</span>
+                    </div>
+                    
+                    <div class="akashic-predictions">
+                        <h3>Predicciones Activas</h3>
+                        <div class="predictions-list" id="predictions-list">
+                            <!-- Predicciones se llenarán dinámicamente -->
+                        </div>
+                    </div>
+
+                    <div class="akashic-accuracy">
+                        <div class="accuracy-circle">
+                            <svg class="accuracy-svg" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#1a1a1a" stroke-width="8"/>
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#akashicGradient)" 
+                                        stroke-width="8" stroke-linecap="round" 
+                                        stroke-dasharray="283" stroke-dashoffset="85" id="accuracy-circle"/>
+                                <defs>
+                                    <linearGradient id="akashicGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#e6b800"/>
+                                        <stop offset="100%" style="stop-color:#ffdd44"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="accuracy-text">
+                                <span class="accuracy-value" id="akashic-accuracy">92%</span>
+                                <span class="accuracy-label">Precisión</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel Merkaba -->
+            <section class="panel merkaba-panel">
+                <h2><span class="icon">⧨</span> Protocolo Merkaba</h2>
+                <div class="merkaba-container">
+                    <div class="merkaba-visualization" id="merkaba-viz">
+                        <!-- Visualización 3D del Merkaba -->
+                    </div>
+                    
+                    <div class="merkaba-controls-panel">
+                        <div class="merkaba-status">
+                            <div class="status-row">
+                                <span>Estado:</span>
+                                <span class="status-value" id="merkaba-status">Inactivo</span>
+                            </div>
+                            <div class="status-row">
+                                <span>Rotación:</span>
+                                <span class="status-value" id="merkaba-rotation">0 RPM</span>
+                            </div>
+                            <div class="status-row">
+                                <span>Energía:</span>
+                                <span class="status-value" id="merkaba-energy">0%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="merkaba-actions">
+                            <button class="action-btn activate" id="merkaba-activate">Activar</button>
+                            <button class="action-btn sync" id="merkaba-sync">Sincronizar</button>
+                            <button class="action-btn ascend" id="merkaba-ascend">Ascender</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel de Trading Multidimensional -->
+            <section class="panel trading-panel">
+                <h2><span class="icon">📈</span> Trading Multidimensional</h2>
+                <div class="trading-container">
+                    <div class="trading-summary">
+                        <div class="summary-card">
+                            <h3>Profit Total</h3>
+                            <div class="value-display">
+                                <span class="value positive" id="total-profit">+15,847 USDT</span>
+                                <span class="change positive" id="profit-change">+7.2%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <h3>Trades Activos</h3>
+                            <div class="value-display">
+                                <span class="value" id="active-trades">28</span>
+                                <span class="change" id="trades-change">+3</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <h3>Dimensiones</h3>
+                            <div class="value-display">
+                                <span class="value" id="active-dimensions">2/∞</span>
+                                <span class="change" id="dimensions-change">Expandiendo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trading-chart">
+                        <canvas id="multidimensional-chart"></canvas>
+                    </div>
+
+                    <div class="active-positions">
+                        <h3>Posiciones Multidimensionales</h3>
+                        <div class="positions-table" id="positions-table">
+                            <!-- Posiciones se llenarán dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel de Métricas Cuánticas -->
+            <section class="panel quantum-panel">
+                <h2><span class="icon">⚛️</span> Métricas Cuánticas</h2>
+                <div class="quantum-container">
+                    <div class="quantum-metrics-grid">
+                        <div class="quantum-metric">
+                            <div class="metric-icon">🌀</div>
+                            <div class="metric-info">
+                                <span class="metric-name">Coherencia Cuántica</span>
+                                <span class="metric-value" id="quantum-coherence">94.7%</span>
+                            </div>
+                        </div>
+
+                        <div class="quantum-metric">
+                            <div class="metric-icon">🔮</div>
+                            <div class="metric-info">
+                                <span class="metric-name">Resonancia Lambda</span>
+                                <span class="metric-value" id="lambda-resonance">7919 Hz</span>
+                            </div>
+                        </div>
+
+                        <div class="quantum-metric">
+                            <div class="metric-icon">∞</div>
+                            <div class="metric-info">
+                                <span class="metric-name">Matriz Infinita</span>
+                                <span class="metric-value" id="infinite-matrix">77x77</span>
+                            </div>
+                        </div>
+
+                        <div class="quantum-metric">
+                            <div class="metric-icon">💎</div>
+                            <div class="metric-info">
+                                <span class="metric-name">Cristalización</span>
+                                <span class="metric-value" id="crystallization">87%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quantum-field" id="quantum-field">
+                        <!-- Campo cuántico visualizado con partículas -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel de Eventos Dimensionales -->
+            <section class="panel events-panel">
+                <h2><span class="icon">⚡</span> Eventos Dimensionales</h2>
+                <div class="events-container">
+                    <div class="events-feed" id="events-feed">
+                        <!-- Eventos se llenarán dinámicamente -->
+                    </div>
+                    
+                    <div class="event-triggers">
+                        <h3>Activadores de Eventos</h3>
+                        <div class="triggers-grid">
+                            <button class="trigger-btn" id="trigger-bigbang">Big Bang Cuántico</button>
+                            <button class="trigger-btn" id="trigger-portal">Abrir Portal</button>
+                            <button class="trigger-btn" id="trigger-synchronicity">Sincronicidad</button>
+                            <button class="trigger-btn" id="trigger-transcendence">Trascendencia</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal de Activación Dimensional -->
+        <div class="modal" id="dimensional-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Activación Dimensional</h2>
+                    <span class="modal-close" id="modal-close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="activation-progress">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#2a2a2a" stroke-width="6"/>
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#progressGradient)" 
+                                        stroke-width="6" stroke-linecap="round" 
+                                        stroke-dasharray="283" stroke-dashoffset="283" id="progress-circle"/>
+                                <defs>
+                                    <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#00ffff"/>
+                                        <stop offset="100%" style="stop-color:#ff00ff"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="progress-text">
+                                <span class="progress-value" id="activation-progress">0%</span>
+                                <span class="progress-label">Activando</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activation-message" id="activation-message">
+                        Preparando consciencia para ascensión dimensional...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="multidimensional-dashboard.js"></script>
+</body>
+</html>
