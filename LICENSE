@@ -1,105 +1,80 @@
-QBTC QUANTUM BITCOIN TRADING CORE
-PROPRIETARY SOFTWARE LICENSE AGREEMENT
+Academic Research License
+QBTC Futures System v2.0.1-academic
 
-Copyright © 2025 QBTC Technologies. All rights reserved.
+Copyright (c) 2024 vigoferrel
 
-IMPORTANT: READ CAREFULLY BEFORE USING THIS SOFTWARE
+ACADEMIC RESEARCH LICENSE
 
-This software and associated documentation files (the "Software") are proprietary 
-and confidential to QBTC Technologies ("Company"). This License Agreement 
-("Agreement") is a legal contract between you ("Licensee") and the Company.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to use,
+copy, modify, and distribute the Software for academic and research purposes
+only, subject to the following conditions:
 
-BY INSTALLING, COPYING, OR OTHERWISE USING THE SOFTWARE, YOU AGREE TO BE BOUND 
-BY THE TERMS OF THIS AGREEMENT. IF YOU DO NOT AGREE TO THESE TERMS, DO NOT 
-INSTALL, COPY, OR USE THE SOFTWARE.
+PERMITTED USES:
+- Academic research and educational purposes
+- Theoretical exploration of quantum algorithms
+- Validation of mathematical and computational concepts
+- Technical demonstration of software architectures
+- Backtesting and simulation with historical data
 
-1. GRANT OF LICENSE
-   Subject to the terms and conditions of this Agreement, Company grants 
-   Licensee a limited, non-exclusive, non-transferable license to use the 
-   Software solely for the purposes expressly authorized in this Agreement.
+CONDITIONS:
+1. The Software shall be used exclusively for academic research and educational purposes
+2. Any commercial use requires separate written permission
+3. The above copyright notice and this permission notice shall be included in all copies
+4. Modifications must be clearly documented and attributed
+5. Research results utilizing this Software should cite this work appropriately
+6. Derivative works must maintain the same academic research license
 
-2. RESTRICTIONS
-   Licensee shall NOT:
-   a) Copy, modify, adapt, or create derivative works of the Software
-   b) Distribute, sell, lease, sublicense, or otherwise transfer the Software
-   c) Reverse engineer, decompile, disassemble, or attempt to derive source code
-   d) Remove or alter any proprietary notices or labels on the Software
-   e) Use the Software for any unlawful purpose
-   f) Allow access to the Software by unauthorized third parties
+RESTRICTIONS:
+- NO commercial use without explicit written permission
+- NO financial advice or trading recommendations
+- NO real money trading or financial operations
+- NO warranty or guarantee of financial returns
+- NO use for investment decision making
 
-3. LICENSE TYPES AND FEES
-   a) Personal License: $2,999 per year - Single user, basic features
-   b) Professional License: $9,999 per year - Team use, advanced features  
-   c) Enterprise License: Contact sales - Unlimited users, full features
+DISCLAIMER:
+This Software is designed as an ACADEMIC RESEARCH TOOL for educational and
+theoretical purposes only. The Software demonstrates advanced concepts in:
+- Quantum algorithm implementation
+- Machine learning optimization techniques
+- Mathematical financial modeling
+- Software architecture patterns
 
-4. INTELLECTUAL PROPERTY
-   The Software contains proprietary and confidential information of Company.
-   All rights, title, and interest in and to the Software remain exclusively 
-   with Company.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. THE SOFTWARE IS
+INTENDED FOR ACADEMIC STUDY, RESEARCH, AND EDUCATIONAL PURPOSES ONLY.
 
-5. FINANCIAL RISK WARNING
-   THE SOFTWARE IS DESIGNED FOR FINANCIAL TRADING WHICH INVOLVES SUBSTANTIAL 
-   RISK OF LOSS. LICENSEE ACKNOWLEDGES THAT TRADING FINANCIAL INSTRUMENTS 
-   CARRIES A HIGH DEGREE OF RISK AND CAN RESULT IN THE LOSS OF ALL INVESTED 
-   CAPITAL. PAST PERFORMANCE DOES NOT GUARANTEE FUTURE RESULTS.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-6. DISCLAIMER OF WARRANTY
-   THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. COMPANY 
-   DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
-   TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND 
-   NON-INFRINGEMENT.
+ACADEMIC NATURE:
+This project represents theoretical research in the application of quantum
+computing principles and machine learning to financial systems. All
+implementations are for academic validation and demonstration purposes.
 
-7. LIMITATION OF LIABILITY
-   IN NO EVENT SHALL COMPANY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, 
-   CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF 
-   PROFITS, DATA, OR USE, INCURRED BY LICENSEE OR ANY THIRD PARTY, WHETHER 
-   IN AN ACTION IN CONTRACT OR TORT, EVEN IF COMPANY HAS BEEN ADVISED OF THE 
-   POSSIBILITY OF SUCH DAMAGES.
-
-8. TERMINATION
-   This license is effective until terminated. Company may terminate this 
-   license immediately without notice if Licensee fails to comply with any 
-   term of this Agreement. Upon termination, Licensee must destroy all copies 
-   of the Software.
-
-9. COMPLIANCE WITH LAWS
-   Licensee shall comply with all applicable local, state, national, and 
-   international laws and regulations relating to the use of the Software, 
-   including but not limited to financial trading regulations.
-
-10. EXPORT CONTROL
-    The Software is subject to export control laws and regulations. Licensee 
-    agrees to comply with all applicable export control laws and regulations.
-
-11. GOVERNING LAW
-    This Agreement shall be governed by and construed in accordance with the 
-    laws of the United States, without regard to conflict of law principles.
-
-12. SEVERABILITY
-    If any provision of this Agreement is held to be unenforceable, the 
-    remainder of this Agreement shall remain in full force and effect.
-
-13. ENTIRE AGREEMENT
-    This Agreement constitutes the entire agreement between the parties with 
-    respect to the subject matter hereof and supersedes all prior or 
-    contemporaneous understandings or agreements.
-
-CONTACT INFORMATION:
-QBTC Technologies
-Email: legal@qbtc-trading.com
-Website: https://qbtc-trading.com
-
-For license acquisition: sales@qbtc-trading.com
-For support: support@qbtc-trading.com
+For commercial licensing inquiries, please contact: vigoferrel@github.com
 
 ---
 
-ESTE SOFTWARE ESTÁ PROTEGIDO POR LEYES DE DERECHOS DE AUTOR Y TRATADOS 
-INTERNACIONALES. LA REPRODUCCIÓN O DISTRIBUCIÓN NO AUTORIZADA DE ESTE 
-PROGRAMA, O CUALQUIER PARTE DEL MISMO, PUEDE RESULTAR EN SEVERAS SANCIONES 
-CIVILES Y PENALES.
+Academic Research Areas Covered:
+- Quantum algorithms in computational finance
+- Machine learning optimization techniques
+- Mathematical modeling of financial systems
+- Risk management theory and implementation
+- Software architecture for complex systems
+- Cryptographic entropy generation
+- Statistical validation methodologies
+
+Research Contributions Welcome:
+This project is open to academic collaborations and contributions in the
+areas of quantum computing, machine learning, mathematical finance, and
+software engineering research.
 
 ---
 
 Last Updated: January 2025
-Version: 2.1.0
+License Type: Academic Research License
+For: Educational and Research Purposes Only
