@@ -529,7 +529,7 @@ npm run check-cla-status
 ### **Useful Resources**
 - [QBTC Documentation](README.md)
 - [Installation Guide](INSTALLATION.md)
-- [API Reference](docs/api-reference.md)
+- [API Reference](API_DOCUMENTATION.md)
 - [License Terms](LICENSE)
 
 ---

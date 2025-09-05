@@ -347,12 +347,12 @@ cat docs/DOCUMENTACION-TECNICA-COMPLETA.md
    - Implementación de algoritmos cuánticos
    - Guías de deployment y operaciones
 
-2. **[Abstract Financiero](docs/ABSTRACT-FINANCIERO-INTEGRAL-CORREGIDO.md)**
+2. **[Abstract Financiero](ABSTRACT-FINANCIERO-INTEGRAL-FINAL.md)**
    - Marco teórico académico
    - Metodología de investigación
    - Resultados y conclusiones
 
-3. **[Estado Final del Proyecto](docs/ESTADO-FINAL-100-QBTC.md)**
+3. **[Estado Final del Proyecto](ESTADO-FINAL-100-QBTC.md)**
    - Resumen ejecutivo de implementación
    - Métricas de completitud del sistema
    - Roadmap de investigación futura

@@ -315,20 +315,20 @@ npm run test:license    # Tests de validación de licencia
 
 - [📘 Guía de Instalación](INSTALLATION.md)
 - [🏗️ Visión General de Arquitectura](docs/architecture.md)
-- [🔬 Motor Cuántico](docs/quantum-engine.md)
-- [🧠 Sistema IA](docs/ai-system.md)
-- [⚡ Gestión de Riesgo](docs/risk-management.md)
-- [📊 Referencia de API](docs/api-reference.md)
-- [🔧 Configuración](docs/configuration.md)
-- [🐛 Resolución de Problemas](docs/troubleshooting.md)
-- [⚖️ Términos de Licencia](LICENSE.md)
+- [🔬 Motor Cuántico](docs/system-architecture-overview.md)
+- [🧠 Sistema IA](docs/COMPONENTES-IMPLEMENTADOS-REPORTE.md)
+- [⚡ Gestión de Riesgo](docs/risk-management-framework.md)
+- [📊 Referencia de API](API_DOCUMENTATION.md)
+- [🔧 Configuración](INSTALLATION.md)
+- [🐛 Resolución de Problemas](DIAGNOSTICO-SERVICIOS-QBTC.md)
+- [⚖️ Términos de Licencia](LICENSE)
 
 ### Documentación Matemática
 
-- [📐 Marco Matemático](docs/mathematical-framework.md)
-- [📈 Análisis de Rendimiento](docs/performance-analysis.md)
-- [🧮 Fórmulas Cuánticas](docs/quantum-formulas.md)
-- [📊 Métricas de Riesgo](docs/risk-metrics.md)
+- [📐 Marco Matemático](docs/BIBLIOGRAFIA-ACADEMICA-COMPLETA.md)
+- [📈 Análisis de Rendimiento](docs/trading-cycle-analysis.md)
+- [🧮 Fórmulas Cuánticas](QBTC_LEVERAGE_MATHEMATICAL_ABSTRACT_REFINED.md)
+- [📊 Métricas de Riesgo](docs/risk-management-framework.md)
 
 ---
 

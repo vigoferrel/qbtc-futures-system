@@ -945,20 +945,20 @@ npm run test:license    # License validation tests
 
 - [📘 Installation Guide](INSTALLATION.md)
 - [🏗️ Architecture Overview](docs/architecture.md)
-- [🔬 Quantum Engine](docs/quantum-engine.md)
-- [🧠 AI System](docs/ai-system.md)
-- [⚡ Risk Management](docs/risk-management.md)
-- [📊 API Reference](docs/api-reference.md)
-- [🔧 Configuration](docs/configuration.md)
-- [🐛 Troubleshooting](docs/troubleshooting.md)
-- [⚖️ License Terms](LICENSE.md)
+- [🔬 Quantum Engine](docs/system-architecture-overview.md)
+- [🧠 AI System](docs/COMPONENTES-IMPLEMENTADOS-REPORTE.md)
+- [⚡ Risk Management](docs/risk-management-framework.md)
+- [📊 API Reference](API_DOCUMENTATION.md)
+- [🔧 Configuration](INSTALLATION.md)
+- [🐛 Troubleshooting](DIAGNOSTICO-SERVICIOS-QBTC.md)
+- [⚖️ License Terms](LICENSE)
 
 ### Mathematical Documentation
 
-- [📐 Mathematical Framework](docs/mathematical-framework.md)
-- [📈 Performance Analysis](docs/performance-analysis.md)
-- [🧮 Quantum Formulas](docs/quantum-formulas.md)
-- [📊 Risk Metrics](docs/risk-metrics.md)
+- [📐 Mathematical Framework](docs/BIBLIOGRAFIA-ACADEMICA-COMPLETA.md)
+- [📈 Performance Analysis](docs/trading-cycle-analysis.md)
+- [🧮 Quantum Formulas](QBTC_LEVERAGE_MATHEMATICAL_ABSTRACT_REFINED.md)
+- [📊 Risk Metrics](docs/risk-management-framework.md)
 
 ---
 

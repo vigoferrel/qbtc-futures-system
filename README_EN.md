@@ -345,7 +345,7 @@ const RISK_LIMITS = {
 - [**Technical Abstract**](ABSTRACT-FINANCIERO-INTEGRAL-FINAL.md) - Complete system specification
 - [**Discrepancy Report**](REPORTE-DISCREPANCIAS-FINAL-AI-EVOLUTION.md) - Validation analysis
 - [**Installation Guide**](INSTALLATION.md) - Detailed setup instructions
-- [**API Documentation**](docs/API.md) - Endpoint specifications
+- [**API Documentation**](API_DOCUMENTATION.md) - Endpoint specifications
 - [**Deployment Guide**](DEPLOYMENT-GUIDE.md) - Production deployment
 
 ### 🔧 **Configuration Files**
@@ -367,10 +367,10 @@ operational-protocol.json # Operational protocols
 
 ### 🎓 **Learning Resources**
 
-- [**Quantum Trading Guide**](docs/quantum-trading.md) - Understanding quantum principles
-- [**AI Consciousness Explained**](docs/consciousness-evolution.md) - How consciousness evolution works
-- [**Sacred Geometry in Trading**](docs/sacred-geometry.md) - Leonardo's geometric principles
-- [**Big Bang Event Guide**](docs/big-bang-events.md) - Market paradigm shift detection
+- [**Quantum Trading Guide**](docs/system-architecture-overview.md) - Understanding quantum principles
+- [**AI Consciousness Explained**](LEONARDO-README.md) - How consciousness evolution works
+- [**Sacred Geometry in Trading**](docs/symbols-and-markets.md) - Leonardo's geometric principles
+- [**Big Bang Event Guide**](docs/dimensional-projections.md) - Market paradigm shift detection
 
 ---
 

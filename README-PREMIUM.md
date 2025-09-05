@@ -496,17 +496,17 @@ npm run performance-audit  # Audit de performance y optimización
 
 | Documento | Descripción | Estado |
 |-----------|-------------|---------|
-| [🎯 **Documentación Técnica**](docs/technical/) | Análisis integral del ecosistema | ✅ Completa |
-| [🔧 **Runbook Operativo**](docs/operations/) | Procedimientos de operación 24/7 | ✅ Completa |
+| [🎯 **Documentación Técnica**](docs/DOCUMENTACION-TECNICA-COMPLETA.md) | Análisis integral del ecosistema | ✅ Completa |
+| [🔧 **Runbook Operativo**](LAUNCH-GUIDE.md) | Procedimientos de operación 24/7 | ✅ Completa |
 | [🏗️ **Arquitectura del Sistema**](docs/architecture/) | Diseño y patrones arquitectónicos | ✅ Completa |
-| [🚀 **Guía de Deployment**](docs/deployment/) | Despliegue en producción | ✅ Completa |
+| [🚀 **Guía de Deployment**](DEPLOYMENT-GUIDE.md) | Despliegue en producción | ✅ Completa |
 
 ### 🔌 **APIs y Referencias**
 
-- [📊 **API Reference**](docs/api/) - Endpoints y schemas
-- [📈 **Métricas y Monitoring**](docs/monitoring/) - Prometheus, alertas y dashboards
-- [🛡️ **Seguridad y Políticas**](docs/security/) - Cryptographic entropy y validaciones
-- [🧪 **Testing Guide**](docs/testing/) - Test suites y coverage
+- [📊 **API Reference**](API_DOCUMENTATION.md) - Endpoints y schemas
+- [📈 **Métricas y Monitoring**](README-QBTC-DASHBOARD.md) - Prometheus, alertas y dashboards
+- [🛑️ **Seguridad y Políticas**](ai-copilot/SECURITY_AUDIT_REPORT.md) - Cryptographic entropy y validaciones
+- [🧪 **Testing Guide**](VALIDACION-FINAL-SISTEMA-QBTC.md) - Test suites y coverage
 
 ---
 
@@ -604,3 +604,4 @@ npm run performance-audit  # Audit de performance y optimización
 **Last Updated: September 2024**
 
 </div>
+
